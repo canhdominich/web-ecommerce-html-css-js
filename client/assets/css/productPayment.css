@@ -1,0 +1,368 @@
+/*body {*/
+/*    font-size: 14px;*/
+/*    color: #444444;*/
+/*}*/
+.container-wrapper {
+    background: #f5f5f5;
+}
+.container .breadcrumb {
+    font-size: 13px;
+    font-weight: 600;
+    padding-left: 0px !important;
+    background: unset !important;
+    padding-top: 22px;
+}
+.container .breadcrumb span {
+    color: #999999;
+    cursor: pointer;
+}
+.container .breadcrumb span:last-child {
+    color: #242424 !important;
+}
+.container .breadcrumb i {
+    margin: 6px 10px;
+    color: blue;
+    font-size: 7px;
+}
+/* Css checkbox */
+.main {
+    /*display: block;*/
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+
+input[type=checkbox] {
+    visibility: hidden;
+}
+input[type=radio] {
+    visibility: hidden;
+}
+.geekmark {
+    position: absolute;
+    left: 0;
+    /*height: 20px;*/
+    /*width: 20px;*/
+    background-color: #F1FBFF;
+    border: 1.5px solid #A0A3BD;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.main input:checked ~ .geekmark {
+    background-color: #21C58E;
+}
+
+.geekmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.main input:checked ~ .geekmark:after {
+    display: block;
+}
+
+.main .geekmark:after {
+    /*left: 5px;*/
+    /*bottom: 4px;*/
+    /*width: 6px;*/
+    /*height: 12px;*/
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/**/
+.py-header, .py-item {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.py-header > div, .py-item > div {
+    text-align: center;
+}
+.py-header {
+    height: 70px;
+    background: #FFFFFF;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.py-item {
+    background: #ffffff;
+    height: 108px;
+}
+
+.py-header .--product-name, .py-item .--product-name,
+.py-header .--product-price, .py-item .--product-price {
+    width: 201px;
+}
+div.--product-qty, div.--product-into-money, div.--product-price-original {
+    width: 140px;
+    text-align: center;
+}
+.py-item div.--product-price, .py-item div.--product-into-money {
+    color: #072E75;
+    font-weight: 600;
+}
+div.--product-action {
+    width: 67px;
+    text-align: center;
+    cursor: pointer;
+}
+.product-payment {
+    display: flex;
+}
+.product-payment-right {
+    width: 278px;
+    padding: 15px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    height: fit-content;
+}
+.product-payment-left {
+    width: calc(100% - 308px);
+    margin-right: 30px;
+    padding-bottom: 50px;
+}
+div.--product-price-original span.--original-price {
+    text-decoration-line: line-through;
+    color: #999999;
+    font-size: 14px;
+    margin-right: 5px;
+}
+div.--product-name {
+    display: flex;
+    align-items: center;
+}
+div.--product-name > span.title {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: #242424;;
+}
+/* right */
+.pyr-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px;
+}
+.pyr-item > div {
+    flex: 1;
+}
+.pyr-item > div:last-child {
+    text-align: right;
+}
+.pyr-item .--title {
+    line-height: 12px;
+    color: #242424;
+}
+.pyr-action-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+.pyr-action-btn > button {
+    width: 245px;
+    height: 44px;
+    background: #21C58E;
+    border-radius: 8px;
+    color: #FFFFFF;
+    border: none;
+    font-size: 16px;
+}
+.pyr-content .--option-export-vat, .--payment-description {
+    color: #999999;
+    font-size: 10px;
+    display: inline-block;
+    line-height: 12px;
+    margin-top: 4px;
+}
+.pyr-item .--number-total, .pyr-item .--number-paid {
+    color: #072E75;
+    font-weight: bold;
+}
+.pyr-item .--number-into-money {
+    color: #FF3F3F;
+    font-weight: bold;
+}
+/**/
+.py-type-delivery {
+    background: #FFFFFF;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 20px;
+}
+.py-type-delivery .py-type-delivery-form > div.pyt-d-form-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.pyt-d-form-item:last-child > .form-group {
+    margin-bottom: 0px !important;
+}
+/**/
+.py-information-delivery, .py-type, .py-note {
+    background: #FFFFFF;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 20px;
+}
+.py-information-delivery .py-i-de-item .main.--special-time {
+    display: flex;
+    width: fit-content;
+}
+.py-information-delivery .py-i-de-item .main.--special-time > span.geekmark {
+    top: 6px;
+}
+.py-i-de-item:nth-child(2) {
+    margin-top: 8px;
+}
+.py-information-delivery .py-i-de-item .main.--special-time > span.py-main-title {
+    padding-top: 8px;
+    height: 24px;
+}
+.py-information-delivery .py-i-de-item .py-main-title {
+    white-space: nowrap;
+}
+.py-i-de-content .py-i-de-item {
+    padding-bottom: 10px;
+}
+h1.product-payment-left-title {
+    color: #242424;
+    font-size: 16px;
+    font-weight: bold;
+}
+#inputDeliveryTime {
+    border: none;
+    border-bottom: 1px dotted;
+    width: 90px;
+    margin-left: 10px;
+    outline: none;
+}
+.py-information-delivery .dropdown-divider {
+    margin: 20px 0px;
+}
+.py-type-item {
+    padding-top: 5px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    height: 54px;
+    width: 368px;
+    padding-left: 10px;
+    border: 1px solid #eeeeee;
+    margin-bottom: 10px;
+}
+
+.py-type-item .main{
+    display: flex;
+    align-items: center;
+}
+.py-type-item .main .py-main-title {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #242424;
+}
+span.py-main-title > span {
+    color: #666666 !important;
+    font-weight: normal !important;
+}
+.py-type-item {
+    padding-top: 16px;
+}
+.selected {
+    background: rgba(33, 197, 142, 0.15);
+    border: 1px solid #21C58E;
+}
+.hide {
+    display: none;
+}
+.py-type-item .main .geekmark,
+.py-information-delivery .py-i-de-content .py-i-de-item .main > span.geekmark {
+    border-radius: 50% !important;
+}
+.py-type-content {
+    margin-top: 15px;
+}
+.product-payment-left-title {
+    margin-bottom: 20px;
+}
+.py-note #py-note-area {
+    outline: none;
+    border: none;
+    width: 100%;
+}
+.py-type-delivery-form {
+    color: #999999;
+    margin-top: 30px;
+}
+#form-information-vat {
+    color: #999999;
+}
+.py-type-delivery-form .form-group {
+    position: relative;
+    width: 49%;
+}
+.py-type-delivery-form .form-group > label,
+.product-payment-right .form-group > label {
+    position: absolute;
+    top: -10px;
+    left: 8px;
+    background: #ffffff;
+    padding: 0 5px;
+}
+.py-type-delivery-form .pyt-d-form-item .form-group .form-control,
+.product-payment-right .pyr-content > form .form-group .form-control {
+    height: 44px;
+}
+.py-type-delivery-form .form-group > label > span {
+    color: red;
+}
+.pyr-header-title {
+    font-size: 24px;
+}
+.product-payment-right .pyr-content > form {
+    margin-top: 25px;
+}
+.product-payment-right .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+.product-payment-right .form-group:last-child {
+    margin-bottom: 0px;
+}
+.product-payment-left .geekmark {
+    height: 24px;
+    width: 24px;
+}
+.product-payment-right .geekmark {
+    height: 16px;
+    width: 16px;
+}
+.product-payment-left .main .geekmark:after {
+    width: 8px;
+    height: 13px;
+    left: 7px;
+    bottom: 6px;
+}
+.product-payment-right .main .geekmark:after {
+    width: 6px;
+    height: 10px;
+    left: 4px;
+    bottom: 4px;
+}
+/* Css place holder */
+::-webkit-input-placeholder {
+    color: rgba(153, 153, 153, 0.5) !important;
+}
+
+:-ms-input-placeholder {
+    color: rgba(153, 153, 153, 0.5) !important;
+}
+
+::placeholder {
+    color: rgba(153, 153, 153, 0.5) !important;
+}

@@ -1,0 +1,225 @@
+/* Login */
+.modal-left-item img {
+    max-width: 100%;
+}
+.modal-wrapper-content {
+    display: flex;
+}
+.modal-dialog {
+    height: 100%;
+    max-width: 833px !important;
+    display: flex;
+    align-items: center;
+    margin-top: 0 !important;
+}
+.modal-wrapper-content .modal-left-item,
+.modal-wrapper-content .modal-right-item {
+    width: 50%;
+}
+#loginModal .modal-dialog.modal-lg {
+    width: 80%;
+}
+.modal-wrapper-content .modal-right-item {
+    padding: 30px;
+}
+.modal-right-item .modal-right-item-top {
+    text-align: right;
+}
+.modal-right-item .modal-right-item-top .modal-top-header {
+    font-size: 16px;
+}
+.content-modal-right {
+    margin-top: 50px;
+    padding: 0 30px;
+}
+.modal-right-form .form-title .sub-title {
+    color: #242424;
+    font-size: 16px;
+}
+.content-modal-right .form-title .main-title {
+    color: #242424;
+    font-size: 23px;
+    font-weight: bold;
+}
+.modal-right-form .form-group {
+    margin-bottom: 0px !important;
+}
+.modal-login-right .modal-right-form .form-group.input-password {
+    margin-bottom: 20px !important;
+}
+.modal-right-form .form-group.input-password > label {
+    padding-top: 0px !important;
+}
+.modal-right-form .form-group .form-control {
+    height: 40px;
+}
+.modal-right-form .form-group label.col-form-label {
+    color: #666666;
+}
+.modal-right-form .form-group.input-password > div,
+.modal-right-form .form-group.input-file-upload > div,
+.input-opt {
+    position: relative;
+}
+.modal-right-form .form-group.input-password > div > span > svg,
+.modal-right-form .form-group.input-file-upload > div > span {
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    cursor: pointer;
+}
+.modal-right-form > div > button.btn-green {
+    background: #21C58E;
+    border-radius: 8px;
+    border: navajowhite;
+    width: 100%;
+    height: 50px;
+    color: #FFFFFF;
+    margin-top: 10px;
+}
+.modal-right-form .action-form-login {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.modal-right-form .action-form-login .forgot-pwd-right,
+.modal-top-header > span {
+    color: #072E75;
+}
+/* css checkbox */
+.modal-customer .main {
+    display: block;
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+
+.modal-customer  input[type=checkbox] {
+    visibility: hidden;
+}
+.modal-customer .geekmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    /*background-color: #F1FBFF;*/
+    border: 1.5px solid #A0A3BD;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+.modal-customer .main input:checked ~ .geekmark {
+    background-color: #21C58E;
+}
+.modal-customer .main input:checked ~ .active {
+    color: #242424;
+    font-weight: bold !important;
+}
+.modal-customer .geekmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.modal-customer .main input:checked ~ .geekmark:after {
+    display: block;
+}
+
+.modal-customer .main .geekmark:after {
+    left: 3px;
+    bottom: 3px;
+    width: 6px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.forgot-pwd-right, .modal-top-header > span {
+    cursor: pointer;
+}
+/* Forgot password */
+.btn-send-opt {
+    position: absolute;
+    right: 5px;
+    top: 55%;
+    width: 114px;
+    height: 30px;
+    font-size: 14px;
+    border: 1px
+    solid #21C58E;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background: white;
+    color: #21C58E;
+}
+.modal-content {
+    max-height: 85%;
+    overflow-y: auto;
+    border-radius: 15px;
+}
+.modal-content .modal-right-item {
+    /*max-height: 675px;*/
+    /*overflow-y: auto;*/
+}
+/* Css place holder */
+::-webkit-input-placeholder {
+    color: rgba(153, 153, 153, 0.5) !important;
+}
+
+:-ms-input-placeholder {
+    color: rgba(153, 153, 153, 0.5) !important;
+}
+
+::placeholder {
+    color: rgba(153, 153, 153, 0.5) !important;
+}
+/* Css register */
+#registerNavTab {
+    display: flex;
+}
+#registerNavTab .nav-item > button {
+    background: #EEEEEE;
+    border-radius: 4px;
+    height: 35px;
+    color: #666666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin-right: 10px;
+}
+#registerNavTab .nav-item:first-child > button {
+    margin-bottom: 10px;
+}
+#registerNavTab .nav-item > button.active {
+    background: #072E75;
+    color: #FFFFFF;
+}
+.form-group > div > input[type='file'] {
+    display: none;
+}
+.modal-register-right .content-modal-right .form-title .main-title {
+    margin-bottom: 20px;
+}
+.hide {
+    display: none;
+}
+/**/
+.modal-customer {
+    overflow-y: hidden !important;
+    padding-right: 0px !important;
+}
+.modal-open {
+    overflow: hidden;
+}
+.modal-close-i {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+}

@@ -1,0 +1,158 @@
+<div class="footer">
+    <div class="container">
+        <div class="footer-top d-flex">
+            <div class="footer-top-item">
+                <div class="footer-top-item-logo">
+                    <img src="../assets/images/Logo.png" alt="logo">
+                </div>
+                <div class="footer-top-item-description">
+                    <div>
+                        Tại Medica.io, mỗi dược sỹ luôn tận tâm phục vụ và được đào tạo để hoàn thành xuất sắc những sứ mệnh được giao.
+                    </div>
+                    <div>
+                        <a href="#" class="blue-text more-information-link">Tìm hiểu thêm</a>
+                    </div>
+                    <div class="blue-text font-bold">
+                        Trở thành nhà cung cấp
+                    </div>
+                    <div>
+                        Hỗ trợ đơn hàng doanh nghiệp
+                    </div>
+                    <div class="blue-text">
+                        Groupb2b@medica.vn
+                    </div>
+                </div>
+            </div>
+            <div class="footer-top-item">
+                <div class="footer-top-item-title">
+                    Liên kết hữu ích
+                </div>
+                <div class="footer-top-item-description">
+                    <div>
+                        Câu hỏi thường gặp
+                    </div>
+                    <div>
+                        Tìm cửa hàng gần bạn
+                    </div>
+                    <div>
+                        Chính sách giao hàng
+                    </div>
+                    <div>
+                        Chính sách đổi trả
+                    </div>
+                    <div>
+                        Thể lệ chương trình
+                    </div>
+                </div>
+            </div>
+            <div class="footer-top-item">
+                <div class="footer-top-item-title">
+                    Theo dõi chúng tôi trên
+                </div>
+                <div class="footer-top-item-description">
+                    <div>
+                        <img class="img-icon-socials" src="../assets/images/Facebook.png"/>
+                        <span>Câu hỏi thường gặp</span>
+                    </div>
+                    <div>
+                        <img class="img-icon-socials" src="../assets/images/Skype.png"/>
+                        <span>Câu hỏi thường gặp</span>
+                    </div>
+                    <div>
+                        <img class="img-icon-socials" src="../assets/images/Youtube.png"/>
+                        <span>Câu hỏi thường gặp</span>
+                    </div>
+                    <div>
+                        <img src="../assets/images/footer-icon.png"/>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-top-item">
+                <div class="footer-top-item-title">
+                    Tải ứng dụng Medica ngay thôi
+                </div>
+                <div class="footer-top-item-description">
+                    <div>
+                        <img src="../assets/images/app-store.png"/>
+                    </div>
+                    <div>
+                        <img src="../assets/images/google-play.png"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="separate"></div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-item">
+                Công Ty Cổ Phần Dược Phẩm Medica
+            </div>
+            <div class="footer-bottom-item">
+                Trụ sở: 248A Nơ Trang Long, P.12, Q.Bình Thạnh, TP.Hồ Chí Minh.
+            </div>
+            <div class="footer-bottom-item">
+                Điện thoại: 1800 6821. Email:cskh@pharmacity.vn
+            </div>
+            <div class="footer-bottom-item">
+                GPDKKD: 0311770883
+            </div>
+            <div class="footer-bottom-item">
+                Do sở KH & ĐT TP.HCM cấp lần đầu ngày 05/05/2012, đăng ký thay đổi lần thứ: 49, ngày 20/01/2018.
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/js/jquery-3.2.1.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/owl.carousel.min.js"></script>
+<script>
+    function openForgotPassword() {
+        $('#loginModal').modal('hide')
+        // $('#forgotPasswordModal').modal('show')
+        setTimeout(function () {
+            $('#forgotPasswordModal').modal('show')
+        }, 500)
+    }
+    function sendOpt() {
+        console.log($('.form-forgot-pwd #phone-number').val)
+    }
+    function openModalRegister() {
+        $('#loginModal').modal('hide')
+        $('#forgotPasswordModal').modal('hide')
+        // $('#registerModal').modal('show')
+        setTimeout(function () {
+            $('#registerModal').modal('show')
+        }, 500)
+    }
+    function openModalLogin() {
+        // $('#loginModal').modal('show')
+        $('#forgotPasswordModal').modal('hide')
+        $('#registerModal').modal('hide')
+        setTimeout(function () {
+            $('#loginModal').modal('show')
+        }, 500)
+    }
+    function selectFile(idElm) {
+        document.getElementById(idElm).click()
+    }
+    function changeMenuNavTab(tab) {
+        $('.drug-tore-field, .clinic-field, .company-field').each(function(index, obj){
+            obj.classList.add('hide')
+        });
+        $(`.${tab}-field`).each(function(index, obj){
+            obj.classList.remove('hide')
+        });
+    }
+    function hideShowPwd(idElm) {
+        let x = document.getElementById(idElm);
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    function rememberMe() {
+
+    }
+</script>

@@ -109,15 +109,15 @@
                         </a>
                     </div>
                     <div class="menu_right-login">
-                        <img src="../assets/images/avatar.png" alt="avt">
+                        <!-- <img src="../assets/images/avatar.png" alt="avt"> -->
                         <div class="dropdown ">
-                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#loginModal">Đăng nhập</button> -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#loginModal">Đăng nhập</button>
 
-                            <button class="dropdown-toggle hide" type="button" id="dropdownMenuButton"
+                            <!-- <button class="dropdown-toggle hide" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Minh Thuan
-                            </button>
+                            </button> -->
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="trangCaNhan.html">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -802,206 +802,401 @@
 </div>
 
 <body>
+
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dầu gió xanh con Én Eagle</title>
-        <link rel="stylesheet" href="../assets/css/productDetail.css">
+        <title>Trang chủ</title>
+        <link rel="stylesheet" href="../assets/css/listProduct.css">
     </head>
-    <div class="container-wrapper">
-        <div class="container">
-            <div class="breadcrumb">
-                <span class="category-text-level1">Tất cả sản phẩm</span>
-                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                <span class="category-text-level2">Dầu gió xanh con Én Eagle</span>
-            </div>
-            <!--Product detail top-->
-            <div class="product-detail-top">
-                <div class="product-detail-top-left">
-                    <div class="prd-top-left-header">
-                        <span class="sale-percent">
-                            <svg width="24" height="24" viewBox="0 0 17 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M10.9667 6.66663C10.9667 6.66663 10.8333 7.33329 8.83334 9.99996C6.9 12.5333 9.7 14.4 10.0333 14.6666H10.1C10.5 14.3333 15.5667 11.1333 10.9667 6.66663Z"
-                                    stroke="#FAFF00" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path
-                                    d="M9.36663 5.20009C9.36663 3.66675 8.76663 2.26675 8.16663 1.46675C7.96663 1.26675 7.6333 1.33342 7.56663 1.60009C7.29996 2.60009 6.49996 4.73342 4.56663 7.26675C2.09996 10.4668 4.36663 13.9334 6.69996 14.6001C7.96663 14.9334 6.36663 13.9334 6.16663 11.8668C5.96663 9.26675 9.36663 7.33342 9.36663 5.20009Z"
-                                    stroke="#FAFF00" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span class="sale-percent-number">-10%</span>
-                        </span>
-                        <img src="../assets/images/otiv-detail.png" width="450" height="450"
-                            id="product-detail-img-selected">
-                        <svg class="products-detail-img-item-heart" width="26" height="26" viewBox="0 0 20 20"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
-                                fill="#DDDDDD" />
-                        </svg>
+    <div class="container">
+        <!--Banner-->
+        <div class="banner container">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="../assets/images/banner.png" alt="First slide">
                     </div>
                 </div>
-                <div class="product-detail-top-right">
-                    <h1 class="--title">Dầu gió xanh con Én Eagle </h1>
-                    <span class="amount-sold">2.6K đã bán</span>
-                    <div class="prd-price">
-                        <span class="current-price">1.000.000.000 VND</span>Giá gốc:
-                        <span class="original-price">1.500.00 VND</span> <br />
-                        <span class="retail-price">(Giá bán lẻ đề xuất: 1.400.000 VND)</span>
-                    </div>
-                    <p>PANCAL được bào chế dạng dung dịch uống, với mùi vị hương ca m thuận tiện dễ sử dụng. Thuốc giúp
-                        bổ sung calci ở những người thiếu hụt calci.</p>
-                    <div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 
+                    <svg width="48" height="83" viewBox="0 0 48 83" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5"
+                            d="M0 16.1932H12.3605C26.0136 16.1932 37.0815 27.2612 37.0815 40.9143C37.0815 54.5673 26.0136 65.6353 12.3605 65.6353H0V16.1932Z"
+                            fill="#252931" />
+                        <path d="M18.5408 35.764L13.3906 40.9143L18.5408 46.0645" stroke="white" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <svg width="48" height="83" viewBox="0 0 48 83" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5"
+                            d="M48 66.6652L35.6395 66.6652C21.9864 66.6652 10.9185 55.5972 10.9185 41.9441C10.9185 28.2911 21.9864 17.2231 35.6395 17.2231L48 17.2231L48 66.6652Z"
+                            fill="#252931" />
+                        <path d="M29.4592 47.0944L34.6094 41.9441L29.4592 36.7939" stroke="white" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+
+                </a>
+            </div>
+        </div>
+
+        <div class="title-category">
+            <div class="right-title-category">Tất cả sản phẩm</div>
+            <div class="left-title-category">
+                <!-- static category tabs -->
+                <div class="left-title-category-item">
+                    Sản phẩm mới
+                </div>
+                <div class="left-title-category-item">
+                    Bán chạy
+                </div>
+                <div class="left-title-category-item">
+                    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.5624 6.01758H9.25969L13.1288 1.12891C13.2089 1.02539 13.1366 0.875 13.0058 0.875H5.51555C5.46086 0.875 5.40812 0.904297 5.38078 0.953125L0.320233 9.69336C0.259686 9.79688 0.333905 9.92773 0.454998 9.92773H3.86125L2.11515 16.9121C2.07805 17.0645 2.26164 17.1719 2.37492 17.0625L13.6698 6.28516C13.7714 6.18945 13.703 6.01758 13.5624 6.01758Z"
+                            fill="#0063F7" />
+                    </svg>
+                    Flash Sale
+                </div>
+                <div class="left-title-category-item">
+                    Ưu đãi tháng 11
+                </div>
+                <div class="left-title-category-item">
+                    <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M18.889 8.32224C19.0954 8.16842 19.2486 7.95383 19.327 7.70858C19.4053 7.46332 19.405 7.19968 19.326 6.95463C19.2469 6.70958 19.0932 6.49541 18.8863 6.34215C18.6794 6.18889 18.4297 6.10422 18.1723 6.10001L13.1723 5.91112C13.1477 5.90943 13.1241 5.90066 13.1044 5.88587C13.0847 5.87109 13.0697 5.85092 13.0612 5.82779L11.3334 1.16113C11.2466 0.923703 11.0889 0.71869 10.8817 0.573845C10.6746 0.429 10.4279 0.351318 10.1751 0.351318C9.92228 0.351318 9.67559 0.429 9.46841 0.573845C9.26122 0.71869 9.10355 0.923703 9.01674 1.16113L7.29452 5.84446C7.28601 5.86758 7.27099 5.88775 7.25127 5.90254C7.23156 5.91733 7.20799 5.9261 7.18341 5.92779L2.18341 6.11668C1.92597 6.12089 1.6763 6.20555 1.4694 6.35882C1.26251 6.51208 1.10877 6.72625 1.02975 6.9713C0.950719 7.21635 0.950364 7.47998 1.02873 7.72524C1.1071 7.9705 1.26026 8.18508 1.46674 8.3389L5.38896 11.4222C5.40859 11.4377 5.42326 11.4585 5.43116 11.4822C5.43906 11.5059 5.43984 11.5314 5.43341 11.5556L4.08341 16.3389C4.01345 16.5825 4.02023 16.8417 4.10282 17.0813C4.18541 17.3209 4.3398 17.5292 4.54499 17.6779C4.75018 17.8267 4.99621 17.9086 5.2496 17.9125C5.503 17.9165 5.75146 17.8423 5.96119 17.7L10.1056 14.9222C10.126 14.9081 10.1503 14.9006 10.1751 14.9006C10.1999 14.9006 10.2241 14.9081 10.2445 14.9222L14.389 17.7C14.5959 17.8471 14.8434 17.9262 15.0973 17.9262C15.3512 17.9262 15.5987 17.8471 15.8056 17.7C16.0109 17.5527 16.1654 17.3454 16.248 17.1066C16.3306 16.8678 16.3371 16.6093 16.2667 16.3667L14.9056 11.5667C14.8984 11.5426 14.8988 11.5168 14.9068 11.493C14.9147 11.4691 14.9298 11.4483 14.9501 11.4333L18.889 8.32224Z"
+                            fill="#FFC702" />
+                    </svg>
+                    Nhãn hàng 3 tốt
+                </div>
+                <!-- end static category tabs -->
+            </div>
+        </div>
+        <div class="product-category-wrapper">
+            <div class="product-category-wrapper-left">
+                <div class="category-wrapper-left-item">
+                    <div data-toggle="collapse" data-target="#collapseExample0" aria-expanded="false"
+                        aria-controls="collapseExample0" class="category-wrapper-left-item-title">
+                        <span>Nhóm thuốc</span>
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
-                    <div class="b-quantity">
-                        <span class="lbl-quantity">Số lượng:</span>
-                        <div class="select-quantity">
-                            <span class="value-button disable" onclick="changeQuantity(false)" id="decrease">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                    class="bi bi-dash" viewBox="0 0 16 16">
-                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"></path>
-                                </svg>
-                            </span>
-                            <input type="number" id="p_qty" value="1" maxlength="3" min="1" max="999" name="quantity"
-                                class="input-number">
-                            <span class="value-button" onclick="changeQuantity(true)" id="increase">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                                    class="bi bi-plus" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z">
-                                    </path>
-                                </svg>
-                            </span>
-                        </div>
-                        <span class="lbl-remain-prd">Còn hàng</span>
+                    <div id="collapseExample0" class="category-wrapper-left-sub-item collapse show">
+                        <label class="main">
+                            <input type="checkbox">
+                            <span class="active">Chăm Sóc Răng Miệng</span>
+                            <span class="geekmark"></span>
+                        </label>
+                        <label class="main">
+                            <input type="checkbox">
+                            <span class="active">Chăm sóc da</span>
+                            <span class="geekmark"></span>
+                        </label>
+                        <label class="main">
+                            <input type="checkbox">
+                            <span class="active">Dụng cụ y tế</span>
+                            <span class="geekmark"></span>
+                        </label>
+                        <label class="main">
+                            <input type="checkbox">
+                            <span class="active">Thực phẩm chức năng</span>
+                            <span class="geekmark"></span>
+                        </label>
+                        <label class="main">
+                            <input type="checkbox">
+                            <span class="active">Chăm sóc tóc</span>
+                            <span class="geekmark"></span>
+                        </label>
                     </div>
-                    <div class="prd-btn-action">
-                        <button class="add-to-card-btn" onclick="window.location.href='gioHang.html'">
-                            <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M5.77308 6.95612L6.27558 12.9328C6.31224 13.3928 6.68808 13.7378 7.14724 13.7378H7.15058H16.2431H16.2447C16.6789 13.7378 17.0497 13.4144 17.1114 12.9853L17.9031 7.51945C17.9214 7.38945 17.8889 7.25945 17.8097 7.15445C17.7314 7.04862 17.6164 6.98028 17.4864 6.96195C17.3122 6.96862 10.0847 6.95862 5.77308 6.95612ZM7.14558 14.9878C6.04808 14.9878 5.11891 14.1311 5.02974 13.0353L4.26641 3.95695L3.01058 3.74028C2.66974 3.68028 2.44224 3.35778 2.50058 3.01695C2.56058 2.67612 2.88974 2.45445 3.22308 2.50778L4.95641 2.80778C5.23558 2.85695 5.44808 3.08862 5.47224 3.37195L5.66808 5.70612C17.5647 5.71112 17.6031 5.71695 17.6606 5.72362C18.1247 5.79112 18.5331 6.03362 18.8114 6.40695C19.0897 6.77945 19.2064 7.23862 19.1397 7.69862L18.3489 13.1636C18.1997 14.2036 17.2964 14.9878 16.2464 14.9878H16.2422H7.15224H7.14558Z"
-                                    fill="#21C58E" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M14.9064 10.0364H12.5964C12.2506 10.0364 11.9714 9.75638 11.9714 9.41138C11.9714 9.06638 12.2506 8.78638 12.5964 8.78638H14.9064C15.2514 8.78638 15.5314 9.06638 15.5314 9.41138C15.5314 9.75638 15.2514 10.0364 14.9064 10.0364Z"
-                                    fill="#21C58E" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M6.78717 17.2516C7.03801 17.2516 7.24051 17.4541 7.24051 17.7049C7.24051 17.9558 7.03801 18.1591 6.78717 18.1591C6.53551 18.1591 6.33301 17.9558 6.33301 17.7049C6.33301 17.4541 6.53551 17.2516 6.78717 17.2516Z"
-                                    fill="#21C58E" />
-                                <mask id="mask0_120_784" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="6" y="17"
-                                    width="2" height="2">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M6.33252 17.7046C6.33252 17.9562 6.53502 18.1596 6.78752 18.1596C7.03835 18.1596 7.24085 17.9562 7.24085 17.7046C7.24085 17.4537 7.03835 17.2512 6.78752 17.2512C6.53502 17.2512 6.33252 17.4537 6.33252 17.7046Z"
-                                        fill="white" />
-                                </mask>
-                                <g mask="url(#mask0_120_784)">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M2.16675 22.3254H11.4076V13.0846H2.16675V22.3254Z" fill="#21C58E" />
-                                </g>
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M6.78634 17.534C6.69217 17.534 6.61551 17.6106 6.61551 17.7048C6.61551 17.894 6.95801 17.894 6.95801 17.7048C6.95801 17.6106 6.88051 17.534 6.78634 17.534ZM6.78634 18.784C6.19134 18.784 5.70801 18.2998 5.70801 17.7048C5.70801 17.1098 6.19134 16.6265 6.78634 16.6265C7.38134 16.6265 7.86551 17.1098 7.86551 17.7048C7.86551 18.2998 7.38134 18.784 6.78634 18.784Z"
-                                    fill="#21C58E" />
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M16.1873 17.2516C16.4382 17.2516 16.6415 17.4541 16.6415 17.7049C16.6415 17.9558 16.4382 18.1591 16.1873 18.1591C15.9357 18.1591 15.7332 17.9558 15.7332 17.7049C15.7332 17.4541 15.9357 17.2516 16.1873 17.2516Z"
-                                    fill="#21C58E" />
-                                <mask id="mask1_120_784" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="15"
-                                    y="17" width="2" height="2">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M15.7334 17.7046C15.7334 17.9562 15.9359 18.1596 16.1876 18.1596C16.4376 18.1596 16.6417 17.9562 16.6417 17.7046C16.6417 17.4537 16.4376 17.2512 16.1876 17.2512C15.9359 17.2512 15.7334 17.4537 15.7334 17.7046Z"
-                                        fill="white" />
-                                </mask>
-                                <g mask="url(#mask1_120_784)">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M11.5667 22.3254H20.8083V13.0846H11.5667V22.3254Z" fill="#21C58E" />
-                                </g>
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M16.1865 17.534C16.0932 17.534 16.0165 17.6106 16.0165 17.7048C16.0173 17.8956 16.359 17.894 16.3582 17.7048C16.3582 17.6106 16.2807 17.534 16.1865 17.534ZM16.1865 18.784C15.5915 18.784 15.1082 18.2998 15.1082 17.7048C15.1082 17.1098 15.5915 16.6265 16.1865 16.6265C16.7823 16.6265 17.2665 17.1098 17.2665 17.7048C17.2665 18.2998 16.7823 18.784 16.1865 18.784Z"
-                                    fill="#21C58E" />
-                            </svg>
-                            Thêm vào giỏ hàng
-                        </button>
-                        <button class="order-btn" onclick="window.location.href='datHang.html'">Đặt hàng</button>
+                </div>
+                <div class="category-wrapper-left-item">
+                    <div data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false"
+                        aria-controls="collapseExample1" class="category-wrapper-left-item-title">
+                        <span>Thương hiệu</span>
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
-                    <div class="dropdown-divider"></div>
-                    <div class="prd-code">Mã: P198354</div>
-                    <div class="prd-category-text">Chống lão hóa</div>
+                    <div id="collapseExample1" class="category-wrapper-left-sub-item collapse show">
+                        <label class="main">
+                            <input type="checkbox">
+                            <span class="active">Panadol</span>
+                            <span class="geekmark"></span>
+                        </label>
+                        <label class="main">
+                            <input type="checkbox">
+                            <span class="active">Eagle</span>
+                            <span class="geekmark"></span>
+                        </label>
+                        <label class="main">
+                            <input type="checkbox">
+                            <span class="active">Medica</span>
+                            <span class="geekmark"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
-            <!--Product detail bottom-->
-            <div class="product-detail-bottom">
-                <div class="product-detail-bottom-left">
-                    <div class="product-information-detail">
-                        <ul class="nav nav-pills mb-3 prid-nav" id="pills-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="active prid-nav-action" id="pills-detail-tab" data-toggle="pill"
-                                    href="#pills-detail" role="tab" aria-controls="pills-detail"
-                                    aria-selected="true">Chi tiết sản phẩm</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="prid-nav-action" id="pills-brand-tab" data-toggle="pill" href="#pills-brand"
-                                    role="tab" aria-controls="pills-brand" aria-selected="false">Thương hiệu</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-detail" role="tabpanel"
-                                aria-labelledby="pills-detail-tab">
-                                1. CÔNG DỤNG
-                                OTiV chứa các hoạt chất sinh học quý được tinh chiết từ Blueberry
-                                Giúp cải thiện tình trạng thiếu máu não, mất ngủ, đau nửa đầu; giảm nguy cơ tai biến
-                                mạch máu não.
-                                Giúp cải thiện tình trạng sa sút trí tuệ, suy giảm trí nhớ; giảm stress; cải thiện thính
-                                giác và thị giác.
-                                Hỗ trợ chống oxy hóa, trung hòa gốc tự do, bảo vệ và chống lão hóa tế bào thần kinh.
 
-                                2. THÀNH PHẦN
-                                Blueberry Extract (4:1) 100 mg
-                                GinkgoPure (Ginkgo Biloba Extract) 80 mg
-                                Gelatin, Maltodextrin & Magnesium stearate
-                                3. ĐỐI TƯỢNG SỬ DỤNG VÀ LIỀU DÙNG
-                                - Người từ 12 tuổi trở lên
-
-                                4. CÁCH DÙNG
-                                - Ngày uống 01 viên
-                                - Nên dùng thường xuyên
-
-                                5. NGHIÊN CỨU LÂM SÀNG
-                                Nghiên cứu lâm sàng cho thấy bổ sung Blueberry là một trong những phương pháp hiệu quả
-                                để ngăn chặn hoặc giảm thiểu thoái hóa thần kinh.
-                                Kết quả nghiên cứu nhóm người độ tuổi 70 có suy giảm trí nhớ sử dụng Blueberry mỗi ngày
-                                trong ba tháng cho thấy đã cải thiện đáng kể khả năng học tập và trí nhớ.
-
-                                Trí nhớ sau 12 tuần dùng Blueberry so với trước khi dùng Blueberry.
-
-                                Trí nhớ cải thiện rõ rệt sau 12 tuần giữa nhóm dùng Blueberry và nhóm giả dược.
-                                (Nguồn: Nghiên cứu của ĐH Cincinnati, Mỹ, năm 2010)
-
-                                Video về sản phẩm OTiV
-
-                                Đóng gói: Chai 30 viên
-                                Bảo quản: Nơi khô ráo, thoáng mát, nhiệt độ dưới 30 độ C, tránh ẩm và ánh nắng mặt trời,
-                                để xa tầm tay trẻ em.
-                                Thông tin về công dụng sản phẩm công bố theo giấy phép SĐK: 131/2020/ĐKSP
-                                Nhà sản xuất: St. Paul Brands - 11842 Monarch Street, Garden Grove, CA 92841, U.S.A.
-                                Nhập khẩu và phân phối: Công ty cổ phần Dược phẩm ECO
-                                Địa chỉ: 148 Hoàng Hoa Thám, P.12, Q. Tân Bình, TP. Hồ Chí Minh.
-                                Trụ sở chính: Số 180 Trường Chinh, phường Khương Thượng, quận Đống Đa, TP. Hà Nội.
-                                Sản phẩm này không phải là thuốc, không có tác dụng thay thế thuốc chữa bệnh.
-                                Không dùng cho phụ nữ có thai hoặc cho con bú, bệnh nhân bị rối loạn đông máu.
-                                (*) Hiệu quả của sản phẩm tùy thuộc vào thể trạng của từng người.
-                            </div>
-                            <div class="tab-pane fade" id="pills-brand" role="tabpanel"
-                                aria-labelledby="pills-brand-tab">
-                                Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex.
-                                Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod
-                                voluptate exercitation cillum id incididunt elit sunt. Qui minim sit magna Lorem id et
-                                dolore velit Lorem amet exercitation duis deserunt.
-                                Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.
+            <div class="product-category-wrapper-right">
+                <div class="--header-top">
+                    <div class="--header-top-right">
+                        Hiển thị 1 - 24 trên tổng số 11.424 sản phẩm
+                    </div>
+                    <div class="--header-top-left">
+                        <div class="dropdown dropdown-menu-filter">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuFilter"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sắp xếp theo
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuFilter">
+                                <a class="dropdown-item" href="#">Mới nhất</a>
+                                <a class="dropdown-item" href="#">Bán chạy nhất</a>
+                                <a class="dropdown-item" href="#">Giá từ cao đến thấp</a>
+                                <a class="dropdown-item" href="#">Giá từ thấp đến cao</a>
+                                <a class="dropdown-item" href="#">Tên từ A - Z</a>
+                                <a class="dropdown-item" href="#">Tên từ Z - A</a>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!--Pagination-->
+                <div class="--header-second pagination">
+                    <div class="pagination-prev">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </div>
+                    <div class="pagination-number">1</div>
+                    <div class="pagination-number">2</div>
+                    <div class="pagination-number active">4</div>
+                    <span>...</span>
+                    <div class="pagination-number">15</div>
+                    <div class="pagination-next">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="--header-second product-category-wrapper-right-content">
+                    <div class="product-category-wrapper-right-content-item">
+                        <a href="chiTietSanPham.html" style="text-decoration: none;">
+                            <div class="products-item-content">
+                                <div class="product-item-header">
+                                    <img src="../assets/images/panadol.png" />
+                                    <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
+                                            fill="#DDDDDD" />
+                                    </svg>
+                                </div>
+                                <div class="product-item-title">Dầu gió xanh con Én Eagle</div>
+                                <div class="product-item-weight">(20ml)</div>
+                                <div class="--old-price">160.000 VBD/Chai</div>
+                                <div class="--current-price">
+                                    80.000 VND/Chai
+                                </div>
+                                <div class="product-item-btn">
+                                    <button class="product-item-add-to-card">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-category-wrapper-right-content-item">
+                        <a href="chiTietSanPham.html" style="text-decoration: none;">
+                            <div class="products-item-content">
+                                <div class="product-item-header">
+                                    <img src="../assets/images/panadol.png" />
+                                    <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
+                                            fill="#DDDDDD" />
+                                    </svg>
+                                </div>
+                                <div class="product-item-title">Dầu gió xanh con Én Eagle</div>
+                                <div class="product-item-weight">(20ml)</div>
+                                <div class="--old-price">160.000 VBD/Chai</div>
+                                <div class="--current-price">
+                                    80.000 VND/Chai
+                                </div>
+                                <div class="product-item-btn">
+                                    <button class="product-item-add-to-card">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-category-wrapper-right-content-item">
+                        <a href="chiTietSanPham.html" style="text-decoration: none;">
+                            <div class="products-item-content">
+                                <div class="product-item-header">
+                                    <img src="../assets/images/panadol.png" />
+                                    <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
+                                            fill="#DDDDDD" />
+                                    </svg>
+                                </div>
+                                <div class="product-item-title">Dầu gió xanh con Én Eagle</div>
+                                <div class="product-item-weight">(20ml)</div>
+                                <div class="--old-price">160.000 VBD/Chai</div>
+                                <div class="--current-price">
+                                    80.000 VND/Chai
+                                </div>
+                                <div class="product-item-btn">
+                                    <button class="product-item-add-to-card">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-category-wrapper-right-content-item">
+                        <a href="chiTietSanPham.html" style="text-decoration: none;">
+                            <div class="products-item-content">
+                                <div class="product-item-header">
+                                    <img src="../assets/images/panadol.png" />
+                                    <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
+                                            fill="#DDDDDD" />
+                                    </svg>
+                                </div>
+                                <div class="product-item-title">Dầu gió xanh con Én Eagle</div>
+                                <div class="product-item-weight">(20ml)</div>
+                                <div class="--old-price">160.000 VBD/Chai</div>
+                                <div class="--current-price">
+                                    80.000 VND/Chai
+                                </div>
+                                <div class="product-item-btn">
+                                    <button class="product-item-add-to-card">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-category-wrapper-right-content-item">
+                        <a href="chiTietSanPham.html" style="text-decoration: none;">
+                            <div class="products-item-content">
+                                <div class="product-item-header">
+                                    <img src="../assets/images/panadol.png" />
+                                    <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
+                                            fill="#DDDDDD" />
+                                    </svg>
+                                </div>
+                                <div class="product-item-title">Dầu gió xanh con Én Eagle</div>
+                                <div class="product-item-weight">(20ml)</div>
+                                <div class="--old-price">160.000 VBD/Chai</div>
+                                <div class="--current-price">
+                                    80.000 VND/Chai
+                                </div>
+                                <div class="product-item-btn">
+                                    <button class="product-item-add-to-card">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-category-wrapper-right-content-item">
+                        <a href="chiTietSanPham.html" style="text-decoration: none;">
+                            <div class="products-item-content">
+                                <div class="product-item-header">
+                                    <img src="../assets/images/panadol.png" />
+                                    <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
+                                            fill="#DDDDDD" />
+                                    </svg>
+                                </div>
+                                <div class="product-item-title">Dầu gió xanh con Én Eagle</div>
+                                <div class="product-item-weight">(20ml)</div>
+                                <div class="--old-price">160.000 VBD/Chai</div>
+                                <div class="--current-price">
+                                    80.000 VND/Chai
+                                </div>
+                                <div class="product-item-btn">
+                                    <button class="product-item-add-to-card">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-category-wrapper-right-content-item">
+                        <a href="chiTietSanPham.html" style="text-decoration: none;">
+                            <div class="products-item-content">
+                                <div class="product-item-header">
+                                    <img src="../assets/images/panadol.png" />
+                                    <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
+                                            fill="#DDDDDD" />
+                                    </svg>
+                                </div>
+                                <div class="product-item-title">Dầu gió xanh con Én Eagle</div>
+                                <div class="product-item-weight">(20ml)</div>
+                                <div class="--old-price">160.000 VBD/Chai</div>
+                                <div class="--current-price">
+                                    80.000 VND/Chai
+                                </div>
+                                <div class="product-item-btn">
+                                    <button class="product-item-add-to-card">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product-category-wrapper-right-content-item">
+                        <a href="chiTietSanPham.html" style="text-decoration: none;">
+                            <div class="products-item-content">
+                                <div class="product-item-header">
+                                    <img src="../assets/images/panadol.png" />
+                                    <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M13.8498 0.500648C14.4808 0.500648 15.1108 0.589648 15.7098 0.790648C19.4008 1.99065 20.7308 6.04065 19.6198 9.58065C18.9898 11.3896 17.9598 13.0406 16.6108 14.3896C14.6798 16.2596 12.5608 17.9196 10.2798 19.3496L10.0298 19.5006L9.7698 19.3396C7.4808 17.9196 5.3498 16.2596 3.4008 14.3796C2.0608 13.0306 1.0298 11.3896 0.389799 9.58065C-0.740201 6.04065 0.589799 1.99065 4.3208 0.769648C4.6108 0.669648 4.9098 0.599648 5.2098 0.560648H5.3298C5.6108 0.519648 5.8898 0.500648 6.1698 0.500648H6.2798C6.9098 0.519648 7.5198 0.629648 8.1108 0.830648H8.1698C8.2098 0.849648 8.2398 0.870648 8.2598 0.889648C8.4808 0.960648 8.6898 1.04065 8.8898 1.15065L9.2698 1.32065C9.36162 1.36962 9.46468 1.44445 9.55376 1.50912C9.61019 1.55009 9.66101 1.58699 9.6998 1.61065C9.71612 1.62028 9.7327 1.62996 9.74942 1.63972C9.83517 1.68977 9.92449 1.74191 9.9998 1.79965C11.1108 0.950648 12.4598 0.490648 13.8498 0.500648ZM16.5098 7.70065C16.9198 7.68965 17.2698 7.36065 17.2998 6.93965V6.82065C17.3298 5.41965 16.4808 4.15065 15.1898 3.66065C14.7798 3.51965 14.3298 3.74065 14.1798 4.16065C14.0398 4.58065 14.2598 5.04065 14.6798 5.18965C15.3208 5.42965 15.7498 6.06065 15.7498 6.75965V6.79065C15.7308 7.01965 15.7998 7.24065 15.9398 7.41065C16.0798 7.58065 16.2898 7.67965 16.5098 7.70065Z"
+                                            fill="#DDDDDD" />
+                                    </svg>
+                                </div>
+                                <div class="product-item-title">Dầu gió xanh con Én Eagle</div>
+                                <div class="product-item-weight">(20ml)</div>
+                                <div class="--old-price">160.000 VBD/Chai</div>
+                                <div class="--current-price">
+                                    80.000 VND/Chai
+                                </div>
+                                <div class="product-item-btn">
+                                    <button class="product-item-add-to-card">
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!--Pagination-->
+                <div class="--header-bottom pagination">
+                    <div class="pagination-prev">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </div>
+                    <div class="pagination-number">1</div>
+                    <div class="pagination-number">2</div>
+                    <div class="pagination-number active">4</div>
+                    <span>...</span>
+                    <div class="pagination-number">15</div>
+                    <div class="pagination-next">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>

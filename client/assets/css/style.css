@@ -77,6 +77,12 @@ header .header_top .container .row  .menu_right .menu_right-bag{
 header .header_top .container .row  .menu_right .menu_right-bag svg{
     margin-right: 9px;
 }
+header .header_top .container .row .menu_right .menu_right-bag a {
+    color: #ffffff;
+}
+header .header_top .container .row .menu_right .menu_right-bag a:hover {
+    text-decoration: none;
+}
 header .header_top .container .row  .menu_right .menu_right-login {
     margin-left: 28px;
     font-size: 14px;

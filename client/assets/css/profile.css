@@ -158,6 +158,7 @@ button.btn-green {
 .product-wrapper-content-item .product-item-header {
     position: relative;
     margin-bottom: 10px;
+    text-align: center;
 }
 .products-item-heart {
     position: absolute;
@@ -196,6 +197,7 @@ div.product-wrapper-content-item:nth-child(24) {
 .product-wrapper-content-item .product-item-header {
     position: relative;
     margin-bottom: 10px;
+    text-align: center;
 }
 .product-wrapper-content-item .product-item-title {
     font-weight: bold;

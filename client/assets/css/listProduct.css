@@ -177,6 +177,7 @@ button#dropdownMenuFilter {
 .product-category-wrapper-right-content-item .product-item-header {
     position: relative;
     margin-bottom: 10px;
+    text-align: center;
 }
 .products-item-heart {
     position: absolute;

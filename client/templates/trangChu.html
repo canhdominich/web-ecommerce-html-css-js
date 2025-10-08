@@ -63,7 +63,7 @@
                     </div>
                     <div class="menu_right-bag">
                         <a href="gioHang.html">
-                            <span class="bag-amount">1</span>
+                            <span class="bag-amount">2</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -114,10 +114,10 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#loginModal">Đăng nhập</button>
 
-                            <!-- <button class="dropdown-toggle hide" type="button" id="dropdownMenuButton"
+                            <button class="dropdown-toggle hide" type="button" id="dropdownMenuButton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Minh Thuan
-                            </button> -->
+                               
+                            </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="trangCaNhan.html">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -542,7 +542,7 @@
 
                                     <div class="form-group input-opt">
                                         <label for="phone-number" class="col-form-label">Số điện thoại đăng ký</label>
-                                        <input type="text" class="form-control" id="phone">
+                                        <input type="text" class="form-control" id="phone-number-register">
                                         <button type="button" class="btn-send-opt" onclick="sendOpt()">Gửi mã xác
                                             nhận</button>
                                     </div>
@@ -560,8 +560,8 @@
                                     <div class="form-group input-password">
                                         <label for="password" class="col-form-label">Mật khẩu</label>
                                         <div>
-                                            <input type="password" class="form-control" id="passwordRegister">
-                                            <span onclick="hideShowPwd('passwordRegister')">
+                                            <input type="password" class="form-control" id="password-register">
+                                            <span onclick="hideShowPwd('password-register')">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -788,6 +788,33 @@
                                             </span>
                                         </div>
                                     </div>
+
+                                    <div class="form-group input-password">
+                                        <label for="password" class="col-form-label">Xác nhận mật khẩu</label>
+                                        <div>
+                                            <input type="password" class="form-control" id="confirm-password">
+                                            <span onclick="hideShowPwd('confirm-password')">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M11.9996 9.64136C10.6696 9.64136 9.58862 10.7234 9.58862 12.0534C9.58862 13.3824 10.6696 14.4634 11.9996 14.4634C13.3296 14.4634 14.4116 13.3824 14.4116 12.0534C14.4116 10.7234 13.3296 9.64136 11.9996 9.64136ZM11.9996 15.9634C9.84262 15.9634 8.08862 14.2094 8.08862 12.0534C8.08862 9.89636 9.84262 8.14136 11.9996 8.14136C14.1566 8.14136 15.9116 9.89636 15.9116 12.0534C15.9116 14.2094 14.1566 15.9634 11.9996 15.9634Z"
+                                                        fill="#666666" />
+                                                    <mask id="mask0_29_639" style="mask-type:alpha"
+                                                        maskUnits="userSpaceOnUse" x="2" y="4" width="20" height="17">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M2.00024 4.00024H22.0001V20.1052H2.00024V4.00024Z"
+                                                            fill="white" />
+                                                    </mask>
+                                                    <g mask="url(#mask0_29_639)">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M3.56999 12.0525C5.42999 16.1615 8.56299 18.6045 12 18.6055C15.437 18.6045 18.57 16.1615 20.43 12.0525C18.57 7.94451 15.437 5.50151 12 5.50051C8.56399 5.50151 5.42999 7.94451 3.56999 12.0525ZM12.002 20.1055H11.998H11.997C7.86099 20.1025 4.14699 17.2035 2.06099 12.3485C1.97999 12.1595 1.97999 11.9455 2.06099 11.7565C4.14699 6.90251 7.86199 4.00351 11.997 4.00051C11.999 3.99951 11.999 3.99951 12 4.00051C12.002 3.99951 12.002 3.99951 12.003 4.00051C16.139 4.00351 19.853 6.90251 21.939 11.7565C22.021 11.9455 22.021 12.1595 21.939 12.3485C19.854 17.2035 16.139 20.1025 12.003 20.1055H12.002Z"
+                                                            fill="#666666" />
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+
                                     <div>
                                         <button type="button" class="btn-green btn-login">Đăng ký</button>
                                     </div>
@@ -802,7 +829,6 @@
 </div>
 
 <body>
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -980,7 +1006,7 @@
                         <a href="chiTietSanPham.html" style="text-decoration: none;">
                             <div class="products-item-content">
                                 <div class="product-item-header">
-                                    <img src="../assets/images/panadol.png" />
+                                    <img src="../assets/images/otiv-detail-fit.png" />
                                     <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1006,7 +1032,7 @@
                         <a href="chiTietSanPham.html" style="text-decoration: none;">
                             <div class="products-item-content">
                                 <div class="product-item-header">
-                                    <img src="../assets/images/panadol.png" />
+                                    <img src="../assets/images/otiv-detail-fit.png" />
                                     <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1032,7 +1058,7 @@
                         <a href="chiTietSanPham.html" style="text-decoration: none;">
                             <div class="products-item-content">
                                 <div class="product-item-header">
-                                    <img src="../assets/images/panadol.png" />
+                                    <img src="../assets/images/otiv-detail-fit.png" />
                                     <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1058,7 +1084,7 @@
                         <a href="chiTietSanPham.html" style="text-decoration: none;">
                             <div class="products-item-content">
                                 <div class="product-item-header">
-                                    <img src="../assets/images/panadol.png" />
+                                    <img src="../assets/images/otiv-detail-fit.png" />
                                     <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1084,7 +1110,7 @@
                         <a href="chiTietSanPham.html" style="text-decoration: none;">
                             <div class="products-item-content">
                                 <div class="product-item-header">
-                                    <img src="../assets/images/panadol.png" />
+                                    <img src="../assets/images/otiv-detail-fit.png" />
                                     <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1110,7 +1136,7 @@
                         <a href="chiTietSanPham.html" style="text-decoration: none;">
                             <div class="products-item-content">
                                 <div class="product-item-header">
-                                    <img src="../assets/images/panadol.png" />
+                                    <img src="../assets/images/otiv-detail-fit.png" />
                                     <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1136,7 +1162,7 @@
                         <a href="chiTietSanPham.html" style="text-decoration: none;">
                             <div class="products-item-content">
                                 <div class="product-item-header">
-                                    <img src="../assets/images/panadol.png" />
+                                    <img src="../assets/images/otiv-detail-fit.png" />
                                     <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1162,7 +1188,7 @@
                         <a href="chiTietSanPham.html" style="text-decoration: none;">
                             <div class="products-item-content">
                                 <div class="product-item-header">
-                                    <img src="../assets/images/panadol.png" />
+                                    <img src="../assets/images/otiv-detail-fit.png" />
                                     <svg class="products-item-heart" width="20" height="20" viewBox="0 0 20 20"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1313,6 +1339,7 @@
 <script src="../assets/js/jquery-3.2.1.min.js"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/owl.carousel.min.js"></script>
+<script src="../assets/js/auth.js"></script>
 <script>
     function openForgotPassword() {
         $('#loginModal').modal('hide')
@@ -1509,7 +1536,7 @@
 
                                     <div class="form-group input-opt">
                                         <label for="phone-number" class="col-form-label">Số điện thoại đăng ký</label>
-                                        <input type="text" class="form-control" id="phone">
+                                        <input type="text" class="form-control" id="phone-number-register">
                                         <button type="button" class="btn-send-opt" onclick="sendOpt()">Gửi mã xác
                                             nhận</button>
                                     </div>
@@ -1527,8 +1554,8 @@
                                     <div class="form-group input-password">
                                         <label for="password" class="col-form-label">Mật khẩu</label>
                                         <div>
-                                            <input type="password" class="form-control" id="passwordRegister">
-                                            <span onclick="hideShowPwd('passwordRegister')">
+                                            <input type="password" class="form-control" id="password-register">
+                                            <span onclick="hideShowPwd('password-register')">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1756,6 +1783,33 @@
                                         </div>
 
                                     </div>
+
+                                    <div class="form-group input-password">
+                                        <label for="password" class="col-form-label">Xác nhận mật khẩu</label>
+                                        <div>
+                                            <input type="password" class="form-control" id="confirm-password">
+                                            <span onclick="hideShowPwd('confirm-password')">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M11.9996 9.64136C10.6696 9.64136 9.58862 10.7234 9.58862 12.0534C9.58862 13.3824 10.6696 14.4634 11.9996 14.4634C13.3296 14.4634 14.4116 13.3824 14.4116 12.0534C14.4116 10.7234 13.3296 9.64136 11.9996 9.64136ZM11.9996 15.9634C9.84262 15.9634 8.08862 14.2094 8.08862 12.0534C8.08862 9.89636 9.84262 8.14136 11.9996 8.14136C14.1566 8.14136 15.9116 9.89636 15.9116 12.0534C15.9116 14.2094 14.1566 15.9634 11.9996 15.9634Z"
+                                                        fill="#666666" />
+                                                    <mask id="mask0_29_639" style="mask-type:alpha"
+                                                        maskUnits="userSpaceOnUse" x="2" y="4" width="20" height="17">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M2.00024 4.00024H22.0001V20.1052H2.00024V4.00024Z"
+                                                            fill="white" />
+                                                    </mask>
+                                                    <g mask="url(#mask0_29_639)">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M3.56999 12.0525C5.42999 16.1615 8.56299 18.6045 12 18.6055C15.437 18.6045 18.57 16.1615 20.43 12.0525C18.57 7.94451 15.437 5.50151 12 5.50051C8.56399 5.50151 5.42999 7.94451 3.56999 12.0525ZM12.002 20.1055H11.998H11.997C7.86099 20.1025 4.14699 17.2035 2.06099 12.3485C1.97999 12.1595 1.97999 11.9455 2.06099 11.7565C4.14699 6.90251 7.86199 4.00351 11.997 4.00051C11.999 3.99951 11.999 3.99951 12 4.00051C12.002 3.99951 12.002 3.99951 12.003 4.00051C16.139 4.00351 19.853 6.90251 21.939 11.7565C22.021 11.9455 22.021 12.1595 21.939 12.3485C19.854 17.2035 16.139 20.1025 12.003 20.1055H12.002Z"
+                                                            fill="#666666" />
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+
                                     <div>
                                         <button type="button" class="btn-green btn-login">Đăng ký</button>
                                     </div>

@@ -63,7 +63,7 @@
                     </div>
                     <div class="menu_right-bag">
                         <a href="gioHang.html">
-                            <span class="bag-amount">1</span>
+                            <span class="bag-amount">2</span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -109,7 +109,7 @@
                         </a>
                     </div>
                     <div class="menu_right-login">
-                        <img src="../assets/images/avatar.png" alt="avt">
+                        <!-- <img src="../assets/images/avatar.png" alt="avt"> -->
                         <div class="dropdown ">
                             <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#loginModal">Đăng nhập</button> -->
@@ -878,15 +878,27 @@
                     <tbody>
                         <tr>
                             <th scope="row" class="order-code-td">957378455</th>
-                            <td class="order-created-at">08:50 30/03/2021</td>
-                            <td class="order-prices-td">1.000.000 VND</td>
+                            <td class="order-created-at">
+                                <script>
+                                    (function() {
+                                        const now = new Date();
+                                        const hours = now.getHours().toString().padStart(2, '0');
+                                        const minutes = now.getMinutes().toString().padStart(2, '0');
+                                        const day = now.getDate().toString().padStart(2, '0');
+                                        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                                        const year = now.getFullYear();
+                                        document.write(`${hours}:${minutes} ${day}/${month}/${year}`);
+                                    })();
+                                </script>
+                            </td>
+                            <td class="order-prices-td">160.000 VND</td>
                             <td class="order-status">
                                 <span class="delivering">ĐANG VẬN CHUYỂN</span>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row" class="order-code-td">957378456</th>
-                            <td class="order-created-at">10:15 31/03/2021</td>
+                            <td class="order-created-at">10:15 31/08/2021</td>
                             <td class="order-prices-td">520.000 VND</td>
                             <td class="order-status">
                                 <span class="delivery-success">GIAO HÀNG THÀNH CÔNG</span>
@@ -1030,6 +1042,8 @@
 <script src="../assets/js/jquery-3.2.1.min.js"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/owl.carousel.min.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/auth-check.js"></script>
 <script>
     function openForgotPassword() {
         $('#loginModal').modal('hide')

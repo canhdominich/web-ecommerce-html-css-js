@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý khách hàng - Admin Panel</title>
+    <link rel="stylesheet" href="assets/css/admin-style.css">
+    <link rel="stylesheet" href="../client/assets/css/font.css">
+    <link rel="icon" type="image/png" href="../client/assets/images/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-logo">
+                <img src="../client/assets/images/Logo.png" alt="Logo">
+                <span>Admin Panel</span>
+            </div>
+            <div class="admin-user-info">
+                <div class="user-avatar">A</div>
+                <span>Admin User</span>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar">
+            <!-- Logo -->
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    <div class="logo-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <span>AdminPanel</span>
+                </div>
+            </div>
+            
+            <!-- Menu -->
+            <ul class="sidebar-menu">
+                <div class="menu-section-title">Menu</div>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="user-management.html" class="active">
+                        <i class="fas fa-users"></i>
+                        Quản lý khách hàng
+                    </a>
+                </li>
+                <li>
+                    <a href="product-type-management.html">
+                        <i class="fas fa-tags"></i>
+                        Quản lý loại sản phẩm
+                    </a>
+                </li>
+                <li>
+                    <a href="product-management.html">
+                        <i class="fas fa-box"></i>
+                        Quản lý sản phẩm
+                    </a>
+                </li>
+                <li>
+                    <a href="import-management.html">
+                        <i class="fas fa-warehouse"></i>
+                        Quản lý nhập hàng
+                    </a>
+                </li>
+                <li>
+                    <a href="price-management.html">
+                        <i class="fas fa-dollar-sign"></i>
+                        Quản lý giá bán
+                    </a>
+                </li>
+                <li>
+                    <a href="order-management.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        Quản lý đơn hàng
+                    </a>
+                </li>
+                <li>
+                    <a href="inventory-management.html">
+                        <i class="fas fa-clipboard-list"></i>
+                        Quản lý tồn kho
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="handleLogout(); return false;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">Quản lý khách hàng</h1>
+                    <p class="page-subtitle">Quản lý thông tin và trạng thái tài khoản khách hàng</p>
+                </div>
+
+                <!-- Search and Filter Bar -->
+                <div class="search-filter-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Tìm kiếm khách hàng theo tên, email, số điện thoại...">
+                    </div>
+                    <select class="form-control filter-select">
+                        <option value="all">Tất cả trạng thái</option>
+                        <option value="active">Đang hoạt động</option>
+                        <option value="inactive">Đã khóa</option>
+                    </select>
+                    <button class="btn btn-primary" data-modal="addUserModal">
+                        <i class="fas fa-plus"></i>
+                        Thêm khách hàng
+                    </button>
+                </div>
+
+                <!-- Users Table -->
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh sách khách hàng</h3>
+                        <span class="text-muted">Tổng: 1,250 khách hàng</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th data-sort="0">ID</th>
+                                    <th data-sort="1">Họ tên</th>
+                                    <th data-sort="2">Email</th>
+                                    <th data-sort="3">Số điện thoại</th>
+                                    <th data-sort="4">Ngày đăng ký</th>
+                                    <th data-sort="5">Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>KH001</td>
+                                    <td>Nguyễn Văn An</td>
+                                    <td>nguyenvanan@email.com</td>
+                                    <td>0901234567</td>
+                                    <td>15/11/2024</td>
+                                    <td><span class="status-badge status-active">Hoạt động</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('KH001', 'editUserForm', '/api/users')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-secondary" onclick="resetPassword('KH001', 'Nguyễn Văn An')">
+                                            <i class="fas fa-key"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="handleStatusChange('KH001', 'active', 'khách hàng')">
+                                            <i class="fas fa-lock"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>KH002</td>
+                                    <td>Trần Thị Bình</td>
+                                    <td>tranthibinh@email.com</td>
+                                    <td>0912345678</td>
+                                    <td>20/11/2024</td>
+                                    <td><span class="status-badge status-active">Hoạt động</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('KH002', 'editUserForm', '/api/users')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-secondary" onclick="resetPassword('KH002', 'Trần Thị Bình')">
+                                            <i class="fas fa-key"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="handleStatusChange('KH002', 'active', 'khách hàng')">
+                                            <i class="fas fa-lock"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>KH003</td>
+                                    <td>Lê Văn Cường</td>
+                                    <td>levancuong@email.com</td>
+                                    <td>0923456789</td>
+                                    <td>25/11/2024</td>
+                                    <td><span class="status-badge status-inactive">Đã khóa</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('KH003', 'editUserForm', '/api/users')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-secondary" onclick="resetPassword('KH003', 'Lê Văn Cường')">
+                                            <i class="fas fa-key"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-success" onclick="handleStatusChange('KH003', 'inactive', 'khách hàng')">
+                                            <i class="fas fa-unlock"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>KH004</td>
+                                    <td>Phạm Thị Dung</td>
+                                    <td>phamthidung@email.com</td>
+                                    <td>0934567890</td>
+                                    <td>01/12/2024</td>
+                                    <td><span class="status-badge status-active">Hoạt động</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('KH004', 'editUserForm', '/api/users')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-secondary" onclick="resetPassword('KH004', 'Phạm Thị Dung')">
+                                            <i class="fas fa-key"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="handleStatusChange('KH004', 'active', 'khách hàng')">
+                                            <i class="fas fa-lock"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>KH005</td>
+                                    <td>Hoàng Văn Em</td>
+                                    <td>hoangvanem@email.com</td>
+                                    <td>0945678901</td>
+                                    <td>05/12/2024</td>
+                                    <td><span class="status-badge status-active">Hoạt động</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('KH005', 'editUserForm', '/api/users')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-secondary" onclick="resetPassword('KH005', 'Hoàng Văn Em')">
+                                            <i class="fas fa-key"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="handleStatusChange('KH005', 'active', 'khách hàng')">
+                                            <i class="fas fa-lock"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Thêm khách hàng mới</h3>
+                <button class="close">&times;</button>
+            </div>
+            <form id="addUserForm">
+                <div class="form-group">
+                    <label for="fullName" class="form-label">Họ và tên *</label>
+                    <input type="text" id="fullName" name="fullName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email *</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="form-label">Số điện thoại *</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="form-label">Địa chỉ</label>
+                    <textarea id="address" name="address" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Mật khẩu mặc định *</label>
+                    <input type="password" id="password" name="password" class="form-control" value="123456" required>
+                    <small class="form-text text-muted">Mật khẩu mặc định: 123456 (khách hàng có thể đổi sau)</small>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="sendEmail" name="sendEmail" checked>
+                        <span class="checkmark"></span>
+                        Gửi thông tin đăng nhập qua email
+                    </label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('addUserModal'))">
+                        Hủy
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Thêm khách hàng
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Chỉnh sửa thông tin khách hàng</h3>
+                <button class="close">&times;</button>
+            </div>
+            <form id="editUserForm">
+                <input type="hidden" id="editUserId" name="userId">
+                <div class="form-group">
+                    <label for="editFullName" class="form-label">Họ và tên *</label>
+                    <input type="text" id="editFullName" name="fullName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="editEmail" class="form-label">Email *</label>
+                    <input type="email" id="editEmail" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPhone" class="form-label">Số điện thoại *</label>
+                    <input type="tel" id="editPhone" name="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="editAddress" class="form-label">Địa chỉ</label>
+                    <textarea id="editAddress" name="address" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editStatus" class="form-label">Trạng thái</label>
+                    <select id="editStatus" name="status" class="form-control">
+                        <option value="active">Hoạt động</option>
+                        <option value="inactive">Đã khóa</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('editUserModal'))">
+                        Hủy
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Cập nhật
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/admin.js"></script>
+    <script>
+        // User management specific functions
+        function loadCurrentPageData() {
+            // Load users data
+            console.log('Loading users data for page:', currentPage);
+        }
+        
+        // Reset password function
+        function resetPassword(userId, userName) {
+            if (confirm(`Bạn có chắc chắn muốn reset mật khẩu cho khách hàng ${userName}?`)) {
+                // Show loading
+                showAlert('Đang reset mật khẩu...', 'info');
+                
+                // Simulate API call
+                setTimeout(() => {
+                    showAlert('Reset mật khẩu thành công! Mật khẩu mới: 123456', 'success');
+                }, 1000);
+            }
+        }
+        
+        // Handle add user form
+        document.getElementById('addUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleAdd('addUserForm', '/api/users');
+        });
+        
+        // Handle edit user form
+        document.getElementById('editUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleAdd('editUserForm', '/api/users');
+        });
+        
+        // Initialize pagination
+        document.addEventListener('DOMContentLoaded', function() {
+            setupPagination(1250, 1, 10);
+        });
+    </script>
+    
+    <style>
+        .text-muted {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f1f3f4;
+        }
+        
+        .form-text {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 8px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý tồn kho - Admin Panel</title>
+    <link rel="stylesheet" href="assets/css/admin-style.css">
+    <link rel="stylesheet" href="../client/assets/css/font.css">
+    <link rel="icon" type="image/png" href="../client/assets/images/Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <div class="admin-logo">
+                <img src="../client/assets/images/Logo.png" alt="Logo">
+                <span>Admin Panel</span>
+            </div>
+            <div class="admin-user-info">
+                <div class="user-avatar">A</div>
+                <span>Admin User</span>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Đăng xuất
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Layout -->
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar">
+            <!-- Logo -->
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    <div class="logo-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <span>AdminPanel</span>
+                </div>
+            </div>
+            
+            <!-- Menu -->
+            <ul class="sidebar-menu">
+                <div class="menu-section-title">Menu</div>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="user-management.html">
+                        <i class="fas fa-users"></i>
+                        Quản lý khách hàng
+                    </a>
+                </li>
+                <li>
+                    <a href="product-type-management.html">
+                        <i class="fas fa-tags"></i>
+                        Quản lý loại sản phẩm
+                    </a>
+                </li>
+                <li>
+                    <a href="product-management.html">
+                        <i class="fas fa-box"></i>
+                        Quản lý sản phẩm
+                    </a>
+                </li>
+                <li>
+                    <a href="import-management.html">
+                        <i class="fas fa-warehouse"></i>
+                        Quản lý nhập hàng
+                    </a>
+                </li>
+                <li>
+                    <a href="price-management.html">
+                        <i class="fas fa-dollar-sign"></i>
+                        Quản lý giá bán
+                    </a>
+                </li>
+                <li>
+                    <a href="order-management.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        Quản lý đơn hàng
+                    </a>
+                </li>
+                <li>
+                    <a href="inventory-management.html" class="active">
+                        <i class="fas fa-clipboard-list"></i>
+                        Quản lý tồn kho
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="handleLogout(); return false;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Đăng xuất
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">Quản lý tồn kho</h1>
+                    <p class="page-subtitle">Theo dõi tồn kho, cảnh báo hàng thấp và lịch sử nhập xuất</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="inventory-tabs">
+                    <button class="tab-button active" onclick="switchTab('current-stock')">
+                        <i class="fas fa-boxes"></i>
+                        Tồn kho hiện tại
+                    </button>
+                    <button class="tab-button" onclick="switchTab('low-stock')">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Cảnh báo hàng thấp
+                    </button>
+                    <button class="tab-button" onclick="switchTab('stock-history')">
+                        <i class="fas fa-history"></i>
+                        Lịch sử nhập xuất
+                    </button>
+                </div>
+
+                <!-- Tab Content: Current Stock -->
+                <div id="current-stock-tab" class="tab-content active">
+                    <div class="search-filter-bar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                        </div>
+                        <select class="form-control filter-select">
+                            <option value="all">Tất cả loại sản phẩm</option>
+                            <option value="LSP001">Thuốc cảm cúm</option>
+                            <option value="LSP002">Vitamin và thực phẩm chức năng</option>
+                            <option value="LSP003">Thuốc giảm đau</option>
+                            <option value="LSP004">Thuốc ho</option>
+                            <option value="LSP005">Thuốc tiêu hóa</option>
+                        </select>
+                        <input type="date" class="form-control" id="stockDate" placeholder="Tại thời điểm">
+                        <button class="btn btn-success" onclick="exportStockReport()">
+                            <i class="fas fa-download"></i>
+                            Xuất báo cáo
+                        </button>
+                    </div>
+
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Tồn kho hiện tại</h3>
+                            <span class="text-muted">Cập nhật lần cuối: 15/12/2024 10:30</span>
+                        </div>
+                        <div class="table-container">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Mã SP</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Loại sản phẩm</th>
+                                        <th>Tồn kho</th>
+                                        <th>Mức tối thiểu</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SP001</td>
+                                        <td>Panadol Extra 500mg</td>
+                                        <td>Thuốc giảm đau</td>
+                                        <td>150</td>
+                                        <td>50</td>
+                                        <td><span class="status-badge status-active">Bình thường</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewStockHistory('SP001')">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="adjustStock('SP001')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SP002</td>
+                                        <td>Thuốc điều trị COVID-19</td>
+                                        <td>Thuốc cảm cúm</td>
+                                        <td>50</td>
+                                        <td>30</td>
+                                        <td><span class="status-badge status-active">Bình thường</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewStockHistory('SP002')">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="adjustStock('SP002')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SP003</td>
+                                        <td>Ginkgo Biloba 120mg</td>
+                                        <td>Vitamin và thực phẩm chức năng</td>
+                                        <td>75</td>
+                                        <td>40</td>
+                                        <td><span class="status-badge status-active">Bình thường</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewStockHistory('SP003')">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="adjustStock('SP003')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SP004</td>
+                                        <td>Hevel 500mg</td>
+                                        <td>Thuốc tiêu hóa</td>
+                                        <td>25</td>
+                                        <td>30</td>
+                                        <td><span class="status-badge status-warning">Sắp hết</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewStockHistory('SP004')">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="adjustStock('SP004')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SP005</td>
+                                        <td>Immucan 100ml</td>
+                                        <td>Vitamin và thực phẩm chức năng</td>
+                                        <td>100</td>
+                                        <td>50</td>
+                                        <td><span class="status-badge status-active">Bình thường</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick="viewStockHistory('SP005')">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="adjustStock('SP005')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Low Stock Alert -->
+                <div id="low-stock-tab" class="tab-content">
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Cảnh báo hàng thấp</h3>
+                            <span class="text-muted">Sản phẩm có tồn kho dưới mức tối thiểu</span>
+                        </div>
+                        <div class="table-container">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Mã SP</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Loại sản phẩm</th>
+                                        <th>Tồn kho hiện tại</th>
+                                        <th>Mức tối thiểu</th>
+                                        <th>Thiếu</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SP004</td>
+                                        <td>Hevel 500mg</td>
+                                        <td>Thuốc tiêu hóa</td>
+                                        <td>25</td>
+                                        <td>30</td>
+                                        <td>5</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary" onclick="quickImport('SP004')">
+                                                <i class="fas fa-plus"></i>
+                                                Nhập hàng
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="adjustStock('SP004')">
+                                                <i class="fas fa-edit"></i>
+                                                Điều chỉnh
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SP006</td>
+                                        <td>Thuốc ho Prospan</td>
+                                        <td>Thuốc ho</td>
+                                        <td>8</td>
+                                        <td>20</td>
+                                        <td>12</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary" onclick="quickImport('SP006')">
+                                                <i class="fas fa-plus"></i>
+                                                Nhập hàng
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="adjustStock('SP006')">
+                                                <i class="fas fa-edit"></i>
+                                                Điều chỉnh
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SP007</td>
+                                        <td>Vitamin C 1000mg</td>
+                                        <td>Vitamin và thực phẩm chức năng</td>
+                                        <td>15</td>
+                                        <td>50</td>
+                                        <td>35</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary" onclick="quickImport('SP007')">
+                                                <i class="fas fa-plus"></i>
+                                                Nhập hàng
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="adjustStock('SP007')">
+                                                <i class="fas fa-edit"></i>
+                                                Điều chỉnh
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Stock History -->
+                <div id="stock-history-tab" class="tab-content">
+                    <div class="search-filter-bar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                        </div>
+                        <input type="date" class="form-control" id="historyDateFrom" placeholder="Từ ngày">
+                        <input type="date" class="form-control" id="historyDateTo" placeholder="Đến ngày">
+                        <select class="form-control filter-select">
+                            <option value="all">Tất cả loại</option>
+                            <option value="import">Nhập hàng</option>
+                            <option value="export">Xuất hàng</option>
+                            <option value="adjust">Điều chỉnh</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Lịch sử nhập xuất tồn kho</h3>
+                        </div>
+                        <div class="table-container">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Thời gian</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Loại giao dịch</th>
+                                        <th>Số lượng</th>
+                                        <th>Tồn kho trước</th>
+                                        <th>Tồn kho sau</th>
+                                        <th>Ghi chú</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>15/12/2024 10:30</td>
+                                        <td>Panadol Extra 500mg</td>
+                                        <td><span class="status-badge status-success">Nhập hàng</span></td>
+                                        <td>+50</td>
+                                        <td>100</td>
+                                        <td>150</td>
+                                        <td>Phiếu nhập PN001</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15/12/2024 09:15</td>
+                                        <td>Thuốc điều trị COVID-19</td>
+                                        <td><span class="status-badge status-danger">Xuất hàng</span></td>
+                                        <td>-2</td>
+                                        <td>52</td>
+                                        <td>50</td>
+                                        <td>Đơn hàng DH001</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14/12/2024 16:20</td>
+                                        <td>Ginkgo Biloba 120mg</td>
+                                        <td><span class="status-badge status-warning">Điều chỉnh</span></td>
+                                        <td>-5</td>
+                                        <td>80</td>
+                                        <td>75</td>
+                                        <td>Điều chỉnh tồn kho</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14/12/2024 14:10</td>
+                                        <td>Hevel 500mg</td>
+                                        <td><span class="status-badge status-danger">Xuất hàng</span></td>
+                                        <td>-1</td>
+                                        <td>26</td>
+                                        <td>25</td>
+                                        <td>Đơn hàng DH002</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13/12/2024 11:45</td>
+                                        <td>Immucan 100ml</td>
+                                        <td><span class="status-badge status-success">Nhập hàng</span></td>
+                                        <td>+30</td>
+                                        <td>70</td>
+                                        <td>100</td>
+                                        <td>Phiếu nhập PN002</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Adjust Stock Modal -->
+    <div id="adjustStockModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Điều chỉnh tồn kho</h3>
+                <button class="close">&times;</button>
+            </div>
+            <form id="adjustStockForm">
+                <input type="hidden" id="adjustProductId" name="productId">
+                <div class="form-group">
+                    <label for="adjustProductName" class="form-label">Sản phẩm</label>
+                    <input type="text" id="adjustProductName" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="currentStock" class="form-label">Tồn kho hiện tại</label>
+                    <input type="number" id="currentStock" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="adjustmentType" class="form-label">Loại điều chỉnh *</label>
+                    <select id="adjustmentType" name="adjustmentType" class="form-control" required>
+                        <option value="">Chọn loại điều chỉnh</option>
+                        <option value="increase">Tăng</option>
+                        <option value="decrease">Giảm</option>
+                        <option value="set">Đặt lại</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="adjustmentQuantity" class="form-label">Số lượng *</label>
+                    <input type="number" id="adjustmentQuantity" name="adjustmentQuantity" class="form-control" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="adjustmentReason" class="form-label">Lý do điều chỉnh *</label>
+                    <textarea id="adjustmentReason" name="adjustmentReason" class="form-control" rows="3" placeholder="Nhập lý do điều chỉnh tồn kho" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('adjustStockModal'))">
+                        Hủy
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Điều chỉnh
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Stock History Modal -->
+    <div id="stockHistoryModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Lịch sử tồn kho sản phẩm</h3>
+                <button class="close">&times;</button>
+            </div>
+            <div class="stock-history-detail">
+                <div class="product-info">
+                    <h4 id="historyProductName"></h4>
+                    <p>Mã sản phẩm: <span id="historyProductCode"></span></p>
+                    <p>Tồn kho hiện tại: <span id="historyCurrentStock"></span></p>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Thời gian</th>
+                                <th>Loại giao dịch</th>
+                                <th>Số lượng</th>
+                                <th>Tồn kho trước</th>
+                                <th>Tồn kho sau</th>
+                                <th>Ghi chú</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stockHistoryTable">
+                            <!-- History will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('stockHistoryModal'))">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/admin.js"></script>
+    <script>
+        // Inventory management specific functions
+        function loadCurrentPageData() {
+            // Load inventory data
+            console.log('Loading inventory data for page:', currentPage);
+        }
+        
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        // Adjust stock
+        function adjustStock(productId) {
+            // Mock data - replace with actual API call
+            const productData = {
+                'SP001': { name: 'Panadol Extra 500mg', currentStock: 150 },
+                'SP002': { name: 'Thuốc điều trị COVID-19', currentStock: 50 },
+                'SP003': { name: 'Ginkgo Biloba 120mg', currentStock: 75 },
+                'SP004': { name: 'Hevel 500mg', currentStock: 25 },
+                'SP005': { name: 'Immucan 100ml', currentStock: 100 }
+            };
+            
+            const product = productData[productId];
+            if (product) {
+                document.getElementById('adjustProductId').value = productId;
+                document.getElementById('adjustProductName').value = product.name;
+                document.getElementById('currentStock').value = product.currentStock;
+                openModal('adjustStockModal');
+            }
+        }
+        
+        // View stock history
+        function viewStockHistory(productId) {
+            // Mock data - replace with actual API call
+            const historyData = {
+                'SP001': {
+                    name: 'Panadol Extra 500mg',
+                    code: 'SP001',
+                    currentStock: 150,
+                    history: [
+                        { date: '15/12/2024 10:30', type: 'Nhập hàng', quantity: '+50', before: 100, after: 150, note: 'Phiếu nhập PN001' },
+                        { date: '14/12/2024 16:20', type: 'Xuất hàng', quantity: '-2', before: 102, after: 100, note: 'Đơn hàng DH001' },
+                        { date: '13/12/2024 11:45', type: 'Nhập hàng', quantity: '+30', before: 72, after: 102, note: 'Phiếu nhập PN002' }
+                    ]
+                }
+            };
+            
+            const product = historyData[productId];
+            if (product) {
+                document.getElementById('historyProductName').textContent = product.name;
+                document.getElementById('historyProductCode').textContent = product.code;
+                document.getElementById('historyCurrentStock').textContent = product.currentStock;
+                
+                // Load history
+                const historyTable = document.getElementById('stockHistoryTable');
+                historyTable.innerHTML = '';
+                product.history.forEach(item => {
+                    const row = document.createElement('tr');
+                    const typeClass = item.type === 'Nhập hàng' ? 'status-success' : 
+                                    item.type === 'Xuất hàng' ? 'status-danger' : 'status-warning';
+                    row.innerHTML = `
+                        <td>${item.date}</td>
+                        <td><span class="status-badge ${typeClass}">${item.type}</span></td>
+                        <td>${item.quantity}</td>
+                        <td>${item.before}</td>
+                        <td>${item.after}</td>
+                        <td>${item.note}</td>
+                    `;
+                    historyTable.appendChild(row);
+                });
+                
+                openModal('stockHistoryModal');
+            }
+        }
+        
+        // Quick import
+        function quickImport(productId) {
+            if (confirm('Bạn có muốn tạo phiếu nhập hàng nhanh cho sản phẩm này?')) {
+                showAlert('Đang chuyển đến trang nhập hàng...', 'info');
+                setTimeout(() => {
+                    window.location.href = 'import-management.html';
+                }, 1000);
+            }
+        }
+        
+        // Export stock report
+        function exportStockReport() {
+            showAlert('Đang xuất báo cáo tồn kho...', 'info');
+            setTimeout(() => {
+                showAlert('Xuất báo cáo thành công!', 'success');
+            }, 1000);
+        }
+        
+        // Handle adjust stock form
+        document.getElementById('adjustStockForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const productId = document.getElementById('adjustProductId').value;
+            const adjustmentType = document.getElementById('adjustmentType').value;
+            const quantity = document.getElementById('adjustmentQuantity').value;
+            const reason = document.getElementById('adjustmentReason').value;
+            
+            showAlert('Đang điều chỉnh tồn kho...', 'info');
+            
+            // Simulate API call
+            setTimeout(() => {
+                showAlert('Điều chỉnh tồn kho thành công!', 'success');
+                closeModal(document.getElementById('adjustStockModal'));
+                loadCurrentPageData();
+            }, 1000);
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupPagination(450, 1, 10);
+        });
+    </script>
+    
+    <style>
+        .inventory-tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+        
+        .tab-button {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tab-button:hover {
+            color: #072E75;
+            background: #f8f9fa;
+        }
+        
+        .tab-button.active {
+            color: #072E75;
+            border-bottom-color: #072E75;
+            background: #f8f9fa;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .text-muted {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f1f3f4;
+        }
+        
+        .stock-history-detail {
+            margin-bottom: 20px;
+        }
+        
+        .product-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .product-info h4 {
+            color: #072E75;
+            margin-bottom: 10px;
+        }
+        
+        .product-info p {
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        @media (max-width: 768px) {
+            .inventory-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>

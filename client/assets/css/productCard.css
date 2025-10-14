@@ -372,6 +372,11 @@ div.--product-name {
     margin-left: 20px;
     padding-top: 10px;
 }
+.--product-name img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
 .pcl-footer-top > div {
     margin-right: 20px;
     cursor: pointer;

@@ -381,108 +381,124 @@
 
     <script src="assets/js/admin.js"></script>
     <script>
-        // Order management specific functions
+        // Dữ liệu mock đơn hàng
+        const orders = [
+            { id: 'DH001', customer: 'Nguyễn Văn An', date: '15/12/2024 10:30', items: 3, total: 480000, status: 'new', address: '123 Đường ABC, Quận 1, TP.HCM', phone: '0901234567', note: 'Giao buổi sáng', products: [ { name: 'Panadol Extra 500mg', quantity: 2, price: 25000 }, { name: 'Thuốc điều trị COVID-19', quantity: 1, price: 150000 }, { name: 'Ginkgo Biloba 120mg', quantity: 1, price: 180000 } ] },
+            { id: 'DH002', customer: 'Trần Thị Bình', date: '14/12/2024 14:20', items: 2, total: 280000, status: 'processing', address: '456 Đường DEF, Quận 3, TP.HCM', phone: '0912345678', note: '', products: [ { name: 'Hevel 500mg', quantity: 2, price: 35000 }, { name: 'Panadol Extra 500mg', quantity: 4, price: 25000 } ] },
+            { id: 'DH003', customer: 'Lê Văn Cường', date: '13/12/2024 09:15', items: 5, total: 750000, status: 'shipped', address: '789 Đường GHI, Đà Nẵng', phone: '0923456789', note: '', products: [ { name: 'Ginkgo Biloba 120mg', quantity: 3, price: 180000 } ] },
+            { id: 'DH004', customer: 'Phạm Thị Dung', date: '12/12/2024 16:45', items: 1, total: 120000, status: 'cancelled', address: '12 Đường JKL, Hà Nội', phone: '0934567890', note: 'Khách hủy', products: [ { name: 'Immucan 100ml', quantity: 1, price: 120000 } ] },
+            { id: 'DH005', customer: 'Hoàng Văn Em', date: '11/12/2024 11:30', items: 4, total: 520000, status: 'new', address: '34 Đường MNO, Cần Thơ', phone: '0945678901', note: '', products: [ { name: 'Immucan 100ml', quantity: 2, price: 120000 } ] }
+        ];
+
+        function statusBadge(status) {
+            if (status === 'new') return '<span class="status-badge status-pending">Mới đặt</span>';
+            if (status === 'processing') return '<span class="status-badge status-pending">Đang xử lý</span>';
+            if (status === 'shipped') return '<span class="status-badge status-completed">Đã giao hàng</span>';
+            return '<span class="status-badge status-inactive">Đã hủy</span>';
+        }
+
+        function renderOrdersTable() {
+            const tbody = document.querySelector('.admin-table tbody');
+            if (!tbody) return;
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = orders.slice(start, end);
+            tbody.innerHTML = pageItems.map(o => `
+                <tr data-status="${o.status}">
+                    <td>${o.id}</td>
+                    <td>${o.customer}</td>
+                    <td>${o.date}</td>
+                    <td>${o.items}</td>
+                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(o.total) : o.total.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${statusBadge(o.status)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" onclick="viewOrder('${o.id}')"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-sm btn-warning" onclick="updateOrderStatus('${o.id}', 'processing')"><i class="fas fa-cog"></i></button>
+                        <button class="btn btn-sm btn-success" onclick="updateOrderStatus('${o.id}', 'shipped')"><i class="fas fa-truck"></i></button>
+                        <button class="btn btn-sm btn-danger" onclick="updateOrderStatus('${o.id}', 'cancelled')"><i class="fas fa-times"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+            const totalSpan = document.querySelector('.card-header .text-muted');
+            if (totalSpan) totalSpan.textContent = `Tổng: ${orders.length} đơn hàng`;
+        }
+
         function loadCurrentPageData() {
-            // Load orders data
-            console.log('Loading orders data for page:', currentPage);
+            renderOrdersTable();
+            setupPagination(orders.length, currentPage, itemsPerPage);
         }
-        
-        // View order details
+
         function viewOrder(orderId) {
-            // Mock data - replace with actual API call
-            const orderData = {
-                'DH001': {
-                    code: 'DH001',
-                    date: '15/12/2024 10:30',
-                    customer: 'Nguyễn Văn An',
-                    status: 'Mới đặt',
-                    address: '123 Đường ABC, Phường XYZ, Quận 1, TP.HCM',
-                    phone: '0901234567',
-                    note: 'Giao hàng vào buổi sáng',
-                    subtotal: '450,000 VNĐ',
-                    shipping: '30,000 VNĐ',
-                    total: '480,000 VNĐ',
-                    products: [
-                        { name: 'Panadol Extra 500mg', quantity: 2, price: '25,000', total: '50,000' },
-                        { name: 'Thuốc điều trị COVID-19', quantity: 1, price: '150,000', total: '150,000' },
-                        { name: 'Ginkgo Biloba 120mg', quantity: 1, price: '180,000', total: '180,000' }
-                    ]
-                }
-            };
-            
-            const order = orderData[orderId];
-            if (order) {
-                document.getElementById('viewOrderCode').textContent = order.code;
-                document.getElementById('viewOrderDate').textContent = order.date;
-                document.getElementById('viewOrderCustomer').textContent = order.customer;
-                document.getElementById('viewOrderStatus').textContent = order.status;
-                document.getElementById('viewOrderAddress').textContent = order.address;
-                document.getElementById('viewOrderPhone').textContent = order.phone;
-                document.getElementById('viewOrderNote').textContent = order.note;
-                document.getElementById('viewOrderSubtotal').textContent = order.subtotal;
-                document.getElementById('viewOrderShipping').textContent = order.shipping;
-                document.getElementById('viewOrderTotal').textContent = order.total;
-                
-                // Load products
-                const productsTable = document.getElementById('viewOrderProducts');
-                productsTable.innerHTML = '';
-                order.products.forEach(product => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${product.name}</td>
-                        <td>${product.quantity}</td>
-                        <td>${product.price} VNĐ</td>
-                        <td>${product.total} VNĐ</td>
-                    `;
-                    productsTable.appendChild(row);
-                });
-                
-                openModal('viewOrderModal');
-            }
+            const order = orders.find(o => o.id === orderId);
+            if (!order) return;
+            document.getElementById('viewOrderCode').textContent = order.id;
+            document.getElementById('viewOrderDate').textContent = order.date;
+            document.getElementById('viewOrderCustomer').textContent = order.customer;
+            document.getElementById('viewOrderStatus').textContent = (function(){ if(order.status==='new')return'Mới đặt'; if(order.status==='processing')return'Đang xử lý'; if(order.status==='shipped')return'Đã giao hàng'; return 'Đã hủy'; })();
+            document.getElementById('viewOrderAddress').textContent = order.address || '';
+            document.getElementById('viewOrderPhone').textContent = order.phone || '';
+            document.getElementById('viewOrderNote').textContent = order.note || '';
+            const subtotal = Math.max(0, order.total - 30000);
+            document.getElementById('viewOrderSubtotal').textContent = (AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(subtotal) : subtotal.toLocaleString('vi-VN') + ' VNĐ';
+            document.getElementById('viewOrderShipping').textContent = (AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(30000) : '30,000 VNĐ';
+            document.getElementById('viewOrderTotal').textContent = (AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(order.total) : order.total.toLocaleString('vi-VN') + ' VNĐ';
+            const productsTable = document.getElementById('viewOrderProducts');
+            productsTable.innerHTML = '';
+            order.products.forEach(p => {
+                const row = document.createElement('tr');
+                const lineTotal = p.quantity * p.price;
+                row.innerHTML = `
+                    <td>${p.name}</td>
+                    <td>${p.quantity}</td>
+                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.price) : p.price.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(lineTotal) : lineTotal.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                `;
+                productsTable.appendChild(row);
+            });
+            openModal('viewOrderModal');
         }
-        
-        // Update order status
+
         function updateOrderStatus(orderId, newStatus) {
-            const statusText = {
-                'new': 'Mới đặt',
-                'processing': 'Đang xử lý',
-                'shipped': 'Đã giao hàng',
-                'cancelled': 'Đã hủy'
-            };
-            
             document.getElementById('updateOrderId').value = orderId;
             document.getElementById('newStatus').value = newStatus;
             openModal('updateStatusModal');
         }
-        
-        // Export orders
+
         function exportOrders() {
             showAlert('Đang xuất báo cáo đơn hàng...', 'info');
-            setTimeout(() => {
-                showAlert('Xuất báo cáo thành công!', 'success');
-            }, 1000);
+            setTimeout(() => showAlert('Xuất báo cáo thành công!', 'success'), 800);
         }
-        
-        // Handle update status form
+
         document.getElementById('updateStatusForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const orderId = document.getElementById('updateOrderId').value;
             const newStatus = document.getElementById('newStatus').value;
             const note = document.getElementById('statusNote').value;
-            
-            showAlert('Đang cập nhật trạng thái đơn hàng...', 'info');
-            
-            // Simulate API call
-            setTimeout(() => {
-                showAlert('Cập nhật trạng thái đơn hàng thành công!', 'success');
-                closeModal(document.getElementById('updateStatusModal'));
-                loadCurrentPageData();
-            }, 1000);
+            const idx = orders.findIndex(o => o.id === orderId);
+            if (idx !== -1) {
+                orders[idx].status = newStatus;
+                if (note) orders[idx].note = note;
+            }
+            showAlert('Cập nhật trạng thái đơn hàng thành công!', 'success');
+            closeModal(document.getElementById('updateStatusModal'));
+            loadCurrentPageData();
         });
-        
-        // Initialize
+
+        // Ghi đè handleFilter để lọc theo trạng thái đơn hàng
+        window.handleFilter = function(e) {
+            const select = e.target;
+            const value = select.value; // all | new | processing | shipped | cancelled
+            const table = select.closest('.admin-content').querySelector('.admin-table tbody');
+            if (!table) return;
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const rowStatus = row.getAttribute('data-status');
+                row.style.display = (value === 'all' || rowStatus === value) ? '' : 'none';
+            });
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
-            setupPagination(320, 1, 10);
+            loadCurrentPageData();
         });
     </script>
     

@@ -520,135 +520,191 @@
 
     <script src="assets/js/admin.js"></script>
     <script>
-        // Inventory management specific functions
-        function loadCurrentPageData() {
-            // Load inventory data
-            console.log('Loading inventory data for page:', currentPage);
+        // Dữ liệu mock tồn kho + lịch sử
+        const productTypeMap = { LSP001: 'Thuốc cảm cúm', LSP002: 'Vitamin và thực phẩm chức năng', LSP003: 'Thuốc giảm đau', LSP004: 'Thuốc ho', LSP005: 'Thuốc tiêu hóa' };
+        const stocks = [
+            { id: 'SP001', name: 'Panadol Extra 500mg', typeId: 'LSP003', stock: 150, min: 50 },
+            { id: 'SP002', name: 'Thuốc điều trị COVID-19', typeId: 'LSP001', stock: 50, min: 30 },
+            { id: 'SP003', name: 'Ginkgo Biloba 120mg', typeId: 'LSP002', stock: 75, min: 40 },
+            { id: 'SP004', name: 'Hevel 500mg', typeId: 'LSP005', stock: 25, min: 30 },
+            { id: 'SP005', name: 'Immucan 100ml', typeId: 'LSP002', stock: 100, min: 50 }
+        ];
+        const historyByProductId = {
+            SP001: [
+                { date: '15/12/2024 10:30', type: 'Nhập hàng', qty: +50, before: 100, after: 150, note: 'Phiếu nhập PN001' },
+                { date: '14/12/2024 16:20', type: 'Xuất hàng', qty: -2, before: 102, after: 100, note: 'Đơn hàng DH001' }
+            ]
+        };
+
+        function renderCurrentStock() {
+            const tbody = document.querySelector('#current-stock-tab .admin-table tbody');
+            if (!tbody) return;
+            tbody.innerHTML = stocks.map(s => {
+                const status = s.stock < s.min ? '<span class="status-badge status-warning">Sắp hết</span>' : '<span class="status-badge status-active">Bình thường</span>';
+                return `
+                    <tr data-type-id="${s.typeId}">
+                        <td>${s.id}</td>
+                        <td>${s.name}</td>
+                        <td>${productTypeMap[s.typeId] || ''}</td>
+                        <td>${s.stock}</td>
+                        <td>${s.min}</td>
+                        <td>${status}</td>
+                        <td>
+                            <button class="btn btn-sm btn-info" onclick="viewStockHistory('${s.id}')"><i class="fas fa-history"></i></button>
+                            <button class="btn btn-sm btn-warning" onclick="adjustStock('${s.id}')"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>`;
+            }).join('');
         }
-        
-        // Tab switching
-        function switchTab(tabName) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active class from all tab buttons
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // Show selected tab content
-            document.getElementById(tabName + '-tab').classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
+
+        function renderLowStock() {
+            const tbody = document.querySelector('#low-stock-tab .admin-table tbody');
+            if (!tbody) return;
+            const lows = stocks.filter(s => s.stock < s.min);
+            tbody.innerHTML = lows.map(s => `
+                <tr>
+                    <td>${s.id}</td>
+                    <td>${s.name}</td>
+                    <td>${productTypeMap[s.typeId] || ''}</td>
+                    <td>${s.stock}</td>
+                    <td>${s.min}</td>
+                    <td>${s.min - s.stock}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="quickImport('${s.id}')"><i class="fas fa-plus"></i> Nhập hàng</button>
+                        <button class="btn btn-sm btn-warning" onclick="adjustStock('${s.id}')"><i class="fas fa-edit"></i> Điều chỉnh</button>
+                    </td>
+                </tr>
+            `).join('');
         }
-        
-        // Adjust stock
-        function adjustStock(productId) {
-            // Mock data - replace with actual API call
-            const productData = {
-                'SP001': { name: 'Panadol Extra 500mg', currentStock: 150 },
-                'SP002': { name: 'Thuốc điều trị COVID-19', currentStock: 50 },
-                'SP003': { name: 'Ginkgo Biloba 120mg', currentStock: 75 },
-                'SP004': { name: 'Hevel 500mg', currentStock: 25 },
-                'SP005': { name: 'Immucan 100ml', currentStock: 100 }
-            };
-            
-            const product = productData[productId];
-            if (product) {
-                document.getElementById('adjustProductId').value = productId;
-                document.getElementById('adjustProductName').value = product.name;
-                document.getElementById('currentStock').value = product.currentStock;
-                openModal('adjustStockModal');
-            }
-        }
-        
-        // View stock history
-        function viewStockHistory(productId) {
-            // Mock data - replace with actual API call
-            const historyData = {
-                'SP001': {
-                    name: 'Panadol Extra 500mg',
-                    code: 'SP001',
-                    currentStock: 150,
-                    history: [
-                        { date: '15/12/2024 10:30', type: 'Nhập hàng', quantity: '+50', before: 100, after: 150, note: 'Phiếu nhập PN001' },
-                        { date: '14/12/2024 16:20', type: 'Xuất hàng', quantity: '-2', before: 102, after: 100, note: 'Đơn hàng DH001' },
-                        { date: '13/12/2024 11:45', type: 'Nhập hàng', quantity: '+30', before: 72, after: 102, note: 'Phiếu nhập PN002' }
-                    ]
-                }
-            };
-            
-            const product = historyData[productId];
-            if (product) {
-                document.getElementById('historyProductName').textContent = product.name;
-                document.getElementById('historyProductCode').textContent = product.code;
-                document.getElementById('historyCurrentStock').textContent = product.currentStock;
-                
-                // Load history
-                const historyTable = document.getElementById('stockHistoryTable');
-                historyTable.innerHTML = '';
-                product.history.forEach(item => {
-                    const row = document.createElement('tr');
-                    const typeClass = item.type === 'Nhập hàng' ? 'status-success' : 
-                                    item.type === 'Xuất hàng' ? 'status-danger' : 'status-warning';
-                    row.innerHTML = `
-                        <td>${item.date}</td>
-                        <td><span class="status-badge ${typeClass}">${item.type}</span></td>
-                        <td>${item.quantity}</td>
-                        <td>${item.before}</td>
-                        <td>${item.after}</td>
-                        <td>${item.note}</td>
-                    `;
-                    historyTable.appendChild(row);
+
+        function renderStockHistory() {
+            const tbody = document.querySelector('#stock-history-tab .admin-table tbody');
+            if (!tbody) return;
+            const rows = [];
+            Object.keys(historyByProductId).forEach(pid => {
+                const name = (stocks.find(s => s.id === pid) || {}).name || pid;
+                historyByProductId[pid].forEach(h => {
+                    const cls = h.type === 'Nhập hàng' ? 'status-success' : (h.type === 'Xuất hàng' ? 'status-danger' : 'status-warning');
+                    rows.push(`
+                        <tr data-tx-type="${h.type === 'Nhập hàng' ? 'import' : (h.type === 'Xuất hàng' ? 'export' : 'adjust')}">
+                            <td>${h.date}</td>
+                            <td>${name}</td>
+                            <td><span class="status-badge ${cls}">${h.type}</span></td>
+                            <td>${h.qty > 0 ? '+' + h.qty : h.qty}</td>
+                            <td>${h.before}</td>
+                            <td>${h.after}</td>
+                            <td>${h.note}</td>
+                        </tr>
+                    `);
                 });
-                
-                openModal('stockHistoryModal');
-            }
+            });
+            tbody.innerHTML = rows.join('');
         }
-        
-        // Quick import
+
+        // Lọc: tab tồn kho theo loại sản phẩm; tab lịch sử theo loại giao dịch
+        window.handleFilter = function(e) {
+            const select = e.target;
+            const container = select.closest('.tab-content');
+            if (!container) return;
+            const tbody = container.querySelector('.admin-table tbody');
+            if (!tbody) return;
+            const value = select.value; // current-stock: LSPxxx/all; stock-history: import/export/adjust/all
+            const rows = tbody.querySelectorAll('tr');
+            rows.forEach(row => {
+                if (container.id === 'current-stock-tab') {
+                    const typeId = row.getAttribute('data-type-id');
+                    row.style.display = (value === 'all' || typeId === value) ? '' : 'none';
+                } else if (container.id === 'stock-history-tab') {
+                    const tx = row.getAttribute('data-tx-type');
+                    row.style.display = (value === 'all' || tx === value) ? '' : 'none';
+                }
+            });
+        };
+
+        function loadCurrentPageData() {
+            renderCurrentStock();
+            renderLowStock();
+            renderStockHistory();
+            setupPagination(stocks.length, currentPage, itemsPerPage);
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            const content = document.getElementById(tabName + '-tab');
+            if (content) content.classList.add('active');
+            const btns = document.querySelectorAll('.inventory-tabs .tab-button');
+            btns.forEach(btn => { if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${tabName}'`)) btn.classList.add('active'); });
+        }
+
+        function adjustStock(productId) {
+            const s = stocks.find(x => x.id === productId);
+            if (!s) return;
+            document.getElementById('adjustProductId').value = s.id;
+            document.getElementById('adjustProductName').value = s.name;
+            document.getElementById('currentStock').value = s.stock;
+            openModal('adjustStockModal');
+        }
+
+        function viewStockHistory(productId) {
+            const s = stocks.find(x => x.id === productId);
+            if (!s) return;
+            document.getElementById('historyProductName').textContent = s.name;
+            document.getElementById('historyProductCode').textContent = s.id;
+            document.getElementById('historyCurrentStock').textContent = s.stock;
+            const historyTable = document.getElementById('stockHistoryTable');
+            historyTable.innerHTML = '';
+            const list = historyByProductId[productId] || [];
+            list.forEach(item => {
+                const typeClass = item.type === 'Nhập hàng' ? 'status-success' : item.type === 'Xuất hàng' ? 'status-danger' : 'status-warning';
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.date}</td>
+                    <td><span class="status-badge ${typeClass}">${item.type}</span></td>
+                    <td>${item.qty > 0 ? '+' + item.qty : item.qty}</td>
+                    <td>${item.before}</td>
+                    <td>${item.after}</td>
+                    <td>${item.note}</td>
+                `;
+                historyTable.appendChild(row);
+            });
+            openModal('stockHistoryModal');
+        }
+
         function quickImport(productId) {
             if (confirm('Bạn có muốn tạo phiếu nhập hàng nhanh cho sản phẩm này?')) {
                 showAlert('Đang chuyển đến trang nhập hàng...', 'info');
-                setTimeout(() => {
-                    window.location.href = 'import-management.html';
-                }, 1000);
+                setTimeout(() => { window.location.href = 'import-management.html'; }, 600);
             }
         }
-        
-        // Export stock report
+
         function exportStockReport() {
             showAlert('Đang xuất báo cáo tồn kho...', 'info');
-            setTimeout(() => {
-                showAlert('Xuất báo cáo thành công!', 'success');
-            }, 1000);
+            setTimeout(() => showAlert('Xuất báo cáo thành công!', 'success'), 800);
         }
-        
-        // Handle adjust stock form
+
         document.getElementById('adjustStockForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const productId = document.getElementById('adjustProductId').value;
             const adjustmentType = document.getElementById('adjustmentType').value;
-            const quantity = document.getElementById('adjustmentQuantity').value;
-            const reason = document.getElementById('adjustmentReason').value;
-            
-            showAlert('Đang điều chỉnh tồn kho...', 'info');
-            
-            // Simulate API call
-            setTimeout(() => {
-                showAlert('Điều chỉnh tồn kho thành công!', 'success');
-                closeModal(document.getElementById('adjustStockModal'));
-                loadCurrentPageData();
-            }, 1000);
+            const quantity = parseInt(document.getElementById('adjustmentQuantity').value, 10) || 0;
+            const reason = document.getElementById('adjustmentReason').value.trim();
+            const idx = stocks.findIndex(s => s.id === productId);
+            if (idx === -1) return;
+            const current = stocks[idx].stock;
+            let next = current;
+            if (adjustmentType === 'increase') next = current + quantity;
+            else if (adjustmentType === 'decrease') next = Math.max(0, current - quantity);
+            else if (adjustmentType === 'set') next = Math.max(0, quantity);
+            stocks[idx].stock = next;
+            const list = historyByProductId[productId] || (historyByProductId[productId] = []);
+            list.unshift({ date: new Date().toLocaleString('vi-VN'), type: adjustmentType === 'increase' ? 'Nhập hàng' : (adjustmentType === 'decrease' ? 'Xuất hàng' : 'Điều chỉnh'), qty: adjustmentType === 'decrease' ? -quantity : (adjustmentType === 'increase' ? quantity : next - current), before: current, after: next, note: reason });
+            showAlert('Điều chỉnh tồn kho thành công!', 'success');
+            closeModal(document.getElementById('adjustStockModal'));
+            loadCurrentPageData();
         });
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            setupPagination(450, 1, 10);
-        });
+
+        document.addEventListener('DOMContentLoaded', function() { loadCurrentPageData(); });
     </script>
     
     <style>

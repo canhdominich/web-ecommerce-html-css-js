@@ -522,127 +522,250 @@
 
     <script src="assets/js/admin.js"></script>
     <script>
-        // Price management specific functions
+        // Map loại sản phẩm
+        const productTypeMap = {
+            LSP001: 'Thuốc cảm cúm',
+            LSP002: 'Vitamin và thực phẩm chức năng',
+            LSP003: 'Thuốc giảm đau',
+            LSP004: 'Thuốc ho',
+            LSP005: 'Thuốc tiêu hóa'
+        };
+
+        // Quy tắc lợi nhuận theo loại
+        const profitRules = [
+            { typeId: 'LSP001', percentage: 25, updatedAt: '10/12/2024', note: 'Quy tắc lợi nhuận cho thuốc cảm cúm' },
+            { typeId: 'LSP002', percentage: 30, updatedAt: '08/12/2024', note: '' },
+            { typeId: 'LSP003', percentage: 20, updatedAt: '05/12/2024', note: '' },
+            { typeId: 'LSP004', percentage: 22, updatedAt: '03/12/2024', note: '' },
+            { typeId: 'LSP005', percentage: 18, updatedAt: '01/12/2024', note: '' }
+        ];
+
+        // Giá theo sản phẩm
+        const productPrices = [
+            { id: 'SP001', name: 'Panadol Extra 500mg', typeId: 'LSP003', costPrice: 20000, profitPercent: 25, sellingPrice: 25000 },
+            { id: 'SP002', name: 'Thuốc điều trị COVID-19', typeId: 'LSP001', costPrice: 120000, profitPercent: 25, sellingPrice: 150000 },
+            { id: 'SP003', name: 'Ginkgo Biloba 120mg', typeId: 'LSP002', costPrice: 150000, profitPercent: 20, sellingPrice: 180000 },
+            { id: 'SP004', name: 'Hevel 500mg', typeId: 'LSP005', costPrice: 30000, profitPercent: 17, sellingPrice: 35000 },
+            { id: 'SP005', name: 'Immucan 100ml', typeId: 'LSP002', costPrice: 100000, profitPercent: 20, sellingPrice: 120000 }
+        ];
+
+        // Render: Quy tắc theo loại
+        function renderByTypeTable() {
+            const tbody = document.querySelector('#by-type-tab .admin-table tbody');
+            if (!tbody) return;
+            tbody.innerHTML = profitRules.map(rule => `
+                <tr>
+                    <td>${productTypeMap[rule.typeId] || rule.typeId}</td>
+                    <td>${rule.percentage}%</td>
+                    <td>${rule.updatedAt}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" onclick="editProfitRule('${rule.typeId}')"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteProfitRule('${rule.typeId}')"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Render: Quy tắc theo sản phẩm
+        function renderByProductTable() {
+            const tbody = document.querySelector('#by-product-tab .admin-table tbody');
+            if (!tbody) return;
+            tbody.innerHTML = productPrices.map(p => `
+                <tr data-type-id="${p.typeId}">
+                    <td>${p.name}</td>
+                    <td>${productTypeMap[p.typeId] || ''}</td>
+                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.costPrice) : p.costPrice.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${p.profitPercent}%</td>
+                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.sellingPrice) : p.sellingPrice.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" onclick="editProductPrice('${p.id}')"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Render: Danh sách giá
+        function renderPriceListTable() {
+            const tbody = document.querySelector('#price-list-tab .admin-table tbody');
+            if (!tbody) return;
+            // có thể hiển thị thêm lợi nhuận = selling - cost
+            tbody.innerHTML = productPrices.map(p => {
+                const profit = Math.max(0, p.sellingPrice - p.costPrice);
+                return `
+                    <tr data-type-id="${p.typeId}">
+                        <td>${p.id}</td>
+                        <td>${p.name}</td>
+                        <td>${productTypeMap[p.typeId] || ''}</td>
+                        <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.costPrice) : p.costPrice.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                        <td>${p.profitPercent}%</td>
+                        <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.sellingPrice) : p.sellingPrice.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                        <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(profit) : profit.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                        <td>${new Date().toLocaleDateString('vi-VN')}</td>
+                    </tr>
+                `;
+            }).join('');
+            const totalSpan = document.querySelector('#price-list-tab .card-header .text-muted');
+            if (totalSpan) totalSpan.textContent = `Tổng: ${productPrices.length} sản phẩm`;
+        }
+
+        // Ghi đè loadCurrentPageData
         function loadCurrentPageData() {
-            // Load price data
-            console.log('Loading price data for page:', currentPage);
+            renderByTypeTable();
+            renderByProductTable();
+            renderPriceListTable();
+            setupPagination(productPrices.length, currentPage, itemsPerPage);
         }
-        
-        // Tab switching
+
+        // Tab switching (giữ hành vi, không dùng event toàn cục)
         function switchTab(tabName) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Remove active class from all tab buttons
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // Show selected tab content
-            document.getElementById(tabName + '-tab').classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
-        
-        // Edit profit rule
-        function editProfitRule(typeId) {
-            // Mock data - replace with actual API call
-            const profitData = {
-                'LSP001': { percentage: 25, note: 'Quy tắc lợi nhuận cho thuốc cảm cúm' }
-            };
-            
-            const data = profitData[typeId];
-            if (data) {
-                document.getElementById('productType').value = typeId;
-                document.getElementById('profitPercentage').value = data.percentage;
-                document.getElementById('profitNote').value = data.note;
-                openModal('addProfitModal');
-            }
-        }
-        
-        // Delete profit rule
-        function deleteProfitRule(typeId) {
-            if (confirm('Bạn có chắc chắn muốn xóa quy tắc lợi nhuận này?')) {
-                showAlert('Đang xóa quy tắc lợi nhuận...', 'info');
-                setTimeout(() => {
-                    showAlert('Xóa quy tắc lợi nhuận thành công!', 'success');
-                    loadCurrentPageData();
-                }, 1000);
-            }
-        }
-        
-        // Edit product price
-        function editProductPrice(productId) {
-            // Mock data - replace with actual API call
-            const productData = {
-                'SP001': { 
-                    name: 'Panadol Extra 500mg', 
-                    costPrice: 20000, 
-                    profitPercent: 25, 
-                    sellingPrice: 25000 
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            const content = document.getElementById(tabName + '-tab');
+            if (content) content.classList.add('active');
+            // tìm nút phù hợp theo tabName
+            const btns = document.querySelectorAll('.price-tabs .tab-button');
+            btns.forEach(btn => {
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${tabName}'`)) {
+                    btn.classList.add('active');
                 }
-            };
-            
-            const product = productData[productId];
-            if (product) {
-                document.getElementById('editProductId').value = productId;
-                document.getElementById('editProductName').value = product.name;
-                document.getElementById('editCostPrice').value = product.costPrice;
-                document.getElementById('editProfitPercent').value = product.profitPercent;
-                document.getElementById('editSellingPrice').value = product.sellingPrice;
-                openModal('editPriceModal');
+            });
+        }
+
+        // Handlers
+        function editProfitRule(typeId) {
+            const rule = profitRules.find(x => x.typeId === typeId);
+            if (!rule) return;
+            document.getElementById('productType').value = rule.typeId;
+            document.getElementById('profitPercentage').value = rule.percentage;
+            document.getElementById('profitNote').value = rule.note || '';
+            openModal('addProfitModal');
+        }
+
+        function deleteProfitRule(typeId) {
+            if (!confirm('Bạn có chắc chắn muốn xóa quy tắc lợi nhuận này?')) return;
+            const idx = profitRules.findIndex(x => x.typeId === typeId);
+            if (idx !== -1) {
+                profitRules.splice(idx, 1);
+                showAlert('Xóa quy tắc lợi nhuận thành công!', 'success');
+                renderByTypeTable();
             }
         }
-        
-        // Calculate selling price
+
+        function editProductPrice(productId) {
+            const p = productPrices.find(x => x.id === productId);
+            if (!p) return;
+            document.getElementById('editProductId').value = p.id;
+            document.getElementById('editProductName').value = p.name;
+            document.getElementById('editCostPrice').value = p.costPrice;
+            document.getElementById('editProfitPercent').value = p.profitPercent;
+            document.getElementById('editSellingPrice').value = p.sellingPrice;
+            openModal('editPriceModal');
+        }
+
         function calculateSellingPrice() {
             const costPrice = parseFloat(document.getElementById('editCostPrice').value) || 0;
             const profitPercent = parseFloat(document.getElementById('editProfitPercent').value) || 0;
-            const sellingPrice = costPrice * (1 + profitPercent / 100);
-            document.getElementById('editSellingPrice').value = Math.round(sellingPrice);
+            const sellingPrice = Math.round(costPrice * (1 + profitPercent / 100));
+            document.getElementById('editSellingPrice').value = sellingPrice;
         }
-        
-        // Bulk update prices
+
         function bulkUpdatePrices() {
-            if (confirm('Bạn có chắc chắn muốn cập nhật giá cho tất cả sản phẩm theo quy tắc lợi nhuận hiện tại?')) {
-                showAlert('Đang cập nhật giá hàng loạt...', 'info');
-                setTimeout(() => {
-                    showAlert('Cập nhật giá hàng loạt thành công!', 'success');
-                    loadCurrentPageData();
-                }, 2000);
-            }
+            if (!confirm('Bạn có chắc chắn muốn cập nhật giá cho tất cả sản phẩm theo quy tắc lợi nhuận hiện tại?')) return;
+            productPrices.forEach(p => {
+                const rule = profitRules.find(r => r.typeId === p.typeId);
+                if (rule) {
+                    p.profitPercent = rule.percentage;
+                    p.sellingPrice = Math.round(p.costPrice * (1 + p.profitPercent / 100));
+                }
+            });
+            showAlert('Cập nhật giá hàng loạt thành công!', 'success');
+            renderByProductTable();
+            renderPriceListTable();
         }
-        
-        // Export price list
+
+        // Lọc theo loại sản phẩm cho tab by-product và price-list
+        window.handleFilter = function(e) {
+            const select = e.target;
+            const container = select.closest('.tab-content');
+            if (!container) return;
+            const tbody = container.querySelector('.admin-table tbody');
+            if (!tbody) return;
+            const value = select.value; // LSPxxx | all
+            const rows = tbody.querySelectorAll('tr');
+            rows.forEach(row => {
+                const typeId = row.getAttribute('data-type-id');
+                row.style.display = (value === 'all' || typeId === value) ? '' : 'none';
+            });
+        };
+
         function exportPriceList() {
             showAlert('Đang xuất danh sách giá...', 'info');
-            setTimeout(() => {
-                showAlert('Xuất danh sách giá thành công!', 'success');
-            }, 1000);
+            setTimeout(() => showAlert('Xuất danh sách giá thành công!', 'success'), 800);
         }
-        
-        // Handle add profit form
+
+        // Submit: thêm/cập nhật quy tắc lợi nhuận theo loại
         document.getElementById('addProfitForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            handleAdd('addProfitForm', '/api/profit-rules');
+            const form = e.currentTarget;
+            if (!validateForm(form)) return;
+            const typeId = document.getElementById('productType').value;
+            const percentage = parseFloat(document.getElementById('profitPercentage').value);
+            const note = document.getElementById('profitNote').value.trim();
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const original = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                const idx = profitRules.findIndex(r => r.typeId === typeId);
+                const updatedAt = new Date().toLocaleDateString('vi-VN');
+                if (idx !== -1) {
+                    profitRules[idx] = { ...profitRules[idx], percentage, note, updatedAt };
+                } else {
+                    profitRules.unshift({ typeId, percentage, note, updatedAt });
+                }
+                showAlert('Lưu quy tắc lợi nhuận thành công!', 'success');
+                closeModal(document.getElementById('addProfitModal'));
+                form.reset();
+                submitBtn.innerHTML = original;
+                submitBtn.disabled = false;
+                renderByTypeTable();
+            }, 600);
         });
-        
-        // Handle edit price form
+
+        // Submit: cập nhật giá sản phẩm
         document.getElementById('editPriceForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            handleAdd('editPriceForm', '/api/product-prices');
+            const form = e.currentTarget;
+            if (!validateForm(form)) return;
+            const id = document.getElementById('editProductId').value;
+            const costPrice = parseFloat(document.getElementById('editCostPrice').value);
+            const profitPercent = parseFloat(document.getElementById('editProfitPercent').value);
+            const sellingPrice = Math.round(costPrice * (1 + profitPercent / 100));
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const original = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                const idx = productPrices.findIndex(p => p.id === id);
+                if (idx !== -1) {
+                    productPrices[idx] = { ...productPrices[idx], costPrice, profitPercent, sellingPrice };
+                }
+                showAlert('Cập nhật giá thành công!', 'success');
+                closeModal(document.getElementById('editPriceModal'));
+                submitBtn.innerHTML = original;
+                submitBtn.disabled = false;
+                renderByProductTable();
+                renderPriceListTable();
+            }, 600);
         });
-        
-        // Add event listeners for price calculation
+
+        // Tính giá khi thay đổi input
         document.getElementById('editCostPrice').addEventListener('input', calculateSellingPrice);
         document.getElementById('editProfitPercent').addEventListener('input', calculateSellingPrice);
-        
-        // Initialize
+
+        // Khởi tạo
         document.addEventListener('DOMContentLoaded', function() {
-            setupPagination(450, 1, 10);
+            loadCurrentPageData();
         });
     </script>
     

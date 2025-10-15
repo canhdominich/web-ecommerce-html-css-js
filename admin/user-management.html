@@ -355,40 +355,193 @@
 
     <script src="assets/js/admin.js"></script>
     <script>
-        // User management specific functions
-        function loadCurrentPageData() {
-            // Load users data
-            console.log('Loading users data for page:', currentPage);
+        // Dữ liệu mock khách hàng
+        const users = [
+            { id: 'KH001', fullName: 'Nguyễn Văn An', email: 'nguyenvanan@email.com', phone: '0901234567', createdAt: '15/11/2024', status: 'active', address: 'Hà Nội' },
+            { id: 'KH002', fullName: 'Trần Thị Bình', email: 'tranthibinh@email.com', phone: '0912345678', createdAt: '20/11/2024', status: 'active', address: 'Hồ Chí Minh' },
+            { id: 'KH003', fullName: 'Lê Văn Cường', email: 'levancuong@email.com', phone: '0923456789', createdAt: '25/11/2024', status: 'inactive', address: 'Đà Nẵng' },
+            { id: 'KH004', fullName: 'Phạm Thị Dung', email: 'phamthidung@email.com', phone: '0934567890', createdAt: '01/12/2024', status: 'active', address: 'Cần Thơ' },
+            { id: 'KH005', fullName: 'Hoàng Văn Em', email: 'hoangvanem@email.com', phone: '0945678901', createdAt: '05/12/2024', status: 'active', address: 'Hải Phòng' }
+        ];
+
+        function generateNewUserId() {
+            const nums = users.map(u => parseInt(u.id.replace('KH', ''), 10));
+            const next = (Math.max(...nums, 0) + 1).toString().padStart(3, '0');
+            return `KH${next}`;
         }
-        
-        // Reset password function
-        function resetPassword(userId, userName) {
-            if (confirm(`Bạn có chắc chắn muốn reset mật khẩu cho khách hàng ${userName}?`)) {
-                // Show loading
-                showAlert('Đang reset mật khẩu...', 'info');
-                
-                // Simulate API call
-                setTimeout(() => {
-                    showAlert('Reset mật khẩu thành công! Mật khẩu mới: 123456', 'success');
-                }, 1000);
+
+        function renderUserTable() {
+            const tbody = document.querySelector('.admin-table tbody');
+            if (!tbody) return;
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = users.slice(start, end);
+
+            tbody.innerHTML = pageItems.map(u => {
+                const isActive = u.status === 'active';
+                const statusBadge = isActive
+                    ? '<span class="status-badge status-active">Hoạt động</span>'
+                    : '<span class="status-badge status-inactive">Đã khóa</span>';
+                const toggleBtn = isActive
+                    ? `<button class=\"btn btn-sm btn-danger\" onclick=\"handleStatusChange('${u.id}', 'active', 'khách hàng')\"><i class=\"fas fa-lock\"></i></button>`
+                    : `<button class=\"btn btn-sm btn-success\" onclick=\"handleStatusChange('${u.id}', 'inactive', 'khách hàng')\"><i class=\"fas fa-unlock\"></i></button>`;
+
+                return `
+                    <tr>
+                        <td>${u.id}</td>
+                        <td>${u.fullName}</td>
+                        <td>${u.email}</td>
+                        <td>${u.phone}</td>
+                        <td>${u.createdAt}</td>
+                        <td>${statusBadge}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning" onclick="handleEdit('${u.id}', 'editUserForm', '/api/users')"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-secondary" onclick="resetPassword('${u.id}', '${u.fullName}')"><i class="fas fa-key"></i></button>
+                            ${toggleBtn}
+                            <button class="btn btn-sm btn-danger" onclick="handleDelete('${u.id}', 'khách hàng')"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            const totalSpan = document.querySelector('.card-header .text-muted');
+            if (totalSpan) {
+                totalSpan.textContent = `Tổng: ${users.length} khách hàng`;
             }
         }
-        
-        // Handle add user form
+
+        // Ghi đè loadCurrentPageData
+        function loadCurrentPageData() {
+            renderUserTable();
+            setupPagination(users.length, currentPage, itemsPerPage);
+        }
+
+        // Ghi đè handler
+        window.handleEdit = function(id, formId, apiEndpoint) {
+            const modal = document.getElementById('editUserModal');
+            const u = users.find(x => x.id === id);
+            if (!modal || !u) return;
+            document.getElementById('editUserId').value = u.id;
+            document.getElementById('editFullName').value = u.fullName;
+            document.getElementById('editEmail').value = u.email;
+            document.getElementById('editPhone').value = u.phone;
+            document.getElementById('editAddress').value = u.address || '';
+            document.getElementById('editStatus').value = u.status;
+            openModal('editUserModal');
+        };
+
+        window.handleDelete = function(id, itemName) {
+            if (!confirm('Bạn có chắc chắn muốn xóa ' + itemName + ' này?')) return;
+            const index = users.findIndex(u => u.id === id);
+            if (index !== -1) {
+                users.splice(index, 1);
+                showAlert('Xóa thành công!', 'success');
+                const maxPage = Math.max(1, Math.ceil(users.length / itemsPerPage));
+                if (currentPage > maxPage) currentPage = maxPage;
+                loadCurrentPageData();
+            }
+        };
+
+        window.handleStatusChange = function(id, currentStatus, itemName) {
+            const u = users.find(x => x.id === id);
+            if (!u) return;
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            const action = newStatus === 'active' ? 'kích hoạt' : 'khóa';
+            if (!confirm(`Bạn có chắc chắn muốn ${action} ${itemName} này?`)) return;
+            u.status = newStatus;
+            showAlert(`${action.charAt(0).toUpperCase() + action.slice(1)} thành công!`, 'success');
+            loadCurrentPageData();
+        };
+
+        // Ghi đè handleFilter để dùng class badge thay vì text
+        window.handleFilter = function(e) {
+            const filterValue = e.target.value; // all | active | inactive
+            const table = e.target.closest('.admin-content').querySelector('.admin-table tbody');
+            if (!table) return;
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                if (filterValue === 'all') {
+                    row.style.display = '';
+                } else {
+                    const badge = row.querySelector('.status-badge');
+                    const isActive = badge && badge.classList.contains('status-active');
+                    const match = (filterValue === 'active' && isActive) || (filterValue === 'inactive' && !isActive);
+                    row.style.display = match ? '' : 'none';
+                }
+            });
+        };
+
+        // Reset mật khẩu (giữ nguyên mô phỏng)
+        function resetPassword(userId, userName) {
+            if (confirm(`Bạn có chắc chắn muốn reset mật khẩu cho khách hàng ${userName}?`)) {
+                showAlert('Đang reset mật khẩu...', 'info');
+                setTimeout(() => {
+                    showAlert('Reset mật khẩu thành công! Mật khẩu mới: 123456', 'success');
+                }, 800);
+            }
+        }
+
+        // Submit: Thêm khách hàng
         document.getElementById('addUserForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            handleAdd('addUserForm', '/api/users');
+            const form = e.currentTarget;
+            if (!validateForm(form)) return;
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const password = document.getElementById('password').value; // không dùng nhưng giữ để hợp lệ
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const original = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                users.unshift({ id: generateNewUserId(), fullName, email, phone, address, createdAt: new Date().toLocaleDateString('vi-VN'), status: 'active' });
+                showAlert('Thêm khách hàng thành công!', 'success');
+                closeModal(document.getElementById('addUserModal'));
+                form.reset();
+                submitBtn.innerHTML = original;
+                submitBtn.disabled = false;
+                currentPage = 1;
+                loadCurrentPageData();
+            }, 600);
         });
-        
-        // Handle edit user form
+
+        // Submit: Cập nhật khách hàng
         document.getElementById('editUserForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            handleAdd('editUserForm', '/api/users');
+            const form = e.currentTarget;
+            if (!validateForm(form)) return;
+            const id = document.getElementById('editUserId').value;
+            const fullName = document.getElementById('editFullName').value.trim();
+            const email = document.getElementById('editEmail').value.trim();
+            const phone = document.getElementById('editPhone').value.trim();
+            const address = document.getElementById('editAddress').value.trim();
+            const status = document.getElementById('editStatus').value;
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const original = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                const idx = users.findIndex(u => u.id === id);
+                if (idx !== -1) {
+                    users[idx] = { ...users[idx], fullName, email, phone, address, status };
+                }
+                showAlert('Cập nhật khách hàng thành công!', 'success');
+                closeModal(document.getElementById('editUserModal'));
+                submitBtn.innerHTML = original;
+                submitBtn.disabled = false;
+                loadCurrentPageData();
+            }, 600);
         });
-        
-        // Initialize pagination
+
+        // Khởi tạo
         document.addEventListener('DOMContentLoaded', function() {
-            setupPagination(1250, 1, 10);
+            loadCurrentPageData();
         });
     </script>
     

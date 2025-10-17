@@ -381,13 +381,42 @@
 
     <script src="assets/js/admin.js"></script>
     <script>
-        // Import management specific functions
-        function loadCurrentPageData() {
-            // Load import receipts data
-            console.log('Loading import receipts data for page:', currentPage);
+        // Dữ liệu mock phiếu nhập
+        const imports = [
+            { id: 'PN001', date: '15/12/2024', productCount: 5, total: 2500000, creator: 'Admin', status: 'completed', note: 'Nhập hàng định kỳ tháng 12', products: [ { id: 'SP001', name: 'Panadol Extra 500mg', price: 20000, quantity: 50 } ] },
+            { id: 'PN002', date: '14/12/2024', productCount: 3, total: 1800000, creator: 'Admin', status: 'draft', note: '', products: [ { id: 'SP002', name: 'Thuốc điều trị COVID-19', price: 120000, quantity: 10 } ] }
+        ];
+
+        function renderImportTable() {
+            const tbody = document.querySelector('.admin-table tbody');
+            if (!tbody) return;
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = imports.slice(start, end);
+            tbody.innerHTML = pageItems.map(r => `
+                <tr data-status="${r.status}">
+                    <td>${r.id}</td>
+                    <td>${r.date}</td>
+                    <td>${r.productCount}</td>
+                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(r.total) : r.total.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${r.creator}</td>
+                    <td>${r.status === 'completed' ? '<span class="status-badge status-completed">Hoàn thành</span>' : '<span class="status-badge status-pending">Nháp</span>'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" onclick="viewImport('${r.id}')"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-sm btn-warning" onclick="editImport('${r.id}')"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-sm btn-success" onclick="completeImport('${r.id}')"><i class="fas fa-check"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+            const totalSpan = document.querySelector('.card-header .text-muted');
+            if (totalSpan) totalSpan.textContent = `Tổng: ${imports.length} phiếu nhập`;
         }
-        
-        // Add product item to import form
+
+        function loadCurrentPageData() {
+            renderImportTable();
+            setupPagination(imports.length, currentPage, itemsPerPage);
+        }
+
         function addProductItem() {
             const productSelection = document.querySelector('.product-selection');
             const newItem = document.createElement('div');
@@ -409,101 +438,111 @@
             `;
             productSelection.appendChild(newItem);
         }
-        
-        // Remove product item from import form
-        function removeProductItem(button) {
-            button.closest('.product-item').remove();
-        }
-        
-        // View import receipt
+
+        function removeProductItem(button) { button.closest('.product-item').remove(); }
+
         function viewImport(importId) {
-            // Mock data - replace with actual API call
-            const importData = {
-                'PN001': {
-                    code: 'PN001',
-                    date: '15/12/2024',
-                    creator: 'Admin',
-                    status: 'Hoàn thành',
-                    productCount: 5,
-                    total: '2,500,000 VNĐ',
-                    note: 'Nhập hàng định kỳ tháng 12',
-                    products: [
-                        { name: 'Panadol Extra 500mg', price: '20,000', quantity: 50, total: '1,000,000' },
-                        { name: 'Thuốc điều trị COVID-19', price: '120,000', quantity: 10, total: '1,200,000' },
-                        { name: 'Ginkgo Biloba 120mg', price: '150,000', quantity: 2, total: '300,000' }
-                    ]
-                }
-            };
-            
-            const importReceipt = importData[importId];
-            if (importReceipt) {
-                document.getElementById('viewImportCode').textContent = importReceipt.code;
-                document.getElementById('viewImportDate').textContent = importReceipt.date;
-                document.getElementById('viewImportCreator').textContent = importReceipt.creator;
-                document.getElementById('viewImportStatus').textContent = importReceipt.status;
-                document.getElementById('viewImportProductCount').textContent = importReceipt.productCount;
-                document.getElementById('viewImportTotal').textContent = importReceipt.total;
-                document.getElementById('viewImportNote').textContent = importReceipt.note;
-                
-                // Load products
-                const productsTable = document.getElementById('viewImportProducts');
-                productsTable.innerHTML = '';
-                importReceipt.products.forEach(product => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${product.name}</td>
-                        <td>${product.price} VNĐ</td>
-                        <td>${product.quantity}</td>
-                        <td>${product.total} VNĐ</td>
-                    `;
-                    productsTable.appendChild(row);
-                });
-                
-                openModal('viewImportModal');
-            }
+            const r = imports.find(x => x.id === importId);
+            if (!r) return;
+            document.getElementById('viewImportCode').textContent = r.id;
+            document.getElementById('viewImportDate').textContent = r.date;
+            document.getElementById('viewImportCreator').textContent = r.creator;
+            document.getElementById('viewImportStatus').textContent = r.status === 'completed' ? 'Hoàn thành' : 'Nháp';
+            document.getElementById('viewImportProductCount').textContent = r.productCount;
+            document.getElementById('viewImportTotal').textContent = (AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(r.total) : r.total.toLocaleString('vi-VN') + ' VNĐ';
+            document.getElementById('viewImportNote').textContent = r.note || '';
+            const productsTable = document.getElementById('viewImportProducts');
+            productsTable.innerHTML = '';
+            (r.products || []).forEach(p => {
+                const row = document.createElement('tr');
+                const lineTotal = p.price * p.quantity;
+                row.innerHTML = `
+                    <td>${p.name}</td>
+                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.price) : p.price.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${p.quantity}</td>
+                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(lineTotal) : lineTotal.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                `;
+                productsTable.appendChild(row);
+            });
+            openModal('viewImportModal');
         }
-        
-        // Edit import receipt
+
         function editImport(importId) {
-            // Check if import is completed
-            if (confirm('Bạn có chắc chắn muốn chỉnh sửa phiếu nhập này?')) {
-                showAlert('Chỉnh sửa phiếu nhập...', 'info');
-                // Simulate API call
-                setTimeout(() => {
-                    showAlert('Mở phiếu nhập để chỉnh sửa thành công!', 'success');
-                }, 1000);
-            }
+            showAlert('Mở phiếu nhập để chỉnh sửa...', 'info');
+            setTimeout(() => showAlert('Mở phiếu nhập thành công!', 'success'), 600);
         }
-        
-        // Complete import receipt
+
         function completeImport(importId) {
-            if (confirm('Bạn có chắc chắn muốn hoàn thành phiếu nhập này? Tồn kho sẽ được cập nhật.')) {
-                showAlert('Đang hoàn thành phiếu nhập...', 'info');
-                // Simulate API call
-                setTimeout(() => {
-                    showAlert('Hoàn thành phiếu nhập thành công! Tồn kho đã được cập nhật.', 'success');
-                    loadCurrentPageData();
-                }, 1000);
+            if (!confirm('Hoàn thành phiếu nhập này? Tồn kho sẽ được cập nhật.')) return;
+            const idx = imports.findIndex(r => r.id === importId);
+            if (idx !== -1) {
+                imports[idx].status = 'completed';
+                showAlert('Hoàn thành phiếu nhập!', 'success');
+                renderImportTable();
             }
         }
-        
-        // Handle add import form
+
+        // Lọc theo trạng thái phiếu nhập (all | draft | completed)
+        window.handleFilter = function(e) {
+            const select = e.target;
+            const value = select.value;
+            const table = select.closest('.admin-content').querySelector('.admin-table tbody');
+            if (!table) return;
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const rowStatus = row.getAttribute('data-status');
+                row.style.display = (value === 'all' || rowStatus === value) ? '' : 'none';
+            });
+        };
+
         document.getElementById('addImportForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            handleAdd('addImportForm', '/api/imports');
+            const form = e.currentTarget;
+            if (!validateForm(form)) return;
+            const date = document.getElementById('importDate').value;
+            const code = document.getElementById('importCode').value || ('PN' + String(Date.now()).slice(-6));
+            const note = document.getElementById('importNote').value.trim();
+            const productSelection = document.querySelectorAll('.product-selection .product-item');
+            const items = [];
+            productSelection.forEach(item => {
+                const sel = item.querySelector('select');
+                const priceInput = item.querySelector('input[placeholder="Giá nhập"]');
+                const qtyInput = item.querySelector('input[placeholder="Số lượng"]');
+                const id = sel ? sel.value : '';
+                const name = sel ? sel.options[sel.selectedIndex].text : '';
+                const price = parseFloat(priceInput ? priceInput.value : '0') || 0;
+                const quantity = parseInt(qtyInput ? qtyInput.value : '0', 10) || 0;
+                if (id && quantity > 0) items.push({ id, name, price, quantity });
+            });
+            const total = items.reduce((s, it) => s + it.price * it.quantity, 0);
+            const receipt = { id: code, date, productCount: items.length, total, creator: 'Admin', status: 'draft', note, products: items };
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const original = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                imports.unshift(receipt);
+                showAlert('Tạo phiếu nhập thành công!', 'success');
+                closeModal(document.getElementById('addImportModal'));
+                form.reset();
+                // reset list còn 1 item rỗng
+                const container = document.querySelector('.product-selection');
+                container.innerHTML = '';
+                addProductItem();
+                submitBtn.innerHTML = original;
+                submitBtn.disabled = false;
+                currentPage = 1;
+                renderImportTable();
+            }, 700);
         });
-        
-        // Generate import code
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Generate import code
             const importCode = 'PN' + String(Date.now()).slice(-6);
             document.getElementById('importCode').value = importCode;
-            
-            // Set default date to today
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('importDate').value = today;
-            
-            setupPagination(25, 1, 10);
+            addProductItem();
+            loadCurrentPageData();
         });
     </script>
     

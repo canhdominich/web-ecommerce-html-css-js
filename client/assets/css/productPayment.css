@@ -366,3 +366,267 @@ span.py-main-title > span {
 ::placeholder {
     color: rgba(153, 153, 153, 0.5) !important;
 }
+
+/* ===== STYLE CHO DANH SÁCH SẢN PHẨM TRONG TRANG ĐẶT HÀNG ===== */
+
+/* Container chính cho danh sách sản phẩm */
+.product-payment-list {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* Header của bảng sản phẩm */
+.py-header {
+    background: linear-gradient(135deg, #21C58E 0%, #1BAE7A 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 0;
+    margin-bottom: 0;
+    box-shadow: 0 2px 4px rgba(33, 197, 142, 0.2);
+}
+
+/* Các item sản phẩm */
+.product-payment-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.product-payment-item:hover {
+    background: #f8fffe;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(33, 197, 142, 0.1);
+}
+
+.product-payment-item:last-child {
+    border-bottom: none;
+}
+
+/* Layout cho từng item */
+.ppi-left {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.ppi-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-payment-item:hover .ppi-left img {
+    transform: scale(1.05);
+}
+
+.ppi-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Tên sản phẩm */
+.ppi-right .--name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #242424;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+/* Số lượng */
+.ppi-right .--qty {
+    font-size: 14px;
+    color: #666666;
+    background: #f5f5f5;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    width: fit-content;
+}
+
+/* Giá sản phẩm */
+.ppi-right .--price {
+    font-size: 14px;
+    color: #999999;
+    text-decoration: line-through;
+}
+
+/* Tổng tiền */
+.ppi-right .--subtotal {
+    font-size: 18px;
+    font-weight: 700;
+    color: #21C58E;
+    margin-top: 4px;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .product-payment-item {
+        padding: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .ppi-left {
+        width: 100%;
+        height: 120px;
+        margin-right: 0;
+    }
+    
+    .ppi-right {
+        width: 100%;
+    }
+    
+    .ppi-right .--name {
+        font-size: 15px;
+    }
+    
+    .ppi-right .--subtotal {
+        font-size: 16px;
+    }
+    
+    .py-header {
+        font-size: 12px;
+        padding: 15px 20px;
+    }
+}
+
+/* Animation cho việc thêm/xóa sản phẩm */
+.product-payment-item {
+    animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Empty state khi không có sản phẩm */
+.product-payment-list:empty::after {
+    content: "Chưa có sản phẩm nào được chọn";
+    display: block;
+    text-align: center;
+    padding: 40px 20px;
+    color: #999999;
+    font-style: italic;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin: 20px;
+}
+
+/* Cải thiện header layout */
+.py-header {
+    display: grid;
+    grid-template-columns: 1fr 120px 120px 100px 120px;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+.py-header > div {
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Layout cho các item theo grid */
+.product-payment-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px 120px 100px 120px;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+.product-payment-item .ppi-left {
+    grid-column: 1;
+    margin-right: 0;
+}
+
+.product-payment-item .ppi-right {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.product-payment-item .--price {
+    grid-column: 3;
+    text-align: center;
+    font-size: 14px;
+    color: #999999;
+    text-decoration: line-through;
+}
+
+.product-payment-item .--subtotal {
+    grid-column: 4;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #21C58E;
+}
+
+.product-payment-item .--qty {
+    grid-column: 5;
+    text-align: center;
+    background: #f0f8ff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: #072E75;
+}
+
+/* Mobile responsive cho grid layout */
+@media (max-width: 768px) {
+    .py-header {
+        display: none; /* Ẩn header trên mobile */
+    }
+    
+    .product-payment-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .ppi-left {
+        width: 100%;
+        height: 120px;
+        grid-column: unset;
+    }
+    
+    .ppi-right {
+        width: 100%;
+        grid-column: unset;
+    }
+    
+    .product-payment-item .--price,
+    .product-payment-item .--subtotal,
+    .product-payment-item .--qty {
+        grid-column: unset;
+        text-align: left;
+        width: 100%;
+    }
+}

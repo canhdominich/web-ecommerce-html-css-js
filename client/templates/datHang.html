@@ -476,325 +476,694 @@
         </div>
     </div>
 </div>
-<div class="modal fade modal-customer" id="registerModal" tabindex="-1" role="dialog"
-    aria-labelledby="registerModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="">
-                <div class="mb-wrapper-content modal-wrapper-content">
-                    <div class="modal-register-left modal-left-item">
-                        <img src="../assets/images/login.png">
-                    </div>
-                    <div class="modal-register-right modal-right-item">
-                        <div class="mlr-top modal-right-item-top">
-                            <div class="modal-close-i" data-dismiss="modal">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5"
-                                    stroke="#8E9AAB">
-                                    <path d="M17.9964 6L6.00391 17.9925" stroke="inherit" stroke-width="inherit"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M18.0125 18.0125L6 6" stroke="inherit" stroke-width="inherit"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </div>
-                            <h5 class="mrl-top-header modal-top-header">
-                                Bạn đã có tài khoản? <span onclick="openModalLogin()"> Đăng nhập ngay</span>
-                            </h5>
-                        </div>
-                        <div class="content-modal-right">
-                            <div class="form-title">
-                                <div class="sub-title">Chào mừng bạn đến với Medica</div>
-                                <div class="main-title">Đăng ký tài khoản</div>
-                            </div>
-
-                            <ul class="nav nav-pills mb-3 prid-nav" id="registerNavTab" role="tablist">
-                                <li class="nav-item">
-                                    <button onclick="changeMenuNavTab('customer')"
-                                        class="nav-link active prid-nav-action" id="pills-detail-tab" data-toggle="pill"
-                                        href="#formRegisterContent" role="tab" aria-controls="pills-detail"
-                                        aria-selected="true">Khách hàng thường</button>
-                                </li>
-                                <li class="nav-item">
-                                    <button onclick="changeMenuNavTab('company')" class="prid-nav-action"
-                                        id="pills-brand-tab" data-toggle="pill" href="#formRegisterContent" role="tab"
-                                        aria-controls="pills-brand" aria-selected="false">Công ty</button>
-                                </li>
-                                <li class="nav-item">
-                                    <button onclick="changeMenuNavTab('drug-tore')" class="prid-nav-action"
-                                        id="pills-detail-tab" data-toggle="pill" href="#formRegisterContent" role="tab"
-                                        aria-controls="pills-detail" aria-selected="true">Nhà thuốc</button>
-                                </li>
-                                <li class="nav-item">
-                                    <button onclick="changeMenuNavTab('clinic')" class="prid-nav-action"
-                                        id="pills-brand-tab" data-toggle="pill" href="#formRegisterContent" role="tab"
-                                        aria-controls="pills-brand" aria-selected="false">Phòng khám</button>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="registerNavTabContent">
-                                <form class="form-register modal-right-form" id="formRegisterContent">
-                                    <div class="form-group">
-                                        <label for="phone-number" class="col-form-label">Tên người dùng</label>
-                                        <input type="text" class="form-control" id="userName">
-                                    </div>
-
-                                    <div class="form-group input-opt">
-                                        <label for="phone-number" class="col-form-label">Số điện thoại đăng ký</label>
-                                        <input type="text" class="form-control" id="phone">
-                                        <button type="button" class="btn-send-opt" onclick="sendOpt()">Gửi mã xác
-                                            nhận</button>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="phone-number" class="col-form-label">Mã OTP</label>
-                                        <input type="text" class="form-control" id="otpCode">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="phone-number" class="col-form-label">Email</label>
-                                        <input type="text" class="form-control" id="email">
-                                    </div>
-
-                                    <div class="form-group input-password">
-                                        <label for="password" class="col-form-label">Mật khẩu</label>
-                                        <div>
-                                            <input type="password" class="form-control" id="passwordRegister">
-                                            <span onclick="hideShowPwd('passwordRegister')">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M11.9996 9.64136C10.6696 9.64136 9.58862 10.7234 9.58862 12.0534C9.58862 13.3824 10.6696 14.4634 11.9996 14.4634C13.3296 14.4634 14.4116 13.3824 14.4116 12.0534C14.4116 10.7234 13.3296 9.64136 11.9996 9.64136ZM11.9996 15.9634C9.84262 15.9634 8.08862 14.2094 8.08862 12.0534C8.08862 9.89636 9.84262 8.14136 11.9996 8.14136C14.1566 8.14136 15.9116 9.89636 15.9116 12.0534C15.9116 14.2094 14.1566 15.9634 11.9996 15.9634Z"
-                                                        fill="#666666" />
-                                                    <mask id="mask0_29_638" style="mask-type:alpha"
-                                                        maskUnits="userSpaceOnUse" x="2" y="4" width="20" height="17">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                            d="M2.00024 4.00024H22.0001V20.1052H2.00024V4.00024Z"
-                                                            fill="white" />
-                                                    </mask>
-                                                    <g mask="url(#mask0_29_638)">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                            d="M3.56999 12.0525C5.42999 16.1615 8.56299 18.6045 12 18.6055C15.437 18.6045 18.57 16.1615 20.43 12.0525C18.57 7.94451 15.437 5.50151 12 5.50051C8.56399 5.50151 5.42999 7.94451 3.56999 12.0525ZM12.002 20.1055H11.998H11.997C7.86099 20.1025 4.14699 17.2035 2.06099 12.3485C1.97999 12.1595 1.97999 11.9455 2.06099 11.7565C4.14699 6.90251 7.86199 4.00351 11.997 4.00051C11.999 3.99951 11.999 3.99951 12 4.00051C12.002 3.99951 12.002 3.99951 12.003 4.00051C16.139 4.00351 19.853 6.90251 21.939 11.7565C22.021 11.9455 22.021 12.1595 21.939 12.3485C19.854 17.2035 16.139 20.1025 12.003 20.1055H12.002Z"
-                                                            fill="#666666" />
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="phone-number" class="col-form-label">Địa chỉ</label>
-                                        <input type="text" class="form-control" id="address"
-                                            placeholder="Nhập địa chỉ của bạn">
-                                    </div>
-                                    <!--2222-->
-                                    <div class="form-group hide company-field">
-                                        <label for="phone-number" class="col-form-label">Tên công ty</label>
-                                        <input type="text" class="form-control" id="companyName"
-                                            placeholder="Nhập tên công ty">
-                                    </div>
-
-                                    <div class="form-group hide company-field">
-                                        <label for="phone-number" class="col-form-label">Tên người đại diện công
-                                            ty</label>
-                                        <input type="text" class="form-control" id="representativeName"
-                                            placeholder="Nhập tên người đại diện công ty">
-                                    </div>
-                                    <!--4444-->
-                                    <div class="form-group hide clinic-field">
-                                        <label for="phone-number" class="col-form-label">Tên phòng khám</label>
-                                        <input type="text" class="form-control" id="clinicName"
-                                            placeholder="Nhập tên công ty">
-                                    </div>
-
-                                    <div class="form-group hide clinic-field">
-                                        <label for="phone-number" class="col-form-label">Bác sỹ chuyên môn</label>
-                                        <input type="text" class="form-control" id="specialDoctorName"
-                                            placeholder="Nhập tên người đại diện công ty">
-                                    </div>
-                                    <!--3333-->
-                                    <div class="form-group hide drug-tore-field">
-                                        <label for="phone-number" class="col-form-label">Tên nhà thuốc</label>
-                                        <input type="text" class="form-control" id="drugStoreName"
-                                            placeholder="Nhập mã số thuế">
-                                    </div>
-
-                                    <div class="form-group hide drug-tore-field">
-                                        <label for="phone-number" class="col-form-label">Dược sỹ phụ trách</label>
-                                        <input type="text" class="form-control" id="pharmacist"
-                                            placeholder="Nhập tên dược sỹ phụ trách">
-                                    </div>
-
-                                    <!--223344-->
-                                    <div class="form-group hide company-field drug-tore-field clinic-field">
-                                        <label for="phone-number" class="col-form-label">Mã số thuế</label>
-                                        <input type="text" class="form-control" id="vatCode"
-                                            placeholder="Nhập mã số thuế">
-                                    </div>
-
-                                    <div
-                                        class="form-group hide input-file-upload company-field drug-tore-field clinic-field">
-                                        <label for="phone-number" class="col-form-label">Giấy phép kinh doanh</label>
-                                        <div>
-                                            <input type="file" class="form-control" id="businessLicense">
-                                            <input type="text" class="form-control" id=""
-                                                onclick="selectFile('businessLicense')">
-                                            <span onclick="selectFile('businessLicense')">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M18 8V2L20 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M18 2L16 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path
-                                                        d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!--3333-->
-                                    <div class="form-group hide input-file-upload drug-tore-field">
-                                        <label for="phone-number" class="col-form-label">Giấy chứng nhận đủ điều kiện
-                                            kinh doanh dược</label>
-                                        <div>
-                                            <input type="file" class="form-control" id="certificateOfEligibility">
-                                            <input type="text" class="form-control"
-                                                onclick="selectFile('certificateOfEligibility')">
-                                            <span onclick="selectFile('certificateOfEligibility')">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M18 8V2L20 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M18 2L16 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path
-                                                        d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group hide input-file-upload drug-tore-field">
-                                        <label for="phone-number" class="col-form-label">Giấy chứng nhận đạt thực hành
-                                            tốt cơ sở bán lẻ thuốc</label>
-                                        <div>
-                                            <input type="file" class="form-control" id="licenseToOperateRetail">
-                                            <input type="text" class="form-control" id=""
-                                                onclick="selectFile('licenseToOperateRetail')">
-                                            <span onclick="selectFile('licenseToOperate')">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M18 8V2L20 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M18 2L16 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path
-                                                        d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <!--4444-->
-                                    <div class="form-group hide input-file-upload clinic-field">
-                                        <label for="phone-number" class="col-form-label">Giấy phép hoạt động cơ sở khám
-                                            chữa bệnh</label>
-                                        <div>
-                                            <input type="file" class="form-control" id="licenseToOperate">
-                                            <input type="text" class="form-control"
-                                                onclick="selectFile('licenseToOperate')">
-                                            <span onclick="selectFile('licenseToOperate')">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M18 8V2L20 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M18 2L16 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path
-                                                        d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!--3344-->
-                                    <div class="form-group hide input-file-upload drug-tore-field clinic-field">
-                                        <label for="phone-number" class="col-form-label">Giấy chứng nhận hành
-                                            nghề</label>
-                                        <div>
-                                            <input type="file" class="form-control" id="certificateOrPractice">
-                                            <input type="text" class="form-control"
-                                                onclick="selectFile('certificateOrPractice')">
-                                            <span onclick="selectFile('certificateOrPractice')">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path
-                                                        d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M18 8V2L20 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M18 2L16 4" stroke="#666666" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path
-                                                        d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
-                                                        stroke="#666666" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn-green btn-login">Đăng ký</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div
+  class="modal fade modal-customer"
+  id="registerModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="registerModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="">
+        <div class="mb-wrapper-content modal-wrapper-content">
+          <div class="modal-register-left modal-left-item">
+            <img src="../assets/images/login.png" />
+          </div>
+          <div class="modal-register-right modal-right-item">
+            <div class="mlr-top modal-right-item-top">
+              <div class="modal-close-i" data-dismiss="modal">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke="#8E9AAB"
+                >
+                  <path
+                    d="M17.9964 6L6.00391 17.9925"
+                    stroke="inherit"
+                    stroke-width="inherit"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M18.0125 18.0125L6 6"
+                    stroke="inherit"
+                    stroke-width="inherit"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </div>
+              <h5 class="mrl-top-header modal-top-header">
+                Bạn đã có tài khoản?
+                <span onclick="openModalLogin()"> Đăng nhập ngay</span>
+              </h5>
             </div>
+            <div class="content-modal-right">
+              <div class="form-title">
+                <div class="sub-title">Chào mừng bạn đến với Medica</div>
+                <div class="main-title">Đăng ký tài khoản</div>
+              </div>
+
+              <ul
+                class="nav nav-pills mb-3 prid-nav"
+                id="registerNavTab"
+                role="tablist"
+              >
+                <li class="nav-item">
+                  <button
+                    onclick="changeMenuNavTab('customer')"
+                    class="nav-link active prid-nav-action"
+                    id="pills-detail-tab"
+                    data-toggle="pill"
+                    href="#formRegisterContent"
+                    role="tab"
+                    aria-controls="pills-detail"
+                    aria-selected="true"
+                  >
+                    Khách hàng thường
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button
+                    onclick="changeMenuNavTab('company')"
+                    class="prid-nav-action"
+                    id="pills-brand-tab"
+                    data-toggle="pill"
+                    href="#formRegisterContent"
+                    role="tab"
+                    aria-controls="pills-brand"
+                    aria-selected="false"
+                  >
+                    Công ty
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button
+                    onclick="changeMenuNavTab('drug-tore')"
+                    class="prid-nav-action"
+                    id="pills-detail-tab"
+                    data-toggle="pill"
+                    href="#formRegisterContent"
+                    role="tab"
+                    aria-controls="pills-detail"
+                    aria-selected="true"
+                  >
+                    Nhà thuốc
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button
+                    onclick="changeMenuNavTab('clinic')"
+                    class="prid-nav-action"
+                    id="pills-brand-tab"
+                    data-toggle="pill"
+                    href="#formRegisterContent"
+                    role="tab"
+                    aria-controls="pills-brand"
+                    aria-selected="false"
+                  >
+                    Phòng khám
+                  </button>
+                </li>
+              </ul>
+              <div class="tab-content" id="registerNavTabContent">
+                <form
+                  class="form-register modal-right-form"
+                  id="formRegisterContent"
+                >
+                  <div class="form-group">
+                    <label for="phone-number" class="col-form-label"
+                      >Tên người dùng</label
+                    >
+                    <input type="text" class="form-control" id="userName" />
+                  </div>
+
+                  <div class="form-group input-opt">
+                    <label for="phone-number" class="col-form-label"
+                      >Số điện thoại đăng ký</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="phone-number-register"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone-number" class="col-form-label"
+                      >Email</label
+                    >
+                    <input type="text" class="form-control" id="email" />
+                  </div>
+
+                  <div class="form-group input-password">
+                    <label for="password" class="col-form-label"
+                      >Mật khẩu</label
+                    >
+                    <div>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="password-register"
+                      />
+                      <span onclick="hideShowPwd('password-register')">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M11.9996 9.64136C10.6696 9.64136 9.58862 10.7234 9.58862 12.0534C9.58862 13.3824 10.6696 14.4634 11.9996 14.4634C13.3296 14.4634 14.4116 13.3824 14.4116 12.0534C14.4116 10.7234 13.3296 9.64136 11.9996 9.64136ZM11.9996 15.9634C9.84262 15.9634 8.08862 14.2094 8.08862 12.0534C8.08862 9.89636 9.84262 8.14136 11.9996 8.14136C14.1566 8.14136 15.9116 9.89636 15.9116 12.0534C15.9116 14.2094 14.1566 15.9634 11.9996 15.9634Z"
+                            fill="#666666"
+                          />
+                          <mask
+                            id="mask0_29_638"
+                            style="mask-type: alpha"
+                            maskUnits="userSpaceOnUse"
+                            x="2"
+                            y="4"
+                            width="20"
+                            height="17"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M2.00024 4.00024H22.0001V20.1052H2.00024V4.00024Z"
+                              fill="white"
+                            />
+                          </mask>
+                          <g mask="url(#mask0_29_638)">
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M3.56999 12.0525C5.42999 16.1615 8.56299 18.6045 12 18.6055C15.437 18.6045 18.57 16.1615 20.43 12.0525C18.57 7.94451 15.437 5.50151 12 5.50051C8.56399 5.50151 5.42999 7.94451 3.56999 12.0525ZM12.002 20.1055H11.998H11.997C7.86099 20.1025 4.14699 17.2035 2.06099 12.3485C1.97999 12.1595 1.97999 11.9455 2.06099 11.7565C4.14699 6.90251 7.86199 4.00351 11.997 4.00051C11.999 3.99951 11.999 3.99951 12 4.00051C12.002 3.99951 12.002 3.99951 12.003 4.00051C16.139 4.00351 19.853 6.90251 21.939 11.7565C22.021 11.9455 22.021 12.1595 21.939 12.3485C19.854 17.2035 16.139 20.1025 12.003 20.1055H12.002Z"
+                              fill="#666666"
+                            />
+                          </g>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group input-password">
+                    <label for="password" class="col-form-label"
+                      >Xác nhận mật khẩu</label
+                    >
+                    <div>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="confirm-password"
+                      />
+                      <span onclick="hideShowPwd('confirm-password')">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M11.9996 9.64136C10.6696 9.64136 9.58862 10.7234 9.58862 12.0534C9.58862 13.3824 10.6696 14.4634 11.9996 14.4634C13.3296 14.4634 14.4116 13.3824 14.4116 12.0534C14.4116 10.7234 13.3296 9.64136 11.9996 9.64136ZM11.9996 15.9634C9.84262 15.9634 8.08862 14.2094 8.08862 12.0534C8.08862 9.89636 9.84262 8.14136 11.9996 8.14136C14.1566 8.14136 15.9116 9.89636 15.9116 12.0534C15.9116 14.2094 14.1566 15.9634 11.9996 15.9634Z"
+                            fill="#666666"
+                          />
+                          <mask
+                            id="mask0_29_639"
+                            style="mask-type: alpha"
+                            maskUnits="userSpaceOnUse"
+                            x="2"
+                            y="4"
+                            width="20"
+                            height="17"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M2.00024 4.00024H22.0001V20.1052H2.00024V4.00024Z"
+                              fill="white"
+                            />
+                          </mask>
+                          <g mask="url(#mask0_29_639)">
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M3.56999 12.0525C5.42999 16.1615 8.56299 18.6045 12 18.6055C15.437 18.6045 18.57 16.1615 20.43 12.0525C18.57 7.94451 15.437 5.50151 12 5.50051C8.56399 5.50151 5.42999 7.94451 3.56999 12.0525ZM12.002 20.1055H11.998H11.997C7.86099 20.1025 4.14699 17.2035 2.06099 12.3485C1.97999 12.1595 1.97999 11.9455 2.06099 11.7565C4.14699 6.90251 7.86199 4.00351 11.997 4.00051C11.999 3.99951 11.999 3.99951 12 4.00051C12.002 3.99951 12.002 3.99951 12.003 4.00051C16.139 4.00351 19.853 6.90251 21.939 11.7565C22.021 11.9455 22.021 12.1595 21.939 12.3485C19.854 17.2035 16.139 20.1025 12.003 20.1055H12.002Z"
+                              fill="#666666"
+                            />
+                          </g>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone-number" class="col-form-label"
+                      >Địa chỉ</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="address"
+                      placeholder="Nhập địa chỉ của bạn"
+                    />
+                  </div>
+                  <!--2222-->
+                  <div class="form-group hide company-field">
+                    <label for="phone-number" class="col-form-label"
+                      >Tên công ty</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="companyName"
+                      placeholder="Nhập tên công ty"
+                    />
+                  </div>
+
+                  <div class="form-group hide company-field">
+                    <label for="phone-number" class="col-form-label"
+                      >Tên người đại diện công ty</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="representativeName"
+                      placeholder="Nhập tên người đại diện công ty"
+                    />
+                  </div>
+                  <!--4444-->
+                  <div class="form-group hide clinic-field">
+                    <label for="phone-number" class="col-form-label"
+                      >Tên phòng khám</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="clinicName"
+                      placeholder="Nhập tên công ty"
+                    />
+                  </div>
+
+                  <div class="form-group hide clinic-field">
+                    <label for="phone-number" class="col-form-label"
+                      >Bác sỹ chuyên môn</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="specialDoctorName"
+                      placeholder="Nhập tên người đại diện công ty"
+                    />
+                  </div>
+                  <!--3333-->
+                  <div class="form-group hide drug-tore-field">
+                    <label for="phone-number" class="col-form-label"
+                      >Tên nhà thuốc</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="drugStoreName"
+                      placeholder="Nhập mã số thuế"
+                    />
+                  </div>
+
+                  <div class="form-group hide drug-tore-field">
+                    <label for="phone-number" class="col-form-label"
+                      >Dược sỹ phụ trách</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pharmacist"
+                      placeholder="Nhập tên dược sỹ phụ trách"
+                    />
+                  </div>
+
+                  <!--223344-->
+                  <div
+                    class="form-group hide company-field drug-tore-field clinic-field"
+                  >
+                    <label for="phone-number" class="col-form-label"
+                      >Mã số thuế</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="vatCode"
+                      placeholder="Nhập mã số thuế"
+                    />
+                  </div>
+
+                  <div
+                    class="form-group hide input-file-upload company-field drug-tore-field clinic-field"
+                  >
+                    <label for="phone-number" class="col-form-label"
+                      >Giấy phép kinh doanh</label
+                    >
+                    <div>
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="businessLicense"
+                      />
+                      <input
+                        type="text"
+                        class="form-control"
+                        id=""
+                        onclick="selectFile('businessLicense')"
+                      />
+                      <span onclick="selectFile('businessLicense')">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 8V2L20 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 2L16 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <!--3333-->
+                  <div
+                    class="form-group hide input-file-upload drug-tore-field"
+                  >
+                    <label for="phone-number" class="col-form-label"
+                      >Giấy chứng nhận đủ điều kiện kinh doanh dược</label
+                    >
+                    <div>
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="certificateOfEligibility"
+                      />
+                      <input
+                        type="text"
+                        class="form-control"
+                        onclick="selectFile('certificateOfEligibility')"
+                      />
+                      <span onclick="selectFile('certificateOfEligibility')">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 8V2L20 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 2L16 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group hide input-file-upload drug-tore-field"
+                  >
+                    <label for="phone-number" class="col-form-label"
+                      >Giấy chứng nhận đạt thực hành tốt cơ sở bán lẻ
+                      thuốc</label
+                    >
+                    <div>
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="licenseToOperateRetail"
+                      />
+                      <input
+                        type="text"
+                        class="form-control"
+                        id=""
+                        onclick="selectFile('licenseToOperateRetail')"
+                      />
+                      <span onclick="selectFile('licenseToOperate')">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 8V2L20 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 2L16 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <!--4444-->
+                  <div class="form-group hide input-file-upload clinic-field">
+                    <label for="phone-number" class="col-form-label"
+                      >Giấy phép hoạt động cơ sở khám chữa bệnh</label
+                    >
+                    <div>
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="licenseToOperate"
+                      />
+                      <input
+                        type="text"
+                        class="form-control"
+                        onclick="selectFile('licenseToOperate')"
+                      />
+                      <span onclick="selectFile('licenseToOperate')">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 8V2L20 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 2L16 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+
+                  <!--3344-->
+                  <div
+                    class="form-group hide input-file-upload drug-tore-field clinic-field"
+                  >
+                    <label for="phone-number" class="col-form-label"
+                      >Giấy chứng nhận hành nghề</label
+                    >
+                    <div>
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="certificateOrPractice"
+                      />
+                      <input
+                        type="text"
+                        class="form-control"
+                        onclick="selectFile('certificateOrPractice')"
+                      />
+                      <span onclick="selectFile('certificateOrPractice')">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M13 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V10"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 8V2L20 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M18 2L16 4"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
+                            stroke="#666666"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <button type="button" class="btn-green btn-login">
+                      Đăng ký
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <body>
@@ -826,40 +1195,7 @@
                                     <div class="--product-into-money">Tổng tiền</div>
                                 </div>
 
-                                <div class="py-item py-item-active">
-                                    <div class="--product-name">
-                                        <img src="../assets/images/product-payment.png">
-                                        <span class="title">Dầu gió xanh con Én Eagle</span>
-                                    </div>
-                                    <div class="--product-price-original">
-                                        <span class="--original-price">80.000 VND</span>
-
-                                    </div>
-                                    <div class="--product-price">
-                                        80.000 VND
-                                    </div>
-                                    <div class="--product-qty">
-                                        1
-                                    </div>
-                                    <div class="--product-into-money">80.000 VND</div>
-                                </div>
-                                <div class="py-item py-item-active">
-                                    <div class="--product-name">
-                                        <img src="../assets/images/product-payment.png">
-                                        <span class="title">Dầu gió xanh con Én Eagle</span>
-                                    </div>
-                                    <div class="--product-price-original">
-                                        <span class="--original-price">80.000 VND</span>
-
-                                    </div>
-                                    <div class="--product-price">
-                                        80.000 VND
-                                    </div>
-                                    <div class="--product-qty">
-                                        1
-                                    </div>
-                                    <div class="--product-into-money">80.000 VND</div>
-                                </div>
+                                <!-- Danh sách sản phẩm sẽ được render động bởi cart.js -->
                             </div>
                         </div>
                     </div>
@@ -887,18 +1223,35 @@
                                     <label for="city">Tỉnh/Thành phố <span>*</span></label>
                                     <select class="form-control" id="city" aria-describedby="city">
                                         <option disabled selected hidden>Vui lòng chọn</option>
-                                        <option>Hà Nội</option>
                                         <option>HCM</option>
-                                        <option>Đà Nẵng</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="district">Quận/Huyện <span>*</span></label>
                                     <select class="form-control" id="district" aria-describedby="district">
                                         <option disabled selected hidden>Vui lòng chọn</option>
-                                        <option>Hà Đông</option>
-                                        <option>Hà Đông</option>
-                                        <option>Hà Đông</option>
+                                        <option>Quận 1</option>
+                                        <option>Quận 3</option>
+                                        <option>Quận 4</option>
+                                        <option>Quận 5</option>
+                                        <option>Quận 6</option>
+                                        <option>Quận 7</option>
+                                        <option>Quận 8</option>
+                                        <option>Quận 10</option>
+                                        <option>Quận 11</option>
+                                        <option>Quận 12</option>
+                                        <option>Gò Vấp</option>
+                                        <option>Bình Thạnh</option>
+                                        <option>Tân Bình</option>
+                                        <option>Tân Phú</option>
+                                        <option>Phú Nhuận</option>
+                                        <option>Bình Tân</option>
+                                        <option>Thành phố Thủ Đức</option>
+                                        <option>Bình Chánh</option>
+                                        <option>Hóc Môn</option>
+                                        <option>Củ Chi</option>
+                                        <option>Nhà Bè</option>
+                                        <option>Cần Giờ</option>
                                     </select>
                                 </div>
                             </div>
@@ -908,9 +1261,76 @@
                                     <label for="province">Phường/Xã <span>*</span></label>
                                     <select class="form-control" id="province" aria-describedby="province">
                                         <option disabled selected hidden>Vui lòng chọn</option>
-                                        <option>Hà Đông</option>
-                                        <option>Hà Đông</option>
-                                        <option>Hà Đông</option>
+                                        <option>Sài Gòn</option>
+                                        <option>Tân Định</option>
+                                        <option>Bến Thành</option>
+                                        <option>Cầu Ông Lãnh</option>
+                                        <option>Bàn Cờ</option>
+                                        <option>Xuân Hòa</option>
+                                        <option>Nhiêu Lộc</option>
+                                        <option>Xóm Chiếu</option>
+                                        <option>Khánh Hội</option>
+                                        <option>Vĩnh Hội</option>
+                                        <option>Chợ Lớn</option>
+                                        <option>An Đông</option>
+                                        <option>Chợ Quán</option>
+                                        <option>Bình Tây</option>
+                                        <option>Bình Tiên</option>
+                                        <option>Phú Lâm</option>
+                                        <option>Bình Phú</option>
+                                        <option>Vườn Lài</option>
+                                        <option>Diên Hồng</option>
+                                        <option>Hòa Hưng</option>
+                                        <option>Minh Phụng</option>
+                                        <option>Bình Thới</option>
+                                        <option>Phú Thọ</option>
+                                        <option>Tân Thới Hiệp</option>
+                                        <option>Thới An</option>
+                                        <option>Trung Mỹ Tây</option>
+                                        <option>Tân Hưng</option>
+                                        <option>Tân Thuận</option>
+                                        <option>Tân Mỹ</option>
+                                        <option>Phú Thuận</option>
+                                        <option>Chánh Hưng</option>
+                                        <option>Phú Định</option>
+                                        <option>Bình Đông</option>
+                                        <option>Diên Hồng</option>
+                                        <option>Vườn Lài</option>
+                                        <option>Hòa Hưng</option>
+                                        <option>Phú Thọ</option>
+                                        <option>Bình Thới</option>
+                                        <option>An Phú Đông</option>
+                                        <option>Trung Mỹ Tây</option>
+                                        <option>Tân Thới Hiệp</option>
+                                        <option>Thới An</option>
+                                        <option>Tân Sơn Hòa</option>
+                                        <option>Tân Bình</option>
+                                        <option>Tân Hưng</option>
+                                        <option>Tân Thuận</option>
+                                        <option>Phú Thuận</option>
+                                        <option>Tân Kiên</option>
+                                        <option>Phước Kiển</option>
+                                        <option>Nhơn Đức</option>
+                                        <option>Long Thạnh Mỹ</option>
+                                        <option>Phước Long A</option>
+                                        <option>Phú Hữu</option>
+                                        <option>Bình Lợi</option>
+                                        <option>Hiệp Phước</option>
+                                        <option>Phú Hòa Đông</option>
+                                        <option>Bình Mỹ</option>
+                                        <option>Nhà Bè</option>
+                                        <option>Hòa Hiệp</option>
+                                        <option>Bình Châu</option>
+                                        <option>Thạnh An</option>
+                                        <option>Đông Thạnh</option>
+                                        <option>An Nhơn Tây</option>
+                                        <option>Thái Mỹ</option>
+                                        <option>Tân An Hội</option>
+                                        <option>Củ Chi</option>
+                                        <option>Nhuận Đức</option>
+                                        <option>Bình Khánh</option>
+                                        <option>An Thới Đông</option>
+                                        <option>Thạnh An</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -994,7 +1414,7 @@
                     <div class="pyr-content">
                         <div class="pyr-item">
                             <div class="--title">Tạm tính</div>
-                            <div class="--number-total">160.000 VND</div>
+                            <div class="--number-total">0 VND</div>
                         </div>
                         <div class="pyr-item hide" id="paymentBank">
                             <div class="--title">
@@ -1010,7 +1430,7 @@
                                 Thành tiền <br />
                                 <span class="--payment-description">(Đã bao gồm VAT)</span>
                             </div>
-                            <div class="--number-into-money">160.000 VND</div>
+                            <div class="--number-into-money">0 VND</div>
                         </div>
                         <div class="--option-export-vat">
                             <label class="main">
@@ -1030,11 +1450,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="address">Địa chỉ</label>
-                                <input type="text" class="form-control" id="address" placeholder="">
+                                <input type="text" class="form-control" id="addressSpecial"
+                                    placeholder="Nhập địa chỉ chi tiết">
                             </div>
                         </form>
                         <div class="pyr-action-btn">
-                            <button onclick="window.location.href='datHangThanhCong.html'">Đặt hàng</button>
+                            <button>Đặt hàng</button>
                         </div>
                     </div>
                 </div>
@@ -1152,6 +1573,8 @@
 <script src="../assets/js/jquery-3.2.1.min.js"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/owl.carousel.min.js"></script>
+<script src="../assets/js/products-data.js"></script>
+<script src="../assets/js/cart.js"></script>
 <script src="../assets/js/auth.js"></script>
 <script src="../assets/js/auth-check.js"></script>
 <script>

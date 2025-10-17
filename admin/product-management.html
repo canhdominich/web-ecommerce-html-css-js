@@ -130,11 +130,6 @@
                         <option value="LSP004">Thuốc ho</option>
                         <option value="LSP005">Thuốc tiêu hóa</option>
                     </select>
-                    <select class="form-control filter-select">
-                        <option value="all">Tất cả trạng thái</option>
-                        <option value="active">Đang hiển thị</option>
-                        <option value="inactive">Đã ẩn</option>
-                    </select>
                     <button class="btn btn-primary" data-modal="addProductModal">
                         <i class="fas fa-plus"></i>
                         Thêm sản phẩm
@@ -475,58 +470,221 @@
 
     <script src="assets/js/admin.js"></script>
     <script>
-        // Product management specific functions
-        function loadCurrentPageData() {
-            // Load products data
-            console.log('Loading products data for page:', currentPage);
-        }
-        
-        // View product function
-        function viewProduct(productId) {
-            // Mock data - replace with actual API call
-            const productData = {
-                'SP001': {
-                    name: 'Panadol Extra 500mg',
-                    code: 'SP001',
-                    type: 'Thuốc giảm đau',
-                    price: '25,000 VNĐ',
-                    stock: '150',
-                    status: 'Hiển thị',
-                    description: 'Thuốc giảm đau, hạ sốt hiệu quả. Sử dụng cho người lớn và trẻ em trên 12 tuổi.',
-                    image: '../client/assets/images/panadol.png'
-                }
-            };
-            
-            const product = productData[productId];
-            if (product) {
-                document.getElementById('viewProductName').textContent = product.name;
-                document.getElementById('viewProductCode').textContent = product.code;
-                document.getElementById('viewProductType').textContent = product.type;
-                document.getElementById('viewProductPrice').textContent = product.price;
-                document.getElementById('viewProductStock').textContent = product.stock;
-                document.getElementById('viewProductStatus').textContent = product.status;
-                document.getElementById('viewProductDescription').textContent = product.description;
-                document.getElementById('viewProductImage').src = product.image;
-                
-                openModal('viewProductModal');
+        // Dữ liệu mock sản phẩm (có thể thay bằng dữ liệu từ API sau này)
+        const productTypeMap = {
+            LSP001: 'Thuốc cảm cúm',
+            LSP002: 'Vitamin và thực phẩm chức năng',
+            LSP003: 'Thuốc giảm đau',
+            LSP004: 'Thuốc ho',
+            LSP005: 'Thuốc tiêu hóa'
+        };
+
+        const products = [
+            { id: 'SP001', name: 'Panadol Extra 500mg', typeId: 'LSP003', price: 25000, stock: 150, createdAt: '01/11/2024', status: 'active', image: '../client/assets/images/panadol.png', description: 'Thuốc giảm đau, hạ sốt hiệu quả.' },
+            { id: 'SP002', name: 'Thuốc điều trị COVID-19', typeId: 'LSP001', price: 150000, stock: 50, createdAt: '02/11/2024', status: 'active', image: '../client/assets/images/covid.png', description: 'Sử dụng theo chỉ định bác sĩ.' },
+            { id: 'SP003', name: 'Ginkgo Biloba 120mg', typeId: 'LSP002', price: 180000, stock: 75, createdAt: '03/11/2024', status: 'active', image: '../client/assets/images/biloba.png', description: 'Hỗ trợ tuần hoàn máu não.' },
+            { id: 'SP004', name: 'Hevel 500mg', typeId: 'LSP005', price: 35000, stock: 25, createdAt: '04/11/2024', status: 'inactive', image: '../client/assets/images/hevel.png', description: 'Hỗ trợ tiêu hóa.' },
+            { id: 'SP005', name: 'Immucan 100ml', typeId: 'LSP002', price: 120000, stock: 100, createdAt: '05/11/2024', status: 'active', image: '../client/assets/images/immucan.png', description: 'Bổ sung vitamin và khoáng chất.' }
+        ];
+
+        // Render bảng theo trang
+        function renderProductTable() {
+            const tbody = document.querySelector('.admin-table tbody');
+            if (!tbody) return;
+
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageItems = products.slice(start, end);
+
+            tbody.innerHTML = pageItems.map(p => {
+                const typeName = productTypeMap[p.typeId] || '';
+                const isActive = p.status === 'active';
+                const statusBadge = isActive
+                    ? '<span class="status-badge status-active">Hiển thị</span>'
+                    : '<span class="status-badge status-inactive">Đã ẩn</span>';
+                const toggleBtn = isActive
+                    ? `<button class="btn btn-sm btn-danger" onclick="handleStatusChange('${p.id}', 'active', 'sản phẩm')"><i class=\"fas fa-eye-slash\"></i></button>`
+                    : `<button class="btn btn-sm btn-success" onclick="handleStatusChange('${p.id}', 'inactive', 'sản phẩm')"><i class=\"fas fa-eye\"></i></button>`;
+                const priceText = AdminJS && AdminJS.formatCurrency ? AdminJS.formatCurrency(p.price) : `${p.price.toLocaleString('vi-VN')} VNĐ`;
+
+                return `
+                    <tr data-type-id="${p.typeId}">
+                        <td>${p.id}</td>
+                        <td><img src="${p.image}" alt="${p.name}" class="product-thumbnail"></td>
+                        <td>${p.name}</td>
+                        <td>${typeName}</td>
+                        <td>${priceText}</td>
+                        <td>${p.stock}</td>
+                        <td>${p.createdAt}</td>
+                        <td>${statusBadge}</td>
+                        <td>
+                            <button class="btn btn-sm btn-info" onclick="viewProduct('${p.id}')"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-sm btn-warning" onclick="handleEdit('${p.id}', 'editProductForm', '/api/products')"><i class="fas fa-edit"></i></button>
+                            ${toggleBtn}
+                            <button class="btn btn-sm btn-danger" onclick="handleDelete('${p.id}', 'sản phẩm')"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Cập nhật tổng
+            const totalSpan = document.querySelector('.card-header .text-muted');
+            if (totalSpan) {
+                totalSpan.textContent = `Tổng: ${products.length} sản phẩm`;
             }
         }
-        
-        // Handle add product form
+
+        // Ghi đè loadCurrentPageData để trang này tự render
+        function loadCurrentPageData() {
+            renderProductTable();
+            setupPagination(products.length, currentPage, itemsPerPage);
+        }
+
+        // Xem chi tiết sản phẩm từ mảng products
+        function viewProduct(productId) {
+            const p = products.find(x => x.id === productId);
+            if (!p) return;
+            document.getElementById('viewProductName').textContent = p.name;
+            document.getElementById('viewProductCode').textContent = p.id;
+            document.getElementById('viewProductType').textContent = productTypeMap[p.typeId] || '';
+            const priceText = AdminJS && AdminJS.formatCurrency ? AdminJS.formatCurrency(p.price) : `${p.price.toLocaleString('vi-VN')} VNĐ`;
+            document.getElementById('viewProductPrice').textContent = priceText;
+            document.getElementById('viewProductStock').textContent = String(p.stock);
+            document.getElementById('viewProductStatus').textContent = p.status === 'active' ? 'Hiển thị' : 'Đã ẩn';
+            document.getElementById('viewProductDescription').textContent = p.description || '';
+            document.getElementById('viewProductImage').src = p.image || '';
+            openModal('viewProductModal');
+        }
+
+        // Ghi đè handler để cập nhật DOM ngay
+        window.handleEdit = function(id, formId, apiEndpoint) {
+            const modal = document.getElementById('editProductModal');
+            const data = products.find(p => p.id === id);
+            if (!modal || !data) return;
+            document.getElementById('editProductId').value = data.id;
+            document.getElementById('editProductCode').value = data.id;
+            document.getElementById('editProductType').value = data.typeId;
+            document.getElementById('editProductName').value = data.name;
+            document.getElementById('editProductDescription').value = data.description || '';
+            document.getElementById('editProductPrice').value = data.price;
+            document.getElementById('editProductStock').value = data.stock;
+            document.getElementById('editProductStatus').value = data.status;
+            openModal('editProductModal');
+        };
+
+        window.handleDelete = function(id, itemName) {
+            if (!confirm('Bạn có chắc chắn muốn xóa ' + itemName + ' này?')) return;
+            const index = products.findIndex(p => p.id === id);
+            if (index !== -1) {
+                products.splice(index, 1);
+                showAlert('Xóa thành công!', 'success');
+                const maxPage = Math.max(1, Math.ceil(products.length / itemsPerPage));
+                if (currentPage > maxPage) currentPage = maxPage;
+                loadCurrentPageData();
+            }
+        };
+
+        window.handleStatusChange = function(id, currentStatus, itemName) {
+            const item = products.find(p => p.id === id);
+            if (!item) return;
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            const action = newStatus === 'active' ? 'kích hoạt' : 'vô hiệu hóa';
+            if (!confirm(`Bạn có chắc chắn muốn ${action} ${itemName} này?`)) return;
+            item.status = newStatus;
+            showAlert(`${action.charAt(0).toUpperCase() + action.slice(1)} thành công!`, 'success');
+            loadCurrentPageData();
+        };
+
+        // Ghi đè handleFilter để hỗ trợ lọc theo loại & trạng thái
+        window.handleFilter = function(e) {
+            const content = e.target.closest('.admin-content');
+            const table = content ? content.querySelector('.admin-table tbody') : null;
+            if (!table) return;
+            const selects = content.querySelectorAll('.search-filter-bar .filter-select');
+            let selectedType = 'all';
+            let selectedStatus = 'all';
+            if (selects[0]) selectedType = selects[0].value;
+            if (selects[1]) selectedStatus = selects[1].value;
+
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const rowTypeId = row.getAttribute('data-type-id');
+                const statusCell = row.querySelector('.status-badge');
+                const statusText = statusCell ? statusCell.textContent.toLowerCase() : '';
+
+                const passType = selectedType === 'all' || rowTypeId === selectedType;
+                const passStatus = selectedStatus === 'all' || statusText.includes(selectedStatus);
+                row.style.display = passType && passStatus ? '' : 'none';
+            });
+        };
+
+        // Submit form: Thêm
         document.getElementById('addProductForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            handleAdd('addProductForm', '/api/products');
+            const form = e.currentTarget;
+            if (!validateForm(form)) return;
+            const id = document.getElementById('productCode').value.trim();
+            const typeId = document.getElementById('productType').value;
+            const name = document.getElementById('productName').value.trim();
+            const description = document.getElementById('productDescription').value.trim();
+            const price = Number(document.getElementById('productPrice').value);
+            const stock = Number(document.getElementById('productStock').value);
+            const status = document.getElementById('productStatus').checked ? 'active' : 'inactive';
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const original = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                products.unshift({ id, name, typeId, price, stock, createdAt: new Date().toLocaleDateString('vi-VN'), status, image: '../client/assets/images/product-right.png', description });
+                showAlert('Thêm sản phẩm thành công!', 'success');
+                closeModal(document.getElementById('addProductModal'));
+                form.reset();
+                submitBtn.innerHTML = original;
+                submitBtn.disabled = false;
+                currentPage = 1;
+                loadCurrentPageData();
+            }, 600);
         });
-        
-        // Handle edit product form
+
+        // Submit form: Cập nhật
         document.getElementById('editProductForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            handleAdd('editProductForm', '/api/products');
+            const form = e.currentTarget;
+            if (!validateForm(form)) return;
+            const id = document.getElementById('editProductId').value;
+            const code = document.getElementById('editProductCode').value.trim();
+            const typeId = document.getElementById('editProductType').value;
+            const name = document.getElementById('editProductName').value.trim();
+            const description = document.getElementById('editProductDescription').value.trim();
+            const price = Number(document.getElementById('editProductPrice').value);
+            const stock = Number(document.getElementById('editProductStock').value);
+            const status = document.getElementById('editProductStatus').value;
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const original = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                const idx = products.findIndex(p => p.id === id);
+                if (idx !== -1) {
+                    const current = products[idx];
+                    const newId = code || id;
+                    products[idx] = { ...current, id: newId, name, typeId, description, price, stock, status };
+                }
+                showAlert('Cập nhật sản phẩm thành công!', 'success');
+                closeModal(document.getElementById('editProductModal'));
+                submitBtn.innerHTML = original;
+                submitBtn.disabled = false;
+                loadCurrentPageData();
+            }, 600);
         });
-        
-        // Initialize pagination
+
+        // Khởi tạo
         document.addEventListener('DOMContentLoaded', function() {
-            setupPagination(1250, 1, 10); // Test với nhiều trang hơn
+            loadCurrentPageData();
         });
     </script>
     

@@ -25,18 +25,28 @@
     img.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      window.location.href = "chiTietSanPham.html?id=" + encodeURIComponent(product.id);
+      window.location.href =
+        "./client/chiTietSanPham.html?id=" + encodeURIComponent(product.id);
     });
     header.appendChild(img);
 
     // ❤️ Icon trái tim
-    const heartSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const heartSvg = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "svg"
+    );
     heartSvg.setAttribute("class", "products-item-heart");
     heartSvg.setAttribute("width", "20");
     heartSvg.setAttribute("height", "20");
     heartSvg.setAttribute("viewBox", "0 0 20 20");
-    const heartPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    heartPath.setAttribute("d", "M10 18l-1.45-1.32C4.4 12.36 2 9.28 2 6.5 2 4.5 3.5 3 5.5 3c1.54 0 3.04.99 3.57 2.36h1.87C11.46 3.99 12.96 3 14.5 3 16.5 3 18 4.5 18 6.5c0 2.78-2.4 5.86-6.55 10.18L10 18z");
+    const heartPath = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path"
+    );
+    heartPath.setAttribute(
+      "d",
+      "M10 18l-1.45-1.32C4.4 12.36 2 9.28 2 6.5 2 4.5 3.5 3 5.5 3c1.54 0 3.04.99 3.57 2.36h1.87C11.46 3.99 12.96 3 14.5 3 16.5 3 18 4.5 18 6.5c0 2.78-2.4 5.86-6.55 10.18L10 18z"
+    );
     heartPath.setAttribute("fill", "#DDD");
     heartSvg.appendChild(heartPath);
     header.appendChild(heartSvg);
@@ -49,7 +59,8 @@
     title.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      window.location.href = "chiTietSanPham.html?id=" + encodeURIComponent(product.id);
+      window.location.href =
+        "./client/chiTietSanPham.html?id=" + encodeURIComponent(product.id);
     });
 
     // ⚖️ Khối lượng
@@ -60,12 +71,14 @@
     // 💸 Giá cũ
     const oldPrice = document.createElement("div");
     oldPrice.className = "--old-price";
-    oldPrice.textContent = formatCurrency(product.oldPrice) + " " + (product.unit || "VND");
+    oldPrice.textContent =
+      formatCurrency(product.oldPrice) + " " + (product.unit || "VND");
 
     // 💰 Giá hiện tại
     const currentPrice = document.createElement("div");
     currentPrice.className = "--current-price";
-    currentPrice.textContent = formatCurrency(product.price) + " " + (product.unit || "VND");
+    currentPrice.textContent =
+      formatCurrency(product.price) + " " + (product.unit || "VND");
 
     // 🛒 Nút thêm vào giỏ hàng
     const btnWrap = document.createElement("div");
@@ -110,7 +123,9 @@
   }
 
   function renderProducts() {
-    const container = document.querySelector(".--header-second.product-category-wrapper-right-content");
+    const container = document.querySelector(
+      ".--header-second.product-category-wrapper-right-content"
+    );
     if (!container) return;
 
     container.innerHTML = "";

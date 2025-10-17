@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/font.css" />
-<link rel="stylesheet" href="../assets/css/loginRegister.css" />
-<link rel="stylesheet" href="../assets/css/style.css" />
+<link rel="stylesheet" href="./assets/css/base.css" />
+<link rel="stylesheet" href="./assets/css/font.css" />
+<link rel="stylesheet" href="./assets/css/loginRegister.css" />
+<link rel="stylesheet" href="./assets/css/style.css" />
 <header>
   <div class="header_top">
     <div class="container">
@@ -200,7 +200,7 @@
             </a>
           </div>
           <div class="menu_right-login">
-            <!-- <img src="../assets/images/avatar.png" alt="avt"> -->
+            <!-- <img src="./assets/images/avatar.png" alt="avt"> -->
             <div class="dropdown">
               <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#loginModal">Đăng nhập</button> -->
@@ -380,8 +380,8 @@
     <div class="container">
       <div class="header_bot_content">
         <div class="header_bot-logo">
-          <a href="trangChu.html">
-            <img src="../assets/images/Logo.png" alt="logo" />
+          <a href="../index.html">
+            <img src="./assets/images/Logo.png" alt="logo" />
           </a>
         </div>
         <div class="header_bot-menu">
@@ -440,7 +440,7 @@
               />
             </svg>
           </a>
-          <a href="trangChu.html">
+          <a href="../index.html">
             <svg
               width="20"
               height="20"
@@ -479,7 +479,7 @@
             </svg>
             Sản phẩm mới
           </a>
-          <a href="trangChu.html">
+          <a href="../index.html">
             <svg
               width="20"
               height="20"
@@ -523,7 +523,7 @@
               Sản phẩm bán chạy
             </span>
           </a>
-          <a href="trangChu.html">
+          <a href="../index.html">
             <svg
               width="20"
               height="20"
@@ -605,7 +605,7 @@
       <div class="">
         <div class="mb-wrapper-content modal-wrapper-content">
           <div class="modal-login-left modal-left-item">
-            <img src="../assets/images/login.png" />
+            <img src="./assets/images/login.png" />
           </div>
           <div class="modal-login-right modal-right-item">
             <div class="mlr-top modal-right-item-top">
@@ -742,7 +742,7 @@
       <div class="">
         <div class="mfp-wrapper-content modal-wrapper-content">
           <div class="modal-forgot-password-left modal-left-item">
-            <img src="../assets/images/login.png" />
+            <img src="./assets/images/login.png" />
           </div>
           <div class="modal-forgot-password-right modal-right-item">
             <div class="mfr-top modal-right-item-top">
@@ -935,7 +935,7 @@
       <div class="">
         <div class="mb-wrapper-content modal-wrapper-content">
           <div class="modal-register-left modal-left-item">
-            <img src="../assets/images/login.png" />
+            <img src="./assets/images/login.png" />
           </div>
           <div class="modal-register-right modal-right-item">
             <div class="mlr-top modal-right-item-top">
@@ -1053,12 +1053,23 @@
                     <label for="phone-number" class="col-form-label"
                       >Số điện thoại đăng ký</label
                     >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="phone-number-register"
-                    />
+                    <input type="text" class="form-control" id="phone" />
+                    <button
+                      type="button"
+                      class="btn-send-opt"
+                      onclick="sendOpt()"
+                    >
+                      Gửi mã xác nhận
+                    </button>
                   </div>
+
+                  <div class="form-group">
+                    <label for="phone-number" class="col-form-label"
+                      >Mã OTP</label
+                    >
+                    <input type="text" class="form-control" id="otpCode" />
+                  </div>
+
                   <div class="form-group">
                     <label for="phone-number" class="col-form-label"
                       >Email</label
@@ -1074,9 +1085,9 @@
                       <input
                         type="password"
                         class="form-control"
-                        id="password-register"
+                        id="passwordRegister"
                       />
-                      <span onclick="hideShowPwd('password-register')">
+                      <span onclick="hideShowPwd('passwordRegister')">
                         <svg
                           width="24"
                           height="24"
@@ -1107,59 +1118,6 @@
                             />
                           </mask>
                           <g mask="url(#mask0_29_638)">
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M3.56999 12.0525C5.42999 16.1615 8.56299 18.6045 12 18.6055C15.437 18.6045 18.57 16.1615 20.43 12.0525C18.57 7.94451 15.437 5.50151 12 5.50051C8.56399 5.50151 5.42999 7.94451 3.56999 12.0525ZM12.002 20.1055H11.998H11.997C7.86099 20.1025 4.14699 17.2035 2.06099 12.3485C1.97999 12.1595 1.97999 11.9455 2.06099 11.7565C4.14699 6.90251 7.86199 4.00351 11.997 4.00051C11.999 3.99951 11.999 3.99951 12 4.00051C12.002 3.99951 12.002 3.99951 12.003 4.00051C16.139 4.00351 19.853 6.90251 21.939 11.7565C22.021 11.9455 22.021 12.1595 21.939 12.3485C19.854 17.2035 16.139 20.1025 12.003 20.1055H12.002Z"
-                              fill="#666666"
-                            />
-                          </g>
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="form-group input-password">
-                    <label for="password" class="col-form-label"
-                      >Xác nhận mật khẩu</label
-                    >
-                    <div>
-                      <input
-                        type="password"
-                        class="form-control"
-                        id="confirm-password"
-                      />
-                      <span onclick="hideShowPwd('confirm-password')">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M11.9996 9.64136C10.6696 9.64136 9.58862 10.7234 9.58862 12.0534C9.58862 13.3824 10.6696 14.4634 11.9996 14.4634C13.3296 14.4634 14.4116 13.3824 14.4116 12.0534C14.4116 10.7234 13.3296 9.64136 11.9996 9.64136ZM11.9996 15.9634C9.84262 15.9634 8.08862 14.2094 8.08862 12.0534C8.08862 9.89636 9.84262 8.14136 11.9996 8.14136C14.1566 8.14136 15.9116 9.89636 15.9116 12.0534C15.9116 14.2094 14.1566 15.9634 11.9996 15.9634Z"
-                            fill="#666666"
-                          />
-                          <mask
-                            id="mask0_29_639"
-                            style="mask-type: alpha"
-                            maskUnits="userSpaceOnUse"
-                            x="2"
-                            y="4"
-                            width="20"
-                            height="17"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M2.00024 4.00024H22.0001V20.1052H2.00024V4.00024Z"
-                              fill="white"
-                            />
-                          </mask>
-                          <g mask="url(#mask0_29_639)">
                             <path
                               fill-rule="evenodd"
                               clip-rule="evenodd"
@@ -1617,180 +1575,222 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Giỏ hàng</title>
-    <link rel="stylesheet" href="../assets/css/productCard.css" />
+    <title>Đơn hàng đã mua</title>
+    <link rel="stylesheet" href="./assets/css/profile.css" />
   </head>
-  <div class="container-wrapper">
-    <div class="container">
-      <div class="breadcrumb"></div>
-      <!--Product card-->
-      <div class="product-card">
-        <div class="product-card-list">
-          <div class="pcl-header">
-            <div class="--checkbox">
-              <label class="main">
-                <input
-                  type="checkbox"
-                  onclick="changeCheckAll()"
-                  id="checkboxAll"
-                />
-                <span class="geekmark"></span>
-              </label>
-            </div>
-            <div class="--product-name">Sản phẩm</div>
-            <div class="--product-price-original">Đơn giá</div>
-            <div class="--product-price">Đơn giá đã chiếu khấu</div>
-            <div class="--product-qty">Số lượng</div>
-            <div class="--product-into-money">Số tiền</div>
-            <div class="--product-action">Thao tác</div>
+  <div class="container">
+    <div class="wrapper-content">
+      <!-- Sidebar trái HTML thuần -->
+      <div class="side-bar-left-content">
+        <div class="side-bar-left-top">
+          <div class="avt-img">
+            <img
+              class="avatar-profile"
+              height="50"
+              width="50"
+              src="./assets/images/avatar.png"
+            />
           </div>
-
-          <div class="pcl-item pcl-item-active">
-            <div class="--checkbox">
-              <label class="main">
-                <input type="checkbox" value="1" class="cartItem" />
-                <span class="geekmark"></span>
-              </label>
-            </div>
-            <div class="--product-name">
-              <img src="../assets/images/product-payment.png" width="80" height="80" />
-              <span class="title"></span>
-            </div>
-            <div class="--product-price-original"></div>
-            <div class="--product-price"></div>
-            <div class="--product-qty">
-              <div class="select-quantity">
-                <span class="value-button disable decrease" id="decrease_1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    fill="currentColor"
-                    class="bi bi-dash"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
-                    ></path>
-                  </svg>
-                </span>
-
-                <input
-                  type="text"
-                  id="p_qty1"
-                  value="1"
-                  maxlength="3"
-                  min="1"
-                  max="999"
-                  name="quantity"
-                  class="input-number"
-                />
-
-                <span class="value-button increase" id="increase_1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    fill="currentColor"
-                    class="bi bi-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                    ></path>
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <div class="--product-into-money"></div>
-            <div class="--product-action">
-              <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-            </div>
-          </div>
-          <div class="pcl-item pcl-item-active">
-            <div class="--checkbox">
-              <label class="main">
-                <input type="checkbox" value="2" class="cartItem" />
-                <span class="geekmark"></span>
-              </label>
-            </div>
-            <div class="--product-name">
-              <img src="../assets/images/product-payment.png" />
-              <span class="title"></span>
-            </div>
-            <div class="--product-price-original">/div>
-            <div class="--product-price"></div>
-            <div class="--product-qty">
-              <div class="select-quantity">
-                <span class="value-button disable decrease" id="decrease_2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    fill="currentColor"
-                    class="bi bi-dash"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"
-                    ></path>
-                  </svg>
-                </span>
-
-                <input
-                  type="text"
-                  id="p_qty2"
-                  value="1"
-                  maxlength="3"
-                  min="1"
-                  max="999"
-                  name="quantity"
-                  class="input-number"
-                />
-
-                <span class="value-button increase" id="increase_2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    fill="currentColor"
-                    class="bi bi-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-                    ></path>
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <div class="--product-into-money"></div>
-            <div class="--product-action">
-              <span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-            </div>
-          </div>
-          <div class="pcl-footer">
-            <div class="pcl-footer-top">
-              <div>
-                Tổng thanh toán:
-                <span class="pcl-t-f-price"></span>
-              </div>
-            </div>
-            <div class="pcl-footer-btn-action">
-              <button
-                class="pcl-btn-action-item buy-more"
-                onclick="window.location.href='trangChu.html'"
+          <div class="sbl-user-name">
+            <h5>Nguyen Minh Thuan</h5>
+            <div class="sbl-action">
+              <svg
+                width="16"
+                height="17"
+                viewBox="0 0 16 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Mua thêm
-              </button>
-              <button
-                class="pcl-btn-action-item order"
-                onclick="window.location.href='datHang.html'"
-              >
-                Đặt hàng
-              </button>
+                <path
+                  d="M12.1085 6.27696L6.25093 13.8519C5.98211 14.1959 5.58594 14.3894 5.16148 14.3966L2.82693 14.4253C2.69959 14.4253 2.59348 14.3393 2.56518 14.2174L2.0346 11.917C1.94263 11.4942 2.0346 11.057 2.30343 10.7202L6.45609 5.34532C6.52683 5.25932 6.65417 5.2457 6.73906 5.30948L8.48644 6.69978C8.59963 6.79295 8.75526 6.84311 8.91797 6.82161C9.26462 6.77861 9.49807 6.46329 9.4627 6.12646C9.44148 5.95447 9.35659 5.81114 9.2434 5.70364C9.20802 5.67497 7.54554 4.34201 7.54554 4.34201C7.43943 4.25601 7.41821 4.09835 7.5031 3.99157L8.16102 3.13804C8.76941 2.35689 9.83057 2.28523 10.6866 2.96604L11.6699 3.74719C12.0731 4.06251 12.342 4.47817 12.4339 4.91533C12.5401 5.3962 12.4269 5.86847 12.1085 6.27696Z"
+                  fill="#999999"
+                />
+              </svg>
+              <span>Sửa hồ sơ</span>
             </div>
           </div>
+        </div>
+
+        <div class="side-bar-left-bottom">
+          <div class="sbl-bottom-item">
+            <div class="sbl-bottom-item-top">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.0999 10.65C10.0416 10.6417 9.9666 10.6417 9.89994 10.65C8.43327 10.6 7.2666 9.39998 7.2666 7.92498C7.2666 6.41665 8.48327 5.19165 9.99993 5.19165C11.5083 5.19165 12.7333 6.41665 12.7333 7.92498C12.7249 9.39998 11.5666 10.6 10.0999 10.65Z"
+                  stroke="#0156FF"
+                  stroke-width="1.25"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15.6166 16.15C14.1333 17.5084 12.1666 18.3334 9.99997 18.3334C7.8333 18.3334 5.86663 17.5084 4.3833 16.15C4.46663 15.3667 4.96663 14.6 5.8583 14C8.14163 12.4834 11.875 12.4834 14.1416 14C15.0333 14.6 15.5333 15.3667 15.6166 16.15Z"
+                  stroke="#0156FF"
+                  stroke-width="1.25"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9.99984 18.3333C14.6022 18.3333 18.3332 14.6023 18.3332 9.99996C18.3332 5.39759 14.6022 1.66663 9.99984 1.66663C5.39746 1.66663 1.6665 5.39759 1.6665 9.99996C1.6665 14.6023 5.39746 18.3333 9.99984 18.3333Z"
+                  stroke="#0156FF"
+                  stroke-width="1.25"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <a
+                class="sbl-bottom-item-title"
+                data-toggle="collapse"
+                href="#myAccount"
+                aria-expanded="false"
+                aria-controls="myAccount"
+              >
+                Tài khoản của tôi
+              </a>
+            </div>
+            <div class="collapse show" id="myAccount">
+              <a
+                class="sbl-bottom-item-sub-title"
+                id="my-profile-tab"
+                href="trangCaNhan.html"
+                >Hồ sơ</a
+              >
+              <a
+                class="sbl-bottom-item-sub-title"
+                id="change-password-tab"
+                href="doiMatKhau.html"
+                >Đổi mật khẩu</a
+              >
+            </div>
+          </div>
+
+          <div class="sbl-bottom-item">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <mask
+                id="mask0_255_2136"
+                style="mask-type: alpha"
+                maskUnits="userSpaceOnUse"
+                x="2"
+                y="1"
+                width="15"
+                height="18"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M2.50049 1.67639H16.7111V18.221H2.50049V1.67639Z"
+                  fill="white"
+                />
+              </mask>
+              <g mask="url(#mask0_255_2136)">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M6.31141 2.92639C4.93057 2.92639 3.78391 4.04472 3.75141 5.42389V14.3364C3.72057 15.7639 4.84557 16.9397 6.25891 16.9714H12.9789C14.3697 16.9139 15.4714 15.7581 15.4614 14.3414V6.94972L11.5989 2.92639H6.32141H6.31141ZM6.32141 18.2214H6.23057C4.12891 18.1739 2.45557 16.4256 2.50141 14.3231V5.40889C2.54974 3.34139 4.25724 1.67639 6.30974 1.67639H6.32391H11.8656C12.0356 1.67639 12.1981 1.74556 12.3164 1.86806L16.5372 6.26556C16.6489 6.38139 16.7114 6.53722 16.7114 6.69806V14.3364C16.7264 16.4272 15.0981 18.1356 13.0039 18.2206L6.32141 18.2214Z"
+                  fill="#FF613F"
+                />
+              </g>
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M16.0823 7.48687H13.7865C12.2615 7.4827 11.0215 6.23937 11.0215 4.71604V2.29187C11.0215 1.94687 11.3015 1.66687 11.6465 1.66687C11.9915 1.66687 12.2715 1.94687 12.2715 2.29187V4.71604C12.2715 5.5527 12.9523 6.23437 13.7882 6.23687H16.0823C16.4273 6.23687 16.7073 6.51687 16.7073 6.86187C16.7073 7.20687 16.4273 7.48687 16.0823 7.48687Z"
+                fill="#FF613F"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M11.4907 13.4236H6.99072C6.64572 13.4236 6.36572 13.1436 6.36572 12.7986C6.36572 12.4536 6.64572 12.1736 6.99072 12.1736H11.4907C11.8357 12.1736 12.1157 12.4536 12.1157 12.7986C12.1157 13.1436 11.8357 13.4236 11.4907 13.4236Z"
+                fill="#FF613F"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M9.7869 10.297H6.99023C6.64523 10.297 6.36523 10.017 6.36523 9.672C6.36523 9.327 6.64523 9.047 6.99023 9.047H9.7869C10.1319 9.047 10.4119 9.327 10.4119 9.672C10.4119 10.017 10.1319 10.297 9.7869 10.297Z"
+                fill="#FF613F"
+              />
+            </svg>
+            <a class="sbl-bottom-item-title" id="my-order-tab" href="my-orders"
+              >Đơn hàng đã mua</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="my-order-content-area">
+        <div class="header-table">
+          <div class="header-table-item order-code">Mã đơn hàng</div>
+          <div class="header-table-item order-created-at">Ngày đặt mua</div>
+          <div class="header-table-item order-prices">Tổng tiền</div>
+          <div class="header-table-item order-status">Trạng thái đơn hàng</div>
+        </div>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row" class="order-code-td">957378455</th>
+              <td class="order-created-at">
+                <script>
+                  (function () {
+                    const now = new Date();
+                    const hours = now.getHours().toString().padStart(2, "0");
+                    const minutes = now
+                      .getMinutes()
+                      .toString()
+                      .padStart(2, "0");
+                    const day = now.getDate().toString().padStart(2, "0");
+                    const month = (now.getMonth() + 1)
+                      .toString()
+                      .padStart(2, "0");
+                    const year = now.getFullYear();
+                    document.write(
+                      `${hours}:${minutes} ${day}/${month}/${year}`
+                    );
+                  })();
+                </script>
+              </td>
+              <td class="order-prices-td">160.000 VND</td>
+              <td class="order-status">
+                <span class="delivering">ĐANG VẬN CHUYỂN</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="order-code-td">957378456</th>
+              <td class="order-created-at">10:15 31/08/2021</td>
+              <td class="order-prices-td">520.000 VND</td>
+              <td class="order-status">
+                <span class="delivery-success">GIAO HÀNG THÀNH CÔNG</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="order-code-td">957378457</th>
+              <td class="order-created-at">12:30 01/04/2021</td>
+              <td class="order-prices-td">230.000 VND</td>
+              <td class="order-status">
+                <span class="delivery-cancel">ĐÃ HỦY</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!--Pagination-->
+        <div class="--header-bottom pagination">
+          <div class="pagination-prev">&lt;</div>
+          <div class="pagination-number">1</div>
+          <div class="pagination-number">2</div>
+          <div class="pagination-number active">4</div>
+          <span>...</span>
+          <div class="pagination-number">15</div>
+          <div class="pagination-next">&gt;</div>
         </div>
       </div>
     </div>
@@ -1802,7 +1802,7 @@
     <div class="footer-top d-flex">
       <div class="footer-top-item">
         <div class="footer-top-item-logo">
-          <img src="../assets/images/Logo.png" alt="logo" />
+          <img src="./assets/images/Logo.png" alt="logo" />
         </div>
         <div class="footer-top-item-description">
           <div>
@@ -1833,19 +1833,19 @@
         <div class="footer-top-item-title">Theo dõi chúng tôi trên</div>
         <div class="footer-top-item-description">
           <div>
-            <img class="img-icon-socials" src="../assets/images/Facebook.png" />
+            <img class="img-icon-socials" src="./assets/images/Facebook.png" />
             <span>Câu hỏi thường gặp</span>
           </div>
           <div>
-            <img class="img-icon-socials" src="../assets/images/Skype.png" />
+            <img class="img-icon-socials" src="./assets/images/Skype.png" />
             <span>Câu hỏi thường gặp</span>
           </div>
           <div>
-            <img class="img-icon-socials" src="../assets/images/Youtube.png" />
+            <img class="img-icon-socials" src="./assets/images/Youtube.png" />
             <span>Câu hỏi thường gặp</span>
           </div>
           <div>
-            <img src="../assets/images/footer-icon.png" />
+            <img src="./assets/images/footer-icon.png" />
           </div>
         </div>
       </div>
@@ -1853,10 +1853,10 @@
         <div class="footer-top-item-title">Tải ứng dụng Medica ngay thôi</div>
         <div class="footer-top-item-description">
           <div>
-            <img src="../assets/images/app-store.png" />
+            <img src="./assets/images/app-store.png" />
           </div>
           <div>
-            <img src="../assets/images/google-play.png" />
+            <img src="./assets/images/google-play.png" />
           </div>
         </div>
       </div>
@@ -1880,13 +1880,12 @@
     </div>
   </div>
 </div>
-<script src="../assets/js/jquery-3.2.1.min.js"></script>
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/owl.carousel.min.js"></script>
-<script src="../assets/js/products-data.js"></script>
-<script src="../assets/js/cart.js"></script>
-<script src="../assets/js/auth.js"></script>
-<script src="../assets/js/auth-check.js"></script>
+<script src="./assets/js/jquery-3.2.1.min.js"></script>
+<script src="./assets/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/js/owl.carousel.min.js"></script>
+<script src="./assets/js/cart.js"></script>
+<script src="./assets/js/auth.js"></script>
+<script src="./assets/js/auth-check.js"></script>
 <script>
   function openForgotPassword() {
     $("#loginModal").modal("hide");
@@ -1952,7 +1951,7 @@
       <div class="">
         <div class="mb-wrapper-content modal-wrapper-content">
           <div class="modal-login-left modal-left-item">
-            <img src="../assets/images/login.png" />
+            <img src="./assets/images/login.png" />
           </div>
           <div class="modal-login-right modal-right-item">
             <div class="mlr-top modal-right-item-top">
@@ -2091,7 +2090,7 @@
       <div class="">
         <div class="mb-wrapper-content modal-wrapper-content">
           <div class="modal-register-left modal-left-item">
-            <img src="../assets/images/login.png" />
+            <img src="./assets/images/login.png" />
           </div>
           <div class="modal-register-right modal-right-item">
             <div class="mlr-top modal-right-item-top">
@@ -2738,7 +2737,7 @@
       <div class="">
         <div class="mfp-wrapper-content modal-wrapper-content">
           <div class="modal-forgot-password-left modal-left-item">
-            <img src="../assets/images/login.png" />
+            <img src="./assets/images/login.png" />
           </div>
           <div class="modal-forgot-password-right modal-right-item">
             <div class="mfr-top modal-right-item-top">

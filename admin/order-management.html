@@ -1,597 +1,819 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý đơn hàng - Admin Panel</title>
-    <link rel="stylesheet" href="assets/css/admin-style.css">
-    <link rel="stylesheet" href="../client/assets/css/font.css">
-    <link rel="icon" type="image/png" href="../client/assets/images/Logo.png">
-    <link rel="stylesheet" href="assets/css/font.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/admin-style.css" />
+    <link rel="stylesheet" href="../client/assets/css/font.css" />
+    <link rel="icon" type="image/png" href="../client/assets/images/Logo.png" />
+    <link rel="stylesheet" href="./assets/css/font.css" />
+  </head>
+  <body>
     <!-- Admin Header -->
     <header class="admin-header">
-        <div class="container">
-            <div class="admin-logo">
-                <img src="../client/assets/images/Logo.png" alt="Logo">
-                <span>Admin Panel</span>
-            </div>
-            <div class="admin-user-info">
-                <div class="user-avatar">A</div>
-                <span>Admin User</span>
-                <button class="logout-btn" onclick="handleLogout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Đăng xuất
-                </button>
-            </div>
+      <div class="container">
+        <div class="admin-logo">
+          <img src="../client/assets/images/Logo.png" alt="Logo" />
+          <span>Admin Panel</span>
         </div>
+        <div class="admin-user-info">
+          <div class="user-avatar">A</div>
+          <span>Admin User</span>
+          <button class="logout-btn" onclick="handleLogout()">
+            <i class="fas fa-sign-out-alt"></i>
+            Đăng xuất
+          </button>
+        </div>
+      </div>
     </header>
 
     <!-- Admin Layout -->
     <div class="admin-layout">
-        <!-- Sidebar -->
-        <nav class="admin-sidebar">
-            <!-- Logo -->
-            <div class="sidebar-logo">
-                <div class="logo-text">
-                    <div class="logo-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <span>AdminPanel</span>
-                </div>
+      <!-- Sidebar -->
+      <nav class="admin-sidebar">
+        <!-- Logo -->
+        <div class="sidebar-logo">
+          <div class="logo-text">
+            <div class="logo-icon">
+              <i class="fas fa-chart-bar"></i>
             </div>
-            
-            <!-- Menu -->
-            <ul class="sidebar-menu">
-                <div class="menu-section-title">Menu</div>
-                <li>
-                    <a href="dashboard.html">
-                        <i class="fas fa-tachometer-alt"></i>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="user-management.html">
-                        <i class="fas fa-users"></i>
-                        Quản lý khách hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="product-type-management.html">
-                        <i class="fas fa-tags"></i>
-                        Quản lý loại sản phẩm
-                    </a>
-                </li>
-                <li>
-                    <a href="product-management.html">
-                        <i class="fas fa-box"></i>
-                        Quản lý sản phẩm
-                    </a>
-                </li>
-                <li>
-                    <a href="import-management.html">
-                        <i class="fas fa-warehouse"></i>
-                        Quản lý nhập hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="price-management.html">
-                        <i class="fas fa-dollar-sign"></i>
-                        Quản lý giá bán
-                    </a>
-                </li>
-                <li>
-                    <a href="order-management.html" class="active">
-                        <i class="fas fa-shopping-cart"></i>
-                        Quản lý đơn hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="inventory-management.html">
-                        <i class="fas fa-clipboard-list"></i>
-                        Quản lý tồn kho
-                    </a>
-                </li>
-                <li>
-                    <a href="#" onclick="handleLogout(); return false;">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Đăng xuất
-                    </a>
-                </li>
-            </ul>
-        </nav>
+            <span>AdminPanel</span>
+          </div>
+        </div>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
+        <!-- Menu -->
+        <ul class="sidebar-menu">
+          <div class="menu-section-title">Menu</div>
+          <li>
+            <a href="dashboard.html">
+              <i class="fas fa-tachometer-alt"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="user-management.html">
+              <i class="fas fa-users"></i>
+              Quản lý khách hàng
+            </a>
+          </li>
+          <li>
+            <a href="product-type-management.html">
+              <i class="fas fa-tags"></i>
+              Quản lý loại sản phẩm
+            </a>
+          </li>
+          <li>
+            <a href="product-management.html">
+              <i class="fas fa-box"></i>
+              Quản lý sản phẩm
+            </a>
+          </li>
+          <li>
+            <a href="import-management.html">
+              <i class="fas fa-warehouse"></i>
+              Quản lý nhập hàng
+            </a>
+          </li>
+          <li>
+            <a href="price-management.html">
+              <i class="fas fa-dollar-sign"></i>
+              Quản lý giá bán
+            </a>
+          </li>
+          <li>
+            <a href="order-management.html" class="active">
+              <i class="fas fa-shopping-cart"></i>
+              Quản lý đơn hàng
+            </a>
+          </li>
+          <li>
+            <a href="inventory-management.html">
+              <i class="fas fa-clipboard-list"></i>
+              Quản lý tồn kho
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="handleLogout(); return false;">
+              <i class="fas fa-sign-out-alt"></i>
+              Đăng xuất
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-        <!-- Main Content -->
-        <main class="admin-main">
-            <div class="admin-content">
-                <!-- Page Header -->
-                <div class="page-header">
-                    <h1 class="page-title">Quản lý đơn hàng</h1>
-                    <p class="page-subtitle">Quản lý và theo dõi trạng thái đơn hàng của khách hàng</p>
-                </div>
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
 
-                <!-- Search and Filter Bar -->
-                <div class="search-filter-bar">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Tìm kiếm theo mã đơn hàng, tên khách hàng...">
-                    </div>
-                    <input type="date" class="form-control" id="dateFrom" placeholder="Từ ngày">
-                    <input type="date" class="form-control" id="dateTo" placeholder="Đến ngày">
-                    <select class="form-control filter-select">
-                        <option value="all">Tất cả trạng thái</option>
-                        <option value="new">Mới đặt</option>
-                        <option value="processing">Đang xử lý</option>
-                        <option value="shipped">Đã giao hàng</option>
-                        <option value="cancelled">Đã hủy</option>
-                    </select>
-                    <button class="btn btn-success" onclick="exportOrders()">
-                        <i class="fas fa-download"></i>
-                        Xuất báo cáo
-                    </button>
-                </div>
+      <!-- Main Content -->
+      <main class="admin-main">
+        <div class="admin-content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <h1 class="page-title">Quản lý đơn hàng</h1>
+            <p class="page-subtitle">
+              Quản lý và theo dõi trạng thái đơn hàng của khách hàng
+            </p>
+          </div>
 
-                <!-- Orders Table -->
-                <div class="admin-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Danh sách đơn hàng</h3>
-                        <span class="text-muted">Tổng: 320 đơn hàng</span>
-                    </div>
-                    <div class="table-container">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th data-sort="0">Mã đơn hàng</th>
-                                    <th data-sort="1">Khách hàng</th>
-                                    <th data-sort="2">Ngày đặt</th>
-                                    <th data-sort="3">Số sản phẩm</th>
-                                    <th data-sort="4">Tổng tiền</th>
-                                    <th data-sort="5">Trạng thái</th>
-                                    <th>Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>DH001</td>
-                                    <td>Nguyễn Văn An</td>
-                                    <td>15/12/2024 10:30</td>
-                                    <td>3</td>
-                                    <td>450,000 VNĐ</td>
-                                    <td><span class="status-badge status-pending">Mới đặt</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-info" onclick="viewOrder('DH001')">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-warning" onclick="updateOrderStatus('DH001', 'processing')">
-                                            <i class="fas fa-cog"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-success" onclick="updateOrderStatus('DH001', 'shipped')">
-                                            <i class="fas fa-truck"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="updateOrderStatus('DH001', 'cancelled')">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>DH002</td>
-                                    <td>Trần Thị Bình</td>
-                                    <td>14/12/2024 14:20</td>
-                                    <td>2</td>
-                                    <td>280,000 VNĐ</td>
-                                    <td><span class="status-badge status-pending">Đang xử lý</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-info" onclick="viewOrder('DH002')">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-warning" onclick="updateOrderStatus('DH002', 'processing')">
-                                            <i class="fas fa-cog"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-success" onclick="updateOrderStatus('DH002', 'shipped')">
-                                            <i class="fas fa-truck"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="updateOrderStatus('DH002', 'cancelled')">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>DH003</td>
-                                    <td>Lê Văn Cường</td>
-                                    <td>13/12/2024 09:15</td>
-                                    <td>5</td>
-                                    <td>750,000 VNĐ</td>
-                                    <td><span class="status-badge status-completed">Đã giao hàng</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-info" onclick="viewOrder('DH003')">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-warning" onclick="updateOrderStatus('DH003', 'processing')">
-                                            <i class="fas fa-cog"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-success" onclick="updateOrderStatus('DH003', 'shipped')">
-                                            <i class="fas fa-truck"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="updateOrderStatus('DH003', 'cancelled')">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>DH004</td>
-                                    <td>Phạm Thị Dung</td>
-                                    <td>12/12/2024 16:45</td>
-                                    <td>1</td>
-                                    <td>120,000 VNĐ</td>
-                                    <td><span class="status-badge status-inactive">Đã hủy</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-info" onclick="viewOrder('DH004')">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-warning" onclick="updateOrderStatus('DH004', 'processing')">
-                                            <i class="fas fa-cog"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-success" onclick="updateOrderStatus('DH004', 'shipped')">
-                                            <i class="fas fa-truck"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="updateOrderStatus('DH004', 'cancelled')">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>DH005</td>
-                                    <td>Hoàng Văn Em</td>
-                                    <td>11/12/2024 11:30</td>
-                                    <td>4</td>
-                                    <td>520,000 VNĐ</td>
-                                    <td><span class="status-badge status-pending">Mới đặt</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-info" onclick="viewOrder('DH005')">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-warning" onclick="updateOrderStatus('DH005', 'processing')">
-                                            <i class="fas fa-cog"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-success" onclick="updateOrderStatus('DH005', 'shipped')">
-                                            <i class="fas fa-truck"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="updateOrderStatus('DH005', 'cancelled')">
-                                            <i class="fas fa-times"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <!-- Pagination -->
-                    <div class="pagination"></div>
-                </div>
+          <!-- Search and Filter Bar -->
+          <div class="search-filter-bar">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                placeholder="Tìm kiếm theo mã đơn hàng, tên khách hàng..."
+              />
             </div>
-        </main>
+            <input
+              type="date"
+              class="form-control"
+              id="dateFrom"
+              placeholder="Từ ngày"
+            />
+            <input
+              type="date"
+              class="form-control"
+              id="dateTo"
+              placeholder="Đến ngày"
+            />
+            <select class="form-control filter-select">
+              <option value="all">Tất cả trạng thái</option>
+              <option value="new">Mới đặt</option>
+              <option value="processing">Đang xử lý</option>
+              <option value="shipped">Đã giao hàng</option>
+              <option value="cancelled">Đã hủy</option>
+            </select>
+            <button class="btn btn-success" onclick="exportOrders()">
+              <i class="fas fa-download"></i>
+              Xuất báo cáo
+            </button>
+          </div>
+
+          <!-- Orders Table -->
+          <div class="admin-card">
+            <div class="card-header">
+              <h3 class="card-title">Danh sách đơn hàng</h3>
+              <span class="text-muted">Tổng: 320 đơn hàng</span>
+            </div>
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th data-sort="0">Mã đơn hàng</th>
+                    <th data-sort="1">Khách hàng</th>
+                    <th data-sort="2">Ngày đặt</th>
+                    <th data-sort="3">Số sản phẩm</th>
+                    <th data-sort="4">Tổng tiền</th>
+                    <th data-sort="5">Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>DH001</td>
+                    <td>Nguyễn Văn An</td>
+                    <td>15/12/2024 10:30</td>
+                    <td>3</td>
+                    <td>450,000 VNĐ</td>
+                    <td>
+                      <span class="status-badge status-pending">Mới đặt</span>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-info"
+                        onclick="viewOrder('DH001')"
+                      >
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="updateOrderStatus('DH001', 'processing')"
+                      >
+                        <i class="fas fa-cog"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-success"
+                        onclick="updateOrderStatus('DH001', 'shipped')"
+                      >
+                        <i class="fas fa-truck"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="updateOrderStatus('DH001', 'cancelled')"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>DH002</td>
+                    <td>Trần Thị Bình</td>
+                    <td>14/12/2024 14:20</td>
+                    <td>2</td>
+                    <td>280,000 VNĐ</td>
+                    <td>
+                      <span class="status-badge status-pending"
+                        >Đang xử lý</span
+                      >
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-info"
+                        onclick="viewOrder('DH002')"
+                      >
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="updateOrderStatus('DH002', 'processing')"
+                      >
+                        <i class="fas fa-cog"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-success"
+                        onclick="updateOrderStatus('DH002', 'shipped')"
+                      >
+                        <i class="fas fa-truck"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="updateOrderStatus('DH002', 'cancelled')"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>DH003</td>
+                    <td>Lê Văn Cường</td>
+                    <td>13/12/2024 09:15</td>
+                    <td>5</td>
+                    <td>750,000 VNĐ</td>
+                    <td>
+                      <span class="status-badge status-completed"
+                        >Đã giao hàng</span
+                      >
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-info"
+                        onclick="viewOrder('DH003')"
+                      >
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="updateOrderStatus('DH003', 'processing')"
+                      >
+                        <i class="fas fa-cog"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-success"
+                        onclick="updateOrderStatus('DH003', 'shipped')"
+                      >
+                        <i class="fas fa-truck"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="updateOrderStatus('DH003', 'cancelled')"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>DH004</td>
+                    <td>Phạm Thị Dung</td>
+                    <td>12/12/2024 16:45</td>
+                    <td>1</td>
+                    <td>120,000 VNĐ</td>
+                    <td>
+                      <span class="status-badge status-inactive">Đã hủy</span>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-info"
+                        onclick="viewOrder('DH004')"
+                      >
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="updateOrderStatus('DH004', 'processing')"
+                      >
+                        <i class="fas fa-cog"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-success"
+                        onclick="updateOrderStatus('DH004', 'shipped')"
+                      >
+                        <i class="fas fa-truck"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="updateOrderStatus('DH004', 'cancelled')"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>DH005</td>
+                    <td>Hoàng Văn Em</td>
+                    <td>11/12/2024 11:30</td>
+                    <td>4</td>
+                    <td>520,000 VNĐ</td>
+                    <td>
+                      <span class="status-badge status-pending">Mới đặt</span>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-info"
+                        onclick="viewOrder('DH005')"
+                      >
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="updateOrderStatus('DH005', 'processing')"
+                      >
+                        <i class="fas fa-cog"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-success"
+                        onclick="updateOrderStatus('DH005', 'shipped')"
+                      >
+                        <i class="fas fa-truck"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="updateOrderStatus('DH005', 'cancelled')"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination"></div>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- View Order Modal -->
     <div id="viewOrderModal" class="modal">
-        <div class="modal-content" style="max-width: 800px;">
-            <div class="modal-header">
-                <h3 class="modal-title">Chi tiết đơn hàng</h3>
-                <button class="close">&times;</button>
-            </div>
-            <div class="order-detail">
-                <div class="order-header">
-                    <div class="order-info">
-                        <h4 id="viewOrderCode"></h4>
-                        <p>Ngày đặt: <span id="viewOrderDate"></span></p>
-                        <p>Khách hàng: <span id="viewOrderCustomer"></span></p>
-                        <p>Trạng thái: <span id="viewOrderStatus"></span></p>
-                    </div>
-                    <div class="order-summary">
-                        <h5>Thông tin giao hàng</h5>
-                        <p>Địa chỉ: <span id="viewOrderAddress"></span></p>
-                        <p>Số điện thoại: <span id="viewOrderPhone"></span></p>
-                        <p>Ghi chú: <span id="viewOrderNote"></span></p>
-                    </div>
-                </div>
-                
-                <div class="order-products">
-                    <h5>Sản phẩm trong đơn hàng</h5>
-                    <div class="table-container">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Sản phẩm</th>
-                                    <th>Số lượng</th>
-                                    <th>Đơn giá</th>
-                                    <th>Thành tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody id="viewOrderProducts">
-                                <!-- Products will be loaded here -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <div class="order-total">
-                    <div class="total-row">
-                        <span>Tạm tính:</span>
-                        <span id="viewOrderSubtotal"></span>
-                    </div>
-                    <div class="total-row">
-                        <span>Phí vận chuyển:</span>
-                        <span id="viewOrderShipping"></span>
-                    </div>
-                    <div class="total-row total-final">
-                        <span>Tổng cộng:</span>
-                        <span id="viewOrderTotal"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('viewOrderModal'))">
-                    Đóng
-                </button>
-            </div>
+      <div class="modal-content" style="max-width: 800px">
+        <div class="modal-header">
+          <h3 class="modal-title">Chi tiết đơn hàng</h3>
+          <button class="close">&times;</button>
         </div>
+        <div class="order-detail">
+          <div class="order-header">
+            <div class="order-info">
+              <h4 id="viewOrderCode"></h4>
+              <p>Ngày đặt: <span id="viewOrderDate"></span></p>
+              <p>Khách hàng: <span id="viewOrderCustomer"></span></p>
+              <p>Trạng thái: <span id="viewOrderStatus"></span></p>
+            </div>
+            <div class="order-summary">
+              <h5>Thông tin giao hàng</h5>
+              <p>Địa chỉ: <span id="viewOrderAddress"></span></p>
+              <p>Số điện thoại: <span id="viewOrderPhone"></span></p>
+              <p>Ghi chú: <span id="viewOrderNote"></span></p>
+            </div>
+          </div>
+
+          <div class="order-products">
+            <h5>Sản phẩm trong đơn hàng</h5>
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                  </tr>
+                </thead>
+                <tbody id="viewOrderProducts">
+                  <!-- Products will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="order-total">
+            <div class="total-row">
+              <span>Tạm tính:</span>
+              <span id="viewOrderSubtotal"></span>
+            </div>
+            <div class="total-row">
+              <span>Phí vận chuyển:</span>
+              <span id="viewOrderShipping"></span>
+            </div>
+            <div class="total-row total-final">
+              <span>Tổng cộng:</span>
+              <span id="viewOrderTotal"></span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeModal(document.getElementById('viewOrderModal'))"
+          >
+            Đóng
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Update Status Modal -->
     <div id="updateStatusModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Cập nhật trạng thái đơn hàng</h3>
-                <button class="close">&times;</button>
-            </div>
-            <form id="updateStatusForm">
-                <input type="hidden" id="updateOrderId" name="orderId">
-                <div class="form-group">
-                    <label for="newStatus" class="form-label">Trạng thái mới *</label>
-                    <select id="newStatus" name="newStatus" class="form-control" required>
-                        <option value="">Chọn trạng thái</option>
-                        <option value="new">Mới đặt</option>
-                        <option value="processing">Đang xử lý</option>
-                        <option value="shipped">Đã giao hàng</option>
-                        <option value="cancelled">Đã hủy</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="statusNote" class="form-label">Ghi chú</label>
-                    <textarea id="statusNote" name="statusNote" class="form-control" rows="3" placeholder="Nhập ghi chú về việc thay đổi trạng thái"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('updateStatusModal'))">
-                        Hủy
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        Cập nhật trạng thái
-                    </button>
-                </div>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Cập nhật trạng thái đơn hàng</h3>
+          <button class="close">&times;</button>
         </div>
+        <form id="updateStatusForm">
+          <input type="hidden" id="updateOrderId" name="orderId" />
+          <div class="form-group">
+            <label for="newStatus" class="form-label">Trạng thái mới *</label>
+            <select
+              id="newStatus"
+              name="newStatus"
+              class="form-control"
+              required
+            >
+              <option value="">Chọn trạng thái</option>
+              <option value="new">Mới đặt</option>
+              <option value="processing">Đang xử lý</option>
+              <option value="shipped">Đã giao hàng</option>
+              <option value="cancelled">Đã hủy</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="statusNote" class="form-label">Ghi chú</label>
+            <textarea
+              id="statusNote"
+              name="statusNote"
+              class="form-control"
+              rows="3"
+              placeholder="Nhập ghi chú về việc thay đổi trạng thái"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal(document.getElementById('updateStatusModal'))"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i>
+              Cập nhật trạng thái
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <script src="assets/js/admin.js"></script>
+    <script src="./assets/js/admin.js"></script>
     <script>
-        // Dữ liệu mock đơn hàng
-        const orders = [
-            { id: 'DH001', customer: 'Nguyễn Văn An', date: '15/12/2024 10:30', items: 3, total: 480000, status: 'new', address: '123 Đường ABC, Quận 1, TP.HCM', phone: '0901234567', note: 'Giao buổi sáng', products: [ { name: 'Panadol Extra 500mg', quantity: 2, price: 25000 }, { name: 'Thuốc điều trị COVID-19', quantity: 1, price: 150000 }, { name: 'Ginkgo Biloba 120mg', quantity: 1, price: 180000 } ] },
-            { id: 'DH002', customer: 'Trần Thị Bình', date: '14/12/2024 14:20', items: 2, total: 280000, status: 'processing', address: '456 Đường DEF, Quận 3, TP.HCM', phone: '0912345678', note: '', products: [ { name: 'Hevel 500mg', quantity: 2, price: 35000 }, { name: 'Panadol Extra 500mg', quantity: 4, price: 25000 } ] },
-            { id: 'DH003', customer: 'Lê Văn Cường', date: '13/12/2024 09:15', items: 5, total: 750000, status: 'shipped', address: '789 Đường GHI, Đà Nẵng', phone: '0923456789', note: '', products: [ { name: 'Ginkgo Biloba 120mg', quantity: 3, price: 180000 } ] },
-            { id: 'DH004', customer: 'Phạm Thị Dung', date: '12/12/2024 16:45', items: 1, total: 120000, status: 'cancelled', address: '12 Đường JKL, Hà Nội', phone: '0934567890', note: 'Khách hủy', products: [ { name: 'Immucan 100ml', quantity: 1, price: 120000 } ] },
-            { id: 'DH005', customer: 'Hoàng Văn Em', date: '11/12/2024 11:30', items: 4, total: 520000, status: 'new', address: '34 Đường MNO, Cần Thơ', phone: '0945678901', note: '', products: [ { name: 'Immucan 100ml', quantity: 2, price: 120000 } ] }
-        ];
+      // Dữ liệu mock đơn hàng
+      const orders = [
+        {
+          id: "DH001",
+          customer: "Nguyễn Văn An",
+          date: "15/12/2024 10:30",
+          items: 3,
+          total: 480000,
+          status: "new",
+          address: "123 Đường ABC, Quận 1, TP.HCM",
+          phone: "0901234567",
+          note: "Giao buổi sáng",
+          products: [
+            { name: "Panadol Extra 500mg", quantity: 2, price: 25000 },
+            { name: "Thuốc điều trị COVID-19", quantity: 1, price: 150000 },
+            { name: "Ginkgo Biloba 120mg", quantity: 1, price: 180000 },
+          ],
+        },
+        {
+          id: "DH002",
+          customer: "Trần Thị Bình",
+          date: "14/12/2024 14:20",
+          items: 2,
+          total: 280000,
+          status: "processing",
+          address: "456 Đường DEF, Quận 3, TP.HCM",
+          phone: "0912345678",
+          note: "",
+          products: [
+            { name: "Hevel 500mg", quantity: 2, price: 35000 },
+            { name: "Panadol Extra 500mg", quantity: 4, price: 25000 },
+          ],
+        },
+        {
+          id: "DH003",
+          customer: "Lê Văn Cường",
+          date: "13/12/2024 09:15",
+          items: 5,
+          total: 750000,
+          status: "shipped",
+          address: "789 Đường GHI, Đà Nẵng",
+          phone: "0923456789",
+          note: "",
+          products: [
+            { name: "Ginkgo Biloba 120mg", quantity: 3, price: 180000 },
+          ],
+        },
+        {
+          id: "DH004",
+          customer: "Phạm Thị Dung",
+          date: "12/12/2024 16:45",
+          items: 1,
+          total: 120000,
+          status: "cancelled",
+          address: "12 Đường JKL, Hà Nội",
+          phone: "0934567890",
+          note: "Khách hủy",
+          products: [{ name: "Immucan 100ml", quantity: 1, price: 120000 }],
+        },
+        {
+          id: "DH005",
+          customer: "Hoàng Văn Em",
+          date: "11/12/2024 11:30",
+          items: 4,
+          total: 520000,
+          status: "new",
+          address: "34 Đường MNO, Cần Thơ",
+          phone: "0945678901",
+          note: "",
+          products: [{ name: "Immucan 100ml", quantity: 2, price: 120000 }],
+        },
+      ];
 
-        function statusBadge(status) {
-            if (status === 'new') return '<span class="status-badge status-pending">Mới đặt</span>';
-            if (status === 'processing') return '<span class="status-badge status-pending">Đang xử lý</span>';
-            if (status === 'shipped') return '<span class="status-badge status-completed">Đã giao hàng</span>';
-            return '<span class="status-badge status-inactive">Đã hủy</span>';
-        }
+      function statusBadge(status) {
+        if (status === "new")
+          return '<span class="status-badge status-pending">Mới đặt</span>';
+        if (status === "processing")
+          return '<span class="status-badge status-pending">Đang xử lý</span>';
+        if (status === "shipped")
+          return '<span class="status-badge status-completed">Đã giao hàng</span>';
+        return '<span class="status-badge status-inactive">Đã hủy</span>';
+      }
 
-        function renderOrdersTable() {
-            const tbody = document.querySelector('.admin-table tbody');
-            if (!tbody) return;
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageItems = orders.slice(start, end);
-            tbody.innerHTML = pageItems.map(o => `
+      function renderOrdersTable() {
+        const tbody = document.querySelector(".admin-table tbody");
+        if (!tbody) return;
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageItems = orders.slice(start, end);
+        tbody.innerHTML = pageItems
+          .map(
+            (o) => `
                 <tr data-status="${o.status}">
                     <td>${o.id}</td>
                     <td>${o.customer}</td>
                     <td>${o.date}</td>
                     <td>${o.items}</td>
-                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(o.total) : o.total.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${
+                      AdminJS && AdminJS.formatCurrency
+                        ? AdminJS.formatCurrency(o.total)
+                        : o.total.toLocaleString("vi-VN") + " VNĐ"
+                    }</td>
                     <td>${statusBadge(o.status)}</td>
                     <td>
-                        <button class="btn btn-sm btn-info" onclick="viewOrder('${o.id}')"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-sm btn-warning" onclick="updateOrderStatus('${o.id}', 'processing')"><i class="fas fa-cog"></i></button>
-                        <button class="btn btn-sm btn-success" onclick="updateOrderStatus('${o.id}', 'shipped')"><i class="fas fa-truck"></i></button>
-                        <button class="btn btn-sm btn-danger" onclick="updateOrderStatus('${o.id}', 'cancelled')"><i class="fas fa-times"></i></button>
+                        <button class="btn btn-sm btn-info" onclick="viewOrder('${
+                          o.id
+                        }')"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-sm btn-warning" onclick="updateOrderStatus('${
+                          o.id
+                        }', 'processing')"><i class="fas fa-cog"></i></button>
+                        <button class="btn btn-sm btn-success" onclick="updateOrderStatus('${
+                          o.id
+                        }', 'shipped')"><i class="fas fa-truck"></i></button>
+                        <button class="btn btn-sm btn-danger" onclick="updateOrderStatus('${
+                          o.id
+                        }', 'cancelled')"><i class="fas fa-times"></i></button>
                     </td>
                 </tr>
-            `).join('');
-            const totalSpan = document.querySelector('.card-header .text-muted');
-            if (totalSpan) totalSpan.textContent = `Tổng: ${orders.length} đơn hàng`;
-        }
+            `
+          )
+          .join("");
+        const totalSpan = document.querySelector(".card-header .text-muted");
+        if (totalSpan)
+          totalSpan.textContent = `Tổng: ${orders.length} đơn hàng`;
+      }
 
-        function loadCurrentPageData() {
-            renderOrdersTable();
-            setupPagination(orders.length, currentPage, itemsPerPage);
-        }
+      function loadCurrentPageData() {
+        renderOrdersTable();
+        setupPagination(orders.length, currentPage, itemsPerPage);
+      }
 
-        function viewOrder(orderId) {
-            const order = orders.find(o => o.id === orderId);
-            if (!order) return;
-            document.getElementById('viewOrderCode').textContent = order.id;
-            document.getElementById('viewOrderDate').textContent = order.date;
-            document.getElementById('viewOrderCustomer').textContent = order.customer;
-            document.getElementById('viewOrderStatus').textContent = (function(){ if(order.status==='new')return'Mới đặt'; if(order.status==='processing')return'Đang xử lý'; if(order.status==='shipped')return'Đã giao hàng'; return 'Đã hủy'; })();
-            document.getElementById('viewOrderAddress').textContent = order.address || '';
-            document.getElementById('viewOrderPhone').textContent = order.phone || '';
-            document.getElementById('viewOrderNote').textContent = order.note || '';
-            const subtotal = Math.max(0, order.total - 30000);
-            document.getElementById('viewOrderSubtotal').textContent = (AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(subtotal) : subtotal.toLocaleString('vi-VN') + ' VNĐ';
-            document.getElementById('viewOrderShipping').textContent = (AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(30000) : '30,000 VNĐ';
-            document.getElementById('viewOrderTotal').textContent = (AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(order.total) : order.total.toLocaleString('vi-VN') + ' VNĐ';
-            const productsTable = document.getElementById('viewOrderProducts');
-            productsTable.innerHTML = '';
-            order.products.forEach(p => {
-                const row = document.createElement('tr');
-                const lineTotal = p.quantity * p.price;
-                row.innerHTML = `
+      function viewOrder(orderId) {
+        const order = orders.find((o) => o.id === orderId);
+        if (!order) return;
+        document.getElementById("viewOrderCode").textContent = order.id;
+        document.getElementById("viewOrderDate").textContent = order.date;
+        document.getElementById("viewOrderCustomer").textContent =
+          order.customer;
+        document.getElementById("viewOrderStatus").textContent = (function () {
+          if (order.status === "new") return "Mới đặt";
+          if (order.status === "processing") return "Đang xử lý";
+          if (order.status === "shipped") return "Đã giao hàng";
+          return "Đã hủy";
+        })();
+        document.getElementById("viewOrderAddress").textContent =
+          order.address || "";
+        document.getElementById("viewOrderPhone").textContent =
+          order.phone || "";
+        document.getElementById("viewOrderNote").textContent = order.note || "";
+        const subtotal = Math.max(0, order.total - 30000);
+        document.getElementById("viewOrderSubtotal").textContent =
+          AdminJS && AdminJS.formatCurrency
+            ? AdminJS.formatCurrency(subtotal)
+            : subtotal.toLocaleString("vi-VN") + " VNĐ";
+        document.getElementById("viewOrderShipping").textContent =
+          AdminJS && AdminJS.formatCurrency
+            ? AdminJS.formatCurrency(30000)
+            : "30,000 VNĐ";
+        document.getElementById("viewOrderTotal").textContent =
+          AdminJS && AdminJS.formatCurrency
+            ? AdminJS.formatCurrency(order.total)
+            : order.total.toLocaleString("vi-VN") + " VNĐ";
+        const productsTable = document.getElementById("viewOrderProducts");
+        productsTable.innerHTML = "";
+        order.products.forEach((p) => {
+          const row = document.createElement("tr");
+          const lineTotal = p.quantity * p.price;
+          row.innerHTML = `
                     <td>${p.name}</td>
                     <td>${p.quantity}</td>
-                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.price) : p.price.toLocaleString('vi-VN') + ' VNĐ'}</td>
-                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(lineTotal) : lineTotal.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${
+                      AdminJS && AdminJS.formatCurrency
+                        ? AdminJS.formatCurrency(p.price)
+                        : p.price.toLocaleString("vi-VN") + " VNĐ"
+                    }</td>
+                    <td>${
+                      AdminJS && AdminJS.formatCurrency
+                        ? AdminJS.formatCurrency(lineTotal)
+                        : lineTotal.toLocaleString("vi-VN") + " VNĐ"
+                    }</td>
                 `;
-                productsTable.appendChild(row);
-            });
-            openModal('viewOrderModal');
-        }
+          productsTable.appendChild(row);
+        });
+        openModal("viewOrderModal");
+      }
 
-        function updateOrderStatus(orderId, newStatus) {
-            document.getElementById('updateOrderId').value = orderId;
-            document.getElementById('newStatus').value = newStatus;
-            openModal('updateStatusModal');
-        }
+      function updateOrderStatus(orderId, newStatus) {
+        document.getElementById("updateOrderId").value = orderId;
+        document.getElementById("newStatus").value = newStatus;
+        openModal("updateStatusModal");
+      }
 
-        function exportOrders() {
-            showAlert('Đang xuất báo cáo đơn hàng...', 'info');
-            setTimeout(() => showAlert('Xuất báo cáo thành công!', 'success'), 800);
-        }
+      function exportOrders() {
+        showAlert("Đang xuất báo cáo đơn hàng...", "info");
+        setTimeout(() => showAlert("Xuất báo cáo thành công!", "success"), 800);
+      }
 
-        document.getElementById('updateStatusForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const orderId = document.getElementById('updateOrderId').value;
-            const newStatus = document.getElementById('newStatus').value;
-            const note = document.getElementById('statusNote').value;
-            const idx = orders.findIndex(o => o.id === orderId);
-            if (idx !== -1) {
-                orders[idx].status = newStatus;
-                if (note) orders[idx].note = note;
-            }
-            showAlert('Cập nhật trạng thái đơn hàng thành công!', 'success');
-            closeModal(document.getElementById('updateStatusModal'));
-            loadCurrentPageData();
+      document
+        .getElementById("updateStatusForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const orderId = document.getElementById("updateOrderId").value;
+          const newStatus = document.getElementById("newStatus").value;
+          const note = document.getElementById("statusNote").value;
+          const idx = orders.findIndex((o) => o.id === orderId);
+          if (idx !== -1) {
+            orders[idx].status = newStatus;
+            if (note) orders[idx].note = note;
+          }
+          showAlert("Cập nhật trạng thái đơn hàng thành công!", "success");
+          closeModal(document.getElementById("updateStatusModal"));
+          loadCurrentPageData();
         });
 
-        // Ghi đè handleFilter để lọc theo trạng thái đơn hàng
-        window.handleFilter = function(e) {
-            const select = e.target;
-            const value = select.value; // all | new | processing | shipped | cancelled
-            const table = select.closest('.admin-content').querySelector('.admin-table tbody');
-            if (!table) return;
-            const rows = table.querySelectorAll('tr');
-            rows.forEach(row => {
-                const rowStatus = row.getAttribute('data-status');
-                row.style.display = (value === 'all' || rowStatus === value) ? '' : 'none';
-            });
-        };
-
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCurrentPageData();
+      // Ghi đè handleFilter để lọc theo trạng thái đơn hàng
+      window.handleFilter = function (e) {
+        const select = e.target;
+        const value = select.value; // all | new | processing | shipped | cancelled
+        const table = select
+          .closest(".admin-content")
+          .querySelector(".admin-table tbody");
+        if (!table) return;
+        const rows = table.querySelectorAll("tr");
+        rows.forEach((row) => {
+          const rowStatus = row.getAttribute("data-status");
+          row.style.display =
+            value === "all" || rowStatus === value ? "" : "none";
         });
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadCurrentPageData();
+      });
     </script>
-    
+
     <style>
-        .text-muted {
-            color: #6c757d;
-            font-size: 14px;
-        }
-        
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #f1f3f4;
-        }
-        
-        .order-detail {
-            margin-bottom: 20px;
-        }
-        
+      .text-muted {
+        color: #6c757d;
+        font-size: 14px;
+      }
+
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #f1f3f4;
+      }
+
+      .order-detail {
+        margin-bottom: 20px;
+      }
+
+      .order-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+      }
+
+      .order-info h4 {
+        color: #072e75;
+        margin-bottom: 10px;
+      }
+
+      .order-info p {
+        margin-bottom: 5px;
+        color: #666;
+      }
+
+      .order-summary h5 {
+        color: #072e75;
+        margin-bottom: 10px;
+      }
+
+      .order-summary p {
+        margin-bottom: 5px;
+        color: #666;
+      }
+
+      .order-products {
+        margin-bottom: 20px;
+      }
+
+      .order-products h5 {
+        color: #072e75;
+        margin-bottom: 15px;
+      }
+
+      .order-total {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        color: #666;
+      }
+
+      .total-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .total-final {
+        font-weight: bold;
+        font-size: 18px;
+        color: #072e75;
+        border-top: 1px solid #dee2e6;
+        padding-top: 10px;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 768px) {
         .order-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
+          grid-template-columns: 1fr;
         }
-        
-        .order-info h4 {
-            color: #072E75;
-            margin-bottom: 10px;
-        }
-        
-        .order-info p {
-            margin-bottom: 5px;
-            color: #666;
-        }
-        
-        .order-summary h5 {
-            color: #072E75;
-            margin-bottom: 10px;
-        }
-        
-        .order-summary p {
-            margin-bottom: 5px;
-            color: #666;
-        }
-        
-        .order-products {
-            margin-bottom: 20px;
-        }
-        
-        .order-products h5 {
-            color: #072E75;
-            margin-bottom: 15px;
-        }
-        
-        .order-total {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            color: #666;
-        }
-        
-        .total-row:last-child {
-            margin-bottom: 0;
-        }
-        
-        .total-final {
-            font-weight: bold;
-            font-size: 18px;
-            color: #072E75;
-            border-top: 1px solid #dee2e6;
-            padding-top: 10px;
-            margin-top: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .order-header {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
-</body>
+  </body>
 </html>

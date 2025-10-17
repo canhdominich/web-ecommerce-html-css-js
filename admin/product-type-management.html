@@ -1,379 +1,530 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý loại sản phẩm - Admin Panel</title>
-    <link rel="stylesheet" href="assets/css/admin-style.css">
-    <link rel="stylesheet" href="../client/assets/css/font.css">
-    <link rel="icon" type="image/png" href="../client/assets/images/Logo.png">
-    <link rel="stylesheet" href="assets/css/font.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/admin-style.css" />
+    <link rel="stylesheet" href="../client/assets/css/font.css" />
+    <link rel="icon" type="image/png" href="../client/assets/images/Logo.png" />
+    <link rel="stylesheet" href="./assets/css/font.css" />
+  </head>
+  <body>
     <!-- Admin Header -->
     <header class="admin-header">
-        <div class="container">
-            <div class="admin-logo">
-                <img src="../client/assets/images/Logo.png" alt="Logo">
-                <span>Admin Panel</span>
-            </div>
-            <div class="admin-user-info">
-                <div class="user-avatar">A</div>
-                <span>Admin User</span>
-                <button class="logout-btn" onclick="handleLogout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Đăng xuất
-                </button>
-            </div>
+      <div class="container">
+        <div class="admin-logo">
+          <img src="../client/assets/images/Logo.png" alt="Logo" />
+          <span>Admin Panel</span>
         </div>
+        <div class="admin-user-info">
+          <div class="user-avatar">A</div>
+          <span>Admin User</span>
+          <button class="logout-btn" onclick="handleLogout()">
+            <i class="fas fa-sign-out-alt"></i>
+            Đăng xuất
+          </button>
+        </div>
+      </div>
     </header>
 
     <!-- Admin Layout -->
     <div class="admin-layout">
-        <!-- Sidebar -->
-        <nav class="admin-sidebar">
-            <!-- Logo -->
-            <div class="sidebar-logo">
-                <div class="logo-text">
-                    <div class="logo-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <span>AdminPanel</span>
-                </div>
+      <!-- Sidebar -->
+      <nav class="admin-sidebar">
+        <!-- Logo -->
+        <div class="sidebar-logo">
+          <div class="logo-text">
+            <div class="logo-icon">
+              <i class="fas fa-chart-bar"></i>
             </div>
-            
-            <!-- Menu -->
-            <ul class="sidebar-menu">
-                <div class="menu-section-title">Menu</div>
-                <li>
-                    <a href="dashboard.html">
-                        <i class="fas fa-tachometer-alt"></i>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="user-management.html">
-                        <i class="fas fa-users"></i>
-                        Quản lý khách hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="product-type-management.html" class="active">
-                        <i class="fas fa-tags"></i>
-                        Quản lý loại sản phẩm
-                    </a>
-                </li>
-                <li>
-                    <a href="product-management.html">
-                        <i class="fas fa-box"></i>
-                        Quản lý sản phẩm
-                    </a>
-                </li>
-                <li>
-                    <a href="import-management.html">
-                        <i class="fas fa-warehouse"></i>
-                        Quản lý nhập hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="price-management.html">
-                        <i class="fas fa-dollar-sign"></i>
-                        Quản lý giá bán
-                    </a>
-                </li>
-                <li>
-                    <a href="order-management.html">
-                        <i class="fas fa-shopping-cart"></i>
-                        Quản lý đơn hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="inventory-management.html">
-                        <i class="fas fa-clipboard-list"></i>
-                        Quản lý tồn kho
-                    </a>
-                </li>
-                <li>
-                    <a href="#" onclick="handleLogout(); return false;">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Đăng xuất
-                    </a>
-                </li>
-            </ul>
-        </nav>
+            <span>AdminPanel</span>
+          </div>
+        </div>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
+        <!-- Menu -->
+        <ul class="sidebar-menu">
+          <div class="menu-section-title">Menu</div>
+          <li>
+            <a href="dashboard.html">
+              <i class="fas fa-tachometer-alt"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="user-management.html">
+              <i class="fas fa-users"></i>
+              Quản lý khách hàng
+            </a>
+          </li>
+          <li>
+            <a href="product-type-management.html" class="active">
+              <i class="fas fa-tags"></i>
+              Quản lý loại sản phẩm
+            </a>
+          </li>
+          <li>
+            <a href="product-management.html">
+              <i class="fas fa-box"></i>
+              Quản lý sản phẩm
+            </a>
+          </li>
+          <li>
+            <a href="import-management.html">
+              <i class="fas fa-warehouse"></i>
+              Quản lý nhập hàng
+            </a>
+          </li>
+          <li>
+            <a href="price-management.html">
+              <i class="fas fa-dollar-sign"></i>
+              Quản lý giá bán
+            </a>
+          </li>
+          <li>
+            <a href="order-management.html">
+              <i class="fas fa-shopping-cart"></i>
+              Quản lý đơn hàng
+            </a>
+          </li>
+          <li>
+            <a href="inventory-management.html">
+              <i class="fas fa-clipboard-list"></i>
+              Quản lý tồn kho
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="handleLogout(); return false;">
+              <i class="fas fa-sign-out-alt"></i>
+              Đăng xuất
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-        <!-- Main Content -->
-        <main class="admin-main">
-            <div class="admin-content">
-                <!-- Page Header -->
-                <div class="page-header">
-                    <h1 class="page-title">Quản lý loại sản phẩm</h1>
-                    <p class="page-subtitle">Thêm, sửa, xóa và ẩn/hiện các loại sản phẩm</p>
-                </div>
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
 
-                <!-- Search and Filter Bar -->
-                <div class="search-filter-bar">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Tìm kiếm loại sản phẩm...">
-                    </div>
-                    <button class="btn btn-primary" data-modal="addProductTypeModal">
-                        <i class="fas fa-plus"></i>
-                        Thêm loại sản phẩm
-                    </button>
-                </div>
+      <!-- Main Content -->
+      <main class="admin-main">
+        <div class="admin-content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <h1 class="page-title">Quản lý loại sản phẩm</h1>
+            <p class="page-subtitle">
+              Thêm, sửa, xóa và ẩn/hiện các loại sản phẩm
+            </p>
+          </div>
 
-                <!-- Product Types Table -->
-                <div class="admin-card">
-                    <div class="card-header">
-                        <h3 class="card-title">Danh sách loại sản phẩm</h3>
-                        <span class="text-muted">Tổng: 15 loại sản phẩm</span>
-                    </div>
-                    <div class="table-container">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th data-sort="0">ID</th>
-                                    <th data-sort="1">Tên loại sản phẩm</th>
-                                    <th data-sort="2">Mô tả</th>
-                                    <th data-sort="3">Số sản phẩm</th>
-                                    <th data-sort="4">Ngày tạo</th>
-                                    <th data-sort="5">Trạng thái</th>
-                                    <th>Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>LSP001</td>
-                                    <td>Thuốc cảm cúm</td>
-                                    <td>Các loại thuốc điều trị cảm cúm, cảm lạnh</td>
-                                    <td>25</td>
-                                    <td>01/11/2024</td>
-                                    <td><span class="status-badge status-active">Hiển thị</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('LSP001', 'editProductTypeForm', '/api/product-types')">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleStatusChange('LSP001', 'active', 'loại sản phẩm')">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleDelete('LSP001', 'loại sản phẩm')">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>LSP002</td>
-                                    <td>Vitamin và thực phẩm chức năng</td>
-                                    <td>Các loại vitamin, khoáng chất và thực phẩm bổ sung</td>
-                                    <td>45</td>
-                                    <td>02/11/2024</td>
-                                    <td><span class="status-badge status-active">Hiển thị</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('LSP002', 'editProductTypeForm', '/api/product-types')">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleStatusChange('LSP002', 'active', 'loại sản phẩm')">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleDelete('LSP002', 'loại sản phẩm')">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>LSP003</td>
-                                    <td>Thuốc giảm đau</td>
-                                    <td>Các loại thuốc giảm đau, kháng viêm</td>
-                                    <td>18</td>
-                                    <td>03/11/2024</td>
-                                    <td><span class="status-badge status-active">Hiển thị</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('LSP003', 'editProductTypeForm', '/api/product-types')">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleStatusChange('LSP003', 'active', 'loại sản phẩm')">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleDelete('LSP003', 'loại sản phẩm')">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>LSP004</td>
-                                    <td>Thuốc ho</td>
-                                    <td>Các loại thuốc điều trị ho, viêm họng</td>
-                                    <td>12</td>
-                                    <td>04/11/2024</td>
-                                    <td><span class="status-badge status-inactive">Đã ẩn</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('LSP004', 'editProductTypeForm', '/api/product-types')">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-success" onclick="handleStatusChange('LSP004', 'inactive', 'loại sản phẩm')">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleDelete('LSP004', 'loại sản phẩm')">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>LSP005</td>
-                                    <td>Thuốc tiêu hóa</td>
-                                    <td>Các loại thuốc hỗ trợ tiêu hóa, men tiêu hóa</td>
-                                    <td>22</td>
-                                    <td>05/11/2024</td>
-                                    <td><span class="status-badge status-active">Hiển thị</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning" onclick="handleEdit('LSP005', 'editProductTypeForm', '/api/product-types')">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleStatusChange('LSP005', 'active', 'loại sản phẩm')">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" onclick="handleDelete('LSP005', 'loại sản phẩm')">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <!-- Pagination -->
-                    <div class="pagination"></div>
-                </div>
+          <!-- Search and Filter Bar -->
+          <div class="search-filter-bar">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Tìm kiếm loại sản phẩm..." />
             </div>
-        </main>
+            <button class="btn btn-primary" data-modal="addProductTypeModal">
+              <i class="fas fa-plus"></i>
+              Thêm loại sản phẩm
+            </button>
+          </div>
+
+          <!-- Product Types Table -->
+          <div class="admin-card">
+            <div class="card-header">
+              <h3 class="card-title">Danh sách loại sản phẩm</h3>
+              <span class="text-muted">Tổng: 15 loại sản phẩm</span>
+            </div>
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th data-sort="0">ID</th>
+                    <th data-sort="1">Tên loại sản phẩm</th>
+                    <th data-sort="2">Mô tả</th>
+                    <th data-sort="3">Số sản phẩm</th>
+                    <th data-sort="4">Ngày tạo</th>
+                    <th data-sort="5">Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>LSP001</td>
+                    <td>Thuốc cảm cúm</td>
+                    <td>Các loại thuốc điều trị cảm cúm, cảm lạnh</td>
+                    <td>25</td>
+                    <td>01/11/2024</td>
+                    <td>
+                      <span class="status-badge status-active">Hiển thị</span>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="handleEdit('LSP001', 'editProductTypeForm', '/api/product-types')"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleStatusChange('LSP001', 'active', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-eye-slash"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleDelete('LSP001', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LSP002</td>
+                    <td>Vitamin và thực phẩm chức năng</td>
+                    <td>Các loại vitamin, khoáng chất và thực phẩm bổ sung</td>
+                    <td>45</td>
+                    <td>02/11/2024</td>
+                    <td>
+                      <span class="status-badge status-active">Hiển thị</span>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="handleEdit('LSP002', 'editProductTypeForm', '/api/product-types')"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleStatusChange('LSP002', 'active', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-eye-slash"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleDelete('LSP002', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LSP003</td>
+                    <td>Thuốc giảm đau</td>
+                    <td>Các loại thuốc giảm đau, kháng viêm</td>
+                    <td>18</td>
+                    <td>03/11/2024</td>
+                    <td>
+                      <span class="status-badge status-active">Hiển thị</span>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="handleEdit('LSP003', 'editProductTypeForm', '/api/product-types')"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleStatusChange('LSP003', 'active', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-eye-slash"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleDelete('LSP003', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LSP004</td>
+                    <td>Thuốc ho</td>
+                    <td>Các loại thuốc điều trị ho, viêm họng</td>
+                    <td>12</td>
+                    <td>04/11/2024</td>
+                    <td>
+                      <span class="status-badge status-inactive">Đã ẩn</span>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="handleEdit('LSP004', 'editProductTypeForm', '/api/product-types')"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-success"
+                        onclick="handleStatusChange('LSP004', 'inactive', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleDelete('LSP004', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LSP005</td>
+                    <td>Thuốc tiêu hóa</td>
+                    <td>Các loại thuốc hỗ trợ tiêu hóa, men tiêu hóa</td>
+                    <td>22</td>
+                    <td>05/11/2024</td>
+                    <td>
+                      <span class="status-badge status-active">Hiển thị</span>
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        onclick="handleEdit('LSP005', 'editProductTypeForm', '/api/product-types')"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleStatusChange('LSP005', 'active', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-eye-slash"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        onclick="handleDelete('LSP005', 'loại sản phẩm')"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination"></div>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- Add Product Type Modal -->
     <div id="addProductTypeModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Thêm loại sản phẩm mới</h3>
-                <button class="close">&times;</button>
-            </div>
-            <form id="addProductTypeForm">
-                <div class="form-group">
-                    <label for="typeName" class="form-label">Tên loại sản phẩm *</label>
-                    <input type="text" id="typeName" name="typeName" class="form-control" placeholder="Nhập tên loại sản phẩm" required>
-                </div>
-                <div class="form-group">
-                    <label for="typeDescription" class="form-label">Mô tả</label>
-                    <textarea id="typeDescription" name="typeDescription" class="form-control" rows="4" placeholder="Nhập mô tả cho loại sản phẩm"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="typeIcon" class="form-label">Icon (Font Awesome)</label>
-                    <input type="text" id="typeIcon" name="typeIcon" class="form-control" placeholder="fas fa-pills">
-                    <small class="form-text text-muted">Nhập tên class icon Font Awesome (ví dụ: fas fa-pills)</small>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="typeStatus" name="typeStatus" checked>
-                        <span class="checkmark"></span>
-                        Hiển thị loại sản phẩm này
-                    </label>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('addProductTypeModal'))">
-                        Hủy
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        Thêm loại sản phẩm
-                    </button>
-                </div>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Thêm loại sản phẩm mới</h3>
+          <button class="close">&times;</button>
         </div>
+        <form id="addProductTypeForm">
+          <div class="form-group">
+            <label for="typeName" class="form-label">Tên loại sản phẩm *</label>
+            <input
+              type="text"
+              id="typeName"
+              name="typeName"
+              class="form-control"
+              placeholder="Nhập tên loại sản phẩm"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="typeDescription" class="form-label">Mô tả</label>
+            <textarea
+              id="typeDescription"
+              name="typeDescription"
+              class="form-control"
+              rows="4"
+              placeholder="Nhập mô tả cho loại sản phẩm"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="typeIcon" class="form-label">Icon (Font Awesome)</label>
+            <input
+              type="text"
+              id="typeIcon"
+              name="typeIcon"
+              class="form-control"
+              placeholder="fas fa-pills"
+            />
+            <small class="form-text text-muted"
+              >Nhập tên class icon Font Awesome (ví dụ: fas fa-pills)</small
+            >
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                id="typeStatus"
+                name="typeStatus"
+                checked
+              />
+              <span class="checkmark"></span>
+              Hiển thị loại sản phẩm này
+            </label>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal(document.getElementById('addProductTypeModal'))"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i>
+              Thêm loại sản phẩm
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- Edit Product Type Modal -->
     <div id="editProductTypeModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Chỉnh sửa loại sản phẩm</h3>
-                <button class="close">&times;</button>
-            </div>
-            <form id="editProductTypeForm">
-                <input type="hidden" id="editTypeId" name="typeId">
-                <div class="form-group">
-                    <label for="editTypeName" class="form-label">Tên loại sản phẩm *</label>
-                    <input type="text" id="editTypeName" name="typeName" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="editTypeDescription" class="form-label">Mô tả</label>
-                    <textarea id="editTypeDescription" name="typeDescription" class="form-control" rows="4"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="editTypeIcon" class="form-label">Icon (Font Awesome)</label>
-                    <input type="text" id="editTypeIcon" name="typeIcon" class="form-control">
-                    <small class="form-text text-muted">Nhập tên class icon Font Awesome (ví dụ: fas fa-pills)</small>
-                </div>
-                <div class="form-group">
-                    <label for="editTypeStatus" class="form-label">Trạng thái</label>
-                    <select id="editTypeStatus" name="typeStatus" class="form-control">
-                        <option value="active">Hiển thị</option>
-                        <option value="inactive">Ẩn</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('editProductTypeModal'))">
-                        Hủy
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        Cập nhật
-                    </button>
-                </div>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Chỉnh sửa loại sản phẩm</h3>
+          <button class="close">&times;</button>
         </div>
+        <form id="editProductTypeForm">
+          <input type="hidden" id="editTypeId" name="typeId" />
+          <div class="form-group">
+            <label for="editTypeName" class="form-label"
+              >Tên loại sản phẩm *</label
+            >
+            <input
+              type="text"
+              id="editTypeName"
+              name="typeName"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="editTypeDescription" class="form-label">Mô tả</label>
+            <textarea
+              id="editTypeDescription"
+              name="typeDescription"
+              class="form-control"
+              rows="4"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editTypeIcon" class="form-label"
+              >Icon (Font Awesome)</label
+            >
+            <input
+              type="text"
+              id="editTypeIcon"
+              name="typeIcon"
+              class="form-control"
+            />
+            <small class="form-text text-muted"
+              >Nhập tên class icon Font Awesome (ví dụ: fas fa-pills)</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="editTypeStatus" class="form-label">Trạng thái</label>
+            <select id="editTypeStatus" name="typeStatus" class="form-control">
+              <option value="active">Hiển thị</option>
+              <option value="inactive">Ẩn</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal(document.getElementById('editProductTypeModal'))"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i>
+              Cập nhật
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <script src="assets/js/admin.js"></script>
+    <script src="./assets/js/admin.js"></script>
     <script>
-        // Dữ liệu mock loại sản phẩm (có thể thay bằng dữ liệu từ API sau này)
-        const productTypes = [
-            { id: 'LSP001', name: 'Thuốc cảm cúm', description: 'Các loại thuốc điều trị cảm cúm, cảm lạnh', productCount: 25, createdAt: '01/11/2024', status: 'active' },
-            { id: 'LSP002', name: 'Vitamin và thực phẩm chức năng', description: 'Các loại vitamin, khoáng chất và thực phẩm bổ sung', productCount: 45, createdAt: '02/11/2024', status: 'active' },
-            { id: 'LSP003', name: 'Thuốc giảm đau', description: 'Các loại thuốc giảm đau, kháng viêm', productCount: 18, createdAt: '03/11/2024', status: 'active' },
-            { id: 'LSP004', name: 'Thuốc ho', description: 'Các loại thuốc điều trị ho, viêm họng', productCount: 12, createdAt: '04/11/2024', status: 'inactive' },
-            { id: 'LSP005', name: 'Thuốc tiêu hóa', description: 'Các loại thuốc hỗ trợ tiêu hóa, men tiêu hóa', productCount: 22, createdAt: '05/11/2024', status: 'active' }
-        ];
+      // Dữ liệu mock loại sản phẩm (có thể thay bằng dữ liệu từ API sau này)
+      const productTypes = [
+        {
+          id: "LSP001",
+          name: "Thuốc cảm cúm",
+          description: "Các loại thuốc điều trị cảm cúm, cảm lạnh",
+          productCount: 25,
+          createdAt: "01/11/2024",
+          status: "active",
+        },
+        {
+          id: "LSP002",
+          name: "Vitamin và thực phẩm chức năng",
+          description: "Các loại vitamin, khoáng chất và thực phẩm bổ sung",
+          productCount: 45,
+          createdAt: "02/11/2024",
+          status: "active",
+        },
+        {
+          id: "LSP003",
+          name: "Thuốc giảm đau",
+          description: "Các loại thuốc giảm đau, kháng viêm",
+          productCount: 18,
+          createdAt: "03/11/2024",
+          status: "active",
+        },
+        {
+          id: "LSP004",
+          name: "Thuốc ho",
+          description: "Các loại thuốc điều trị ho, viêm họng",
+          productCount: 12,
+          createdAt: "04/11/2024",
+          status: "inactive",
+        },
+        {
+          id: "LSP005",
+          name: "Thuốc tiêu hóa",
+          description: "Các loại thuốc hỗ trợ tiêu hóa, men tiêu hóa",
+          productCount: 22,
+          createdAt: "05/11/2024",
+          status: "active",
+        },
+      ];
 
-        // Sinh ID mới dạng LSPxxx
-        function generateNewId() {
-            const nums = productTypes.map(pt => parseInt(pt.id.replace('LSP', ''), 10));
-            const next = (Math.max(...nums, 0) + 1).toString().padStart(3, '0');
-            return `LSP${next}`;
-        }
+      // Sinh ID mới dạng LSPxxx
+      function generateNewId() {
+        const nums = productTypes.map((pt) =>
+          parseInt(pt.id.replace("LSP", ""), 10)
+        );
+        const next = (Math.max(...nums, 0) + 1).toString().padStart(3, "0");
+        return `LSP${next}`;
+      }
 
-        // Render bảng dựa trên currentPage, itemsPerPage
-        function renderProductTypeTable() {
-            const tbody = document.querySelector('.admin-table tbody');
-            if (!tbody) return;
+      // Render bảng dựa trên currentPage, itemsPerPage
+      function renderProductTypeTable() {
+        const tbody = document.querySelector(".admin-table tbody");
+        if (!tbody) return;
 
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageItems = productTypes.slice(start, end);
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageItems = productTypes.slice(start, end);
 
-            tbody.innerHTML = pageItems.map(pt => {
-                const isActive = pt.status === 'active';
-                const statusBadge = isActive
-                    ? '<span class="status-badge status-active">Hiển thị</span>'
-                    : '<span class="status-badge status-inactive">Đã ẩn</span>';
-                const toggleBtn = isActive
-                    ? `<button class="btn btn-sm btn-danger" onclick="handleStatusChange('${pt.id}', 'active', 'loại sản phẩm')"><i class="fas fa-eye-slash"></i></button>`
-                    : `<button class="btn btn-sm btn-success" onclick="handleStatusChange('${pt.id}', 'inactive', 'loại sản phẩm')"><i class="fas fa-eye"></i></button>`;
+        tbody.innerHTML = pageItems
+          .map((pt) => {
+            const isActive = pt.status === "active";
+            const statusBadge = isActive
+              ? '<span class="status-badge status-active">Hiển thị</span>'
+              : '<span class="status-badge status-inactive">Đã ẩn</span>';
+            const toggleBtn = isActive
+              ? `<button class="btn btn-sm btn-danger" onclick="handleStatusChange('${pt.id}', 'active', 'loại sản phẩm')"><i class="fas fa-eye-slash"></i></button>`
+              : `<button class="btn btn-sm btn-success" onclick="handleStatusChange('${pt.id}', 'inactive', 'loại sản phẩm')"><i class="fas fa-eye"></i></button>`;
 
-                return `
+            return `
                     <tr>
                         <td>${pt.id}</td>
                         <td>${pt.name}</td>
@@ -392,163 +543,187 @@
                         </td>
                     </tr>
                 `;
-            }).join('');
+          })
+          .join("");
 
-            // Cập nhật tổng số
-            const totalSpan = document.querySelector('.card-header .text-muted');
-            if (totalSpan) {
-                totalSpan.textContent = `Tổng: ${productTypes.length} loại sản phẩm`;
-            }
+        // Cập nhật tổng số
+        const totalSpan = document.querySelector(".card-header .text-muted");
+        if (totalSpan) {
+          totalSpan.textContent = `Tổng: ${productTypes.length} loại sản phẩm`;
         }
+      }
 
-        // Ghi đè hàm loadCurrentPageData để trang này tự render
-        function loadCurrentPageData() {
-            renderProductTypeTable();
-            setupPagination(productTypes.length, currentPage, itemsPerPage);
+      // Ghi đè hàm loadCurrentPageData để trang này tự render
+      function loadCurrentPageData() {
+        renderProductTypeTable();
+        setupPagination(productTypes.length, currentPage, itemsPerPage);
+      }
+
+      // Ghi đè các handler CRUD để cập nhật dữ liệu + DOM ngay
+      window.handleEdit = function (id, formId, apiEndpoint) {
+        const modal = document.getElementById("editProductTypeModal");
+        if (!modal) return;
+        const data = productTypes.find((pt) => pt.id === id);
+        if (!data) return;
+        document.getElementById("editTypeId").value = data.id;
+        document.getElementById("editTypeName").value = data.name;
+        document.getElementById("editTypeDescription").value = data.description;
+        document.getElementById("editTypeIcon").value = data.icon || "";
+        document.getElementById("editTypeStatus").value = data.status;
+        openModal("editProductTypeModal");
+      };
+
+      window.handleDelete = function (id, itemName) {
+        if (!confirm("Bạn có chắc chắn muốn xóa " + itemName + " này?")) return;
+        const index = productTypes.findIndex((pt) => pt.id === id);
+        if (index !== -1) {
+          productTypes.splice(index, 1);
+          showAlert("Xóa thành công!", "success");
+          // Điều chỉnh trang hiện tại nếu cần
+          const maxPage = Math.max(
+            1,
+            Math.ceil(productTypes.length / itemsPerPage)
+          );
+          if (currentPage > maxPage) currentPage = maxPage;
+          loadCurrentPageData();
         }
+      };
 
-        // Ghi đè các handler CRUD để cập nhật dữ liệu + DOM ngay
-        window.handleEdit = function(id, formId, apiEndpoint) {
-            const modal = document.getElementById('editProductTypeModal');
-            if (!modal) return;
-            const data = productTypes.find(pt => pt.id === id);
-            if (!data) return;
-            document.getElementById('editTypeId').value = data.id;
-            document.getElementById('editTypeName').value = data.name;
-            document.getElementById('editTypeDescription').value = data.description;
-            document.getElementById('editTypeIcon').value = data.icon || '';
-            document.getElementById('editTypeStatus').value = data.status;
-            openModal('editProductTypeModal');
-        };
+      window.handleStatusChange = function (id, currentStatus, itemName) {
+        const item = productTypes.find((pt) => pt.id === id);
+        if (!item) return;
+        const newStatus = currentStatus === "active" ? "inactive" : "active";
+        const action = newStatus === "active" ? "kích hoạt" : "vô hiệu hóa";
+        if (!confirm(`Bạn có chắc chắn muốn ${action} ${itemName} này?`))
+          return;
+        item.status = newStatus;
+        showAlert(
+          `${action.charAt(0).toUpperCase() + action.slice(1)} thành công!`,
+          "success"
+        );
+        loadCurrentPageData();
+      };
 
-        window.handleDelete = function(id, itemName) {
-            if (!confirm('Bạn có chắc chắn muốn xóa ' + itemName + ' này?')) return;
-            const index = productTypes.findIndex(pt => pt.id === id);
-            if (index !== -1) {
-                productTypes.splice(index, 1);
-                showAlert('Xóa thành công!', 'success');
-                // Điều chỉnh trang hiện tại nếu cần
-                const maxPage = Math.max(1, Math.ceil(productTypes.length / itemsPerPage));
-                if (currentPage > maxPage) currentPage = maxPage;
-                loadCurrentPageData();
-            }
-        };
+      // Submit form: Thêm mới
+      document
+        .getElementById("addProductTypeForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const form = e.currentTarget;
+          if (!validateForm(form)) return;
 
-        window.handleStatusChange = function(id, currentStatus, itemName) {
-            const item = productTypes.find(pt => pt.id === id);
-            if (!item) return;
-            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
-            const action = newStatus === 'active' ? 'kích hoạt' : 'vô hiệu hóa';
-            if (!confirm(`Bạn có chắc chắn muốn ${action} ${itemName} này?`)) return;
-            item.status = newStatus;
-            showAlert(`${action.charAt(0).toUpperCase() + action.slice(1)} thành công!`, 'success');
+          const name = document.getElementById("typeName").value.trim();
+          const description = document
+            .getElementById("typeDescription")
+            .value.trim();
+          const icon = document.getElementById("typeIcon").value.trim();
+          const status = document.getElementById("typeStatus").checked
+            ? "active"
+            : "inactive";
+
+          const newItem = {
+            id: generateNewId(),
+            name,
+            description,
+            icon,
+            productCount: 0,
+            createdAt: new Date().toLocaleDateString("vi-VN"),
+            status,
+          };
+
+          // Mô phỏng API và cập nhật DOM
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+          submitBtn.disabled = true;
+          setTimeout(() => {
+            productTypes.unshift(newItem);
+            showAlert("Thêm thành công!", "success");
+            closeModal(document.getElementById("addProductTypeModal"));
+            form.reset();
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            currentPage = 1;
             loadCurrentPageData();
-        };
+          }, 600);
+        });
 
-        // Submit form: Thêm mới
-        document.getElementById('addProductTypeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.currentTarget;
-            if (!validateForm(form)) return;
+      // Submit form: Cập nhật
+      document
+        .getElementById("editProductTypeForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const form = e.currentTarget;
+          if (!validateForm(form)) return;
+          const id = document.getElementById("editTypeId").value;
+          const name = document.getElementById("editTypeName").value.trim();
+          const description = document
+            .getElementById("editTypeDescription")
+            .value.trim();
+          const icon = document.getElementById("editTypeIcon").value.trim();
+          const status = document.getElementById("editTypeStatus").value;
 
-            const name = document.getElementById('typeName').value.trim();
-            const description = document.getElementById('typeDescription').value.trim();
-            const icon = document.getElementById('typeIcon').value.trim();
-            const status = document.getElementById('typeStatus').checked ? 'active' : 'inactive';
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+          submitBtn.disabled = true;
 
-            const newItem = {
-                id: generateNewId(),
+          setTimeout(() => {
+            const idx = productTypes.findIndex((pt) => pt.id === id);
+            if (idx !== -1) {
+              productTypes[idx] = {
+                ...productTypes[idx],
                 name,
                 description,
                 icon,
-                productCount: 0,
-                createdAt: new Date().toLocaleDateString('vi-VN'),
-                status
-            };
-
-            // Mô phỏng API và cập nhật DOM
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
-            submitBtn.disabled = true;
-            setTimeout(() => {
-                productTypes.unshift(newItem);
-                showAlert('Thêm thành công!', 'success');
-                closeModal(document.getElementById('addProductTypeModal'));
-                form.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                currentPage = 1;
-                loadCurrentPageData();
-            }, 600);
-        });
-
-        // Submit form: Cập nhật
-        document.getElementById('editProductTypeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.currentTarget;
-            if (!validateForm(form)) return;
-            const id = document.getElementById('editTypeId').value;
-            const name = document.getElementById('editTypeName').value.trim();
-            const description = document.getElementById('editTypeDescription').value.trim();
-            const icon = document.getElementById('editTypeIcon').value.trim();
-            const status = document.getElementById('editTypeStatus').value;
-
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                const idx = productTypes.findIndex(pt => pt.id === id);
-                if (idx !== -1) {
-                    productTypes[idx] = { ...productTypes[idx], name, description, icon, status };
-                }
-                showAlert('Cập nhật thành công!', 'success');
-                closeModal(document.getElementById('editProductTypeModal'));
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                loadCurrentPageData();
-            }, 600);
-        });
-
-        // Khởi tạo sau khi DOM sẵn sàng
-        document.addEventListener('DOMContentLoaded', function() {
+                status,
+              };
+            }
+            showAlert("Cập nhật thành công!", "success");
+            closeModal(document.getElementById("editProductTypeModal"));
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
             loadCurrentPageData();
+          }, 600);
         });
+
+      // Khởi tạo sau khi DOM sẵn sàng
+      document.addEventListener("DOMContentLoaded", function () {
+        loadCurrentPageData();
+      });
     </script>
-    
+
     <style>
-        .text-muted {
-            color: #6c757d;
-            font-size: 14px;
-        }
-        
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #f1f3f4;
-        }
-        
-        .form-text {
-            font-size: 12px;
-            color: #6c757d;
-            margin-top: 5px;
-        }
-        
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .checkbox-label input[type="checkbox"] {
-            margin-right: 8px;
-        }
+      .text-muted {
+        color: #6c757d;
+        font-size: 14px;
+      }
+
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #f1f3f4;
+      }
+
+      .form-text {
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 5px;
+      }
+
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .checkbox-label input[type="checkbox"] {
+        margin-right: 8px;
+      }
     </style>
-</body>
+  </body>
 </html>

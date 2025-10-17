@@ -1,854 +1,1101 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý giá bán - Admin Panel</title>
-    <link rel="stylesheet" href="assets/css/admin-style.css">
-    <link rel="stylesheet" href="../client/assets/css/font.css">
-    <link rel="icon" type="image/png" href="../client/assets/images/Logo.png">
-    <link rel="stylesheet" href="assets/css/font.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/admin-style.css" />
+    <link rel="stylesheet" href="../client/assets/css/font.css" />
+    <link rel="icon" type="image/png" href="../client/assets/images/Logo.png" />
+    <link rel="stylesheet" href="./assets/css/font.css" />
+  </head>
+  <body>
     <!-- Admin Header -->
     <header class="admin-header">
-        <div class="container">
-            <div class="admin-logo">
-                <img src="../client/assets/images/Logo.png" alt="Logo">
-                <span>Admin Panel</span>
-            </div>
-            <div class="admin-user-info">
-                <div class="user-avatar">A</div>
-                <span>Admin User</span>
-                <button class="logout-btn" onclick="handleLogout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Đăng xuất
-                </button>
-            </div>
+      <div class="container">
+        <div class="admin-logo">
+          <img src="../client/assets/images/Logo.png" alt="Logo" />
+          <span>Admin Panel</span>
         </div>
+        <div class="admin-user-info">
+          <div class="user-avatar">A</div>
+          <span>Admin User</span>
+          <button class="logout-btn" onclick="handleLogout()">
+            <i class="fas fa-sign-out-alt"></i>
+            Đăng xuất
+          </button>
+        </div>
+      </div>
     </header>
 
     <!-- Admin Layout -->
     <div class="admin-layout">
-        <!-- Sidebar -->
-        <nav class="admin-sidebar">
-            <!-- Logo -->
-            <div class="sidebar-logo">
-                <div class="logo-text">
-                    <div class="logo-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <span>AdminPanel</span>
-                </div>
+      <!-- Sidebar -->
+      <nav class="admin-sidebar">
+        <!-- Logo -->
+        <div class="sidebar-logo">
+          <div class="logo-text">
+            <div class="logo-icon">
+              <i class="fas fa-chart-bar"></i>
             </div>
-            
-            <!-- Menu -->
-            <ul class="sidebar-menu">
-                <div class="menu-section-title">Menu</div>
-                <li>
-                    <a href="dashboard.html">
-                        <i class="fas fa-tachometer-alt"></i>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="user-management.html">
-                        <i class="fas fa-users"></i>
-                        Quản lý khách hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="product-type-management.html">
-                        <i class="fas fa-tags"></i>
-                        Quản lý loại sản phẩm
-                    </a>
-                </li>
-                <li>
-                    <a href="product-management.html">
-                        <i class="fas fa-box"></i>
-                        Quản lý sản phẩm
-                    </a>
-                </li>
-                <li>
-                    <a href="import-management.html">
-                        <i class="fas fa-warehouse"></i>
-                        Quản lý nhập hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="price-management.html" class="active">
-                        <i class="fas fa-dollar-sign"></i>
-                        Quản lý giá bán
-                    </a>
-                </li>
-                <li>
-                    <a href="order-management.html">
-                        <i class="fas fa-shopping-cart"></i>
-                        Quản lý đơn hàng
-                    </a>
-                </li>
-                <li>
-                    <a href="inventory-management.html">
-                        <i class="fas fa-clipboard-list"></i>
-                        Quản lý tồn kho
-                    </a>
-                </li>
-                <li>
-                    <a href="#" onclick="handleLogout(); return false;">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Đăng xuất
-                    </a>
-                </li>
-            </ul>
-        </nav>
+            <span>AdminPanel</span>
+          </div>
+        </div>
 
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
+        <!-- Menu -->
+        <ul class="sidebar-menu">
+          <div class="menu-section-title">Menu</div>
+          <li>
+            <a href="dashboard.html">
+              <i class="fas fa-tachometer-alt"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="user-management.html">
+              <i class="fas fa-users"></i>
+              Quản lý khách hàng
+            </a>
+          </li>
+          <li>
+            <a href="product-type-management.html">
+              <i class="fas fa-tags"></i>
+              Quản lý loại sản phẩm
+            </a>
+          </li>
+          <li>
+            <a href="product-management.html">
+              <i class="fas fa-box"></i>
+              Quản lý sản phẩm
+            </a>
+          </li>
+          <li>
+            <a href="import-management.html">
+              <i class="fas fa-warehouse"></i>
+              Quản lý nhập hàng
+            </a>
+          </li>
+          <li>
+            <a href="price-management.html" class="active">
+              <i class="fas fa-dollar-sign"></i>
+              Quản lý giá bán
+            </a>
+          </li>
+          <li>
+            <a href="order-management.html">
+              <i class="fas fa-shopping-cart"></i>
+              Quản lý đơn hàng
+            </a>
+          </li>
+          <li>
+            <a href="inventory-management.html">
+              <i class="fas fa-clipboard-list"></i>
+              Quản lý tồn kho
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="handleLogout(); return false;">
+              <i class="fas fa-sign-out-alt"></i>
+              Đăng xuất
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-        <!-- Main Content -->
-        <main class="admin-main">
-            <div class="admin-content">
-                <!-- Page Header -->
-                <div class="page-header">
-                    <h1 class="page-title">Quản lý giá bán</h1>
-                    <p class="page-subtitle">Thiết lập và quản lý giá bán, phần trăm lợi nhuận theo loại sản phẩm</p>
-                </div>
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
 
-                <!-- Tabs -->
-                <div class="price-tabs">
-                    <button class="tab-button active" onclick="switchTab('by-type')">
-                        <i class="fas fa-tags"></i>
-                        Theo loại sản phẩm
-                    </button>
-                    <button class="tab-button" onclick="switchTab('by-product')">
-                        <i class="fas fa-box"></i>
-                        Theo sản phẩm
-                    </button>
-                    <button class="tab-button" onclick="switchTab('price-list')">
-                        <i class="fas fa-list"></i>
-                        Danh sách giá
-                    </button>
-                </div>
+      <!-- Main Content -->
+      <main class="admin-main">
+        <div class="admin-content">
+          <!-- Page Header -->
+          <div class="page-header">
+            <h1 class="page-title">Quản lý giá bán</h1>
+            <p class="page-subtitle">
+              Thiết lập và quản lý giá bán, phần trăm lợi nhuận theo loại sản
+              phẩm
+            </p>
+          </div>
 
-                <!-- Tab Content: By Product Type -->
-                <div id="by-type-tab" class="tab-content active">
-                    <div class="search-filter-bar">
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Tìm kiếm loại sản phẩm...">
-                        </div>
-                        <button class="btn btn-primary" data-modal="addProfitModal">
-                            <i class="fas fa-plus"></i>
-                            Thêm quy tắc lợi nhuận
-                        </button>
-                    </div>
+          <!-- Tabs -->
+          <div class="price-tabs">
+            <button class="tab-button active" onclick="switchTab('by-type')">
+              <i class="fas fa-tags"></i>
+              Theo loại sản phẩm
+            </button>
+            <button class="tab-button" onclick="switchTab('by-product')">
+              <i class="fas fa-box"></i>
+              Theo sản phẩm
+            </button>
+            <button class="tab-button" onclick="switchTab('price-list')">
+              <i class="fas fa-list"></i>
+              Danh sách giá
+            </button>
+          </div>
 
-                    <div class="admin-card">
-                        <div class="card-header">
-                            <h3 class="card-title">Quy tắc lợi nhuận theo loại sản phẩm</h3>
-                        </div>
-                        <div class="table-container">
-                            <table class="admin-table">
-                                <thead>
-                                    <tr>
-                                        <th>Loại sản phẩm</th>
-                                        <th>Phần trăm lợi nhuận (%)</th>
-                                        <th>Ngày cập nhật</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Thuốc cảm cúm</td>
-                                        <td>25%</td>
-                                        <td>10/12/2024</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProfitRule('LSP001')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" onclick="deleteProfitRule('LSP001')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Vitamin và thực phẩm chức năng</td>
-                                        <td>30%</td>
-                                        <td>08/12/2024</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProfitRule('LSP002')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" onclick="deleteProfitRule('LSP002')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Thuốc giảm đau</td>
-                                        <td>20%</td>
-                                        <td>05/12/2024</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProfitRule('LSP003')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" onclick="deleteProfitRule('LSP003')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Thuốc ho</td>
-                                        <td>22%</td>
-                                        <td>03/12/2024</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProfitRule('LSP004')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" onclick="deleteProfitRule('LSP004')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Thuốc tiêu hóa</td>
-                                        <td>18%</td>
-                                        <td>01/12/2024</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProfitRule('LSP005')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-danger" onclick="deleteProfitRule('LSP005')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab Content: By Product -->
-                <div id="by-product-tab" class="tab-content">
-                    <div class="search-filter-bar">
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Tìm kiếm sản phẩm...">
-                        </div>
-                        <select class="form-control filter-select">
-                            <option value="all">Tất cả loại sản phẩm</option>
-                            <option value="LSP001">Thuốc cảm cúm</option>
-                            <option value="LSP002">Vitamin và thực phẩm chức năng</option>
-                            <option value="LSP003">Thuốc giảm đau</option>
-                            <option value="LSP004">Thuốc ho</option>
-                            <option value="LSP005">Thuốc tiêu hóa</option>
-                        </select>
-                        <button class="btn btn-primary" onclick="bulkUpdatePrices()">
-                            <i class="fas fa-sync"></i>
-                            Cập nhật giá hàng loạt
-                        </button>
-                    </div>
-
-                    <div class="admin-card">
-                        <div class="card-header">
-                            <h3 class="card-title">Quy tắc lợi nhuận theo sản phẩm</h3>
-                        </div>
-                        <div class="table-container">
-                            <table class="admin-table">
-                                <thead>
-                                    <tr>
-                                        <th>Sản phẩm</th>
-                                        <th>Loại sản phẩm</th>
-                                        <th>Giá nhập</th>
-                                        <th>Phần trăm lợi nhuận</th>
-                                        <th>Giá bán</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Panadol Extra 500mg</td>
-                                        <td>Thuốc giảm đau</td>
-                                        <td>20,000 VNĐ</td>
-                                        <td>25%</td>
-                                        <td>25,000 VNĐ</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProductPrice('SP001')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Thuốc điều trị COVID-19</td>
-                                        <td>Thuốc cảm cúm</td>
-                                        <td>120,000 VNĐ</td>
-                                        <td>25%</td>
-                                        <td>150,000 VNĐ</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProductPrice('SP002')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ginkgo Biloba 120mg</td>
-                                        <td>Vitamin và thực phẩm chức năng</td>
-                                        <td>150,000 VNĐ</td>
-                                        <td>20%</td>
-                                        <td>180,000 VNĐ</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProductPrice('SP003')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hevel 500mg</td>
-                                        <td>Thuốc tiêu hóa</td>
-                                        <td>30,000 VNĐ</td>
-                                        <td>17%</td>
-                                        <td>35,000 VNĐ</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProductPrice('SP004')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Immucan 100ml</td>
-                                        <td>Vitamin và thực phẩm chức năng</td>
-                                        <td>100,000 VNĐ</td>
-                                        <td>20%</td>
-                                        <td>120,000 VNĐ</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-warning" onclick="editProductPrice('SP005')">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab Content: Price List -->
-                <div id="price-list-tab" class="tab-content">
-                    <div class="search-filter-bar">
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Tìm kiếm theo tên sản phẩm, mã sản phẩm...">
-                        </div>
-                        <select class="form-control filter-select">
-                            <option value="all">Tất cả loại sản phẩm</option>
-                            <option value="LSP001">Thuốc cảm cúm</option>
-                            <option value="LSP002">Vitamin và thực phẩm chức năng</option>
-                            <option value="LSP003">Thuốc giảm đau</option>
-                            <option value="LSP004">Thuốc ho</option>
-                            <option value="LSP005">Thuốc tiêu hóa</option>
-                        </select>
-                        <button class="btn btn-success" onclick="exportPriceList()">
-                            <i class="fas fa-download"></i>
-                            Xuất danh sách giá
-                        </button>
-                    </div>
-
-                    <div class="admin-card">
-                        <div class="card-header">
-                            <h3 class="card-title">Danh sách giá sản phẩm</h3>
-                            <span class="text-muted">Tổng: 450 sản phẩm</span>
-                        </div>
-                        <div class="table-container">
-                            <table class="admin-table">
-                                <thead>
-                                    <tr>
-                                        <th>Mã SP</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Loại sản phẩm</th>
-                                        <th>Giá nhập</th>
-                                        <th>Phần trăm lợi nhuận</th>
-                                        <th>Giá bán</th>
-                                        <th>Lợi nhuận</th>
-                                        <th>Cập nhật lần cuối</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>SP001</td>
-                                        <td>Panadol Extra 500mg</td>
-                                        <td>Thuốc giảm đau</td>
-                                        <td>20,000 VNĐ</td>
-                                        <td>25%</td>
-                                        <td>25,000 VNĐ</td>
-                                        <td>5,000 VNĐ</td>
-                                        <td>10/12/2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SP002</td>
-                                        <td>Thuốc điều trị COVID-19</td>
-                                        <td>Thuốc cảm cúm</td>
-                                        <td>120,000 VNĐ</td>
-                                        <td>25%</td>
-                                        <td>150,000 VNĐ</td>
-                                        <td>30,000 VNĐ</td>
-                                        <td>08/12/2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SP003</td>
-                                        <td>Ginkgo Biloba 120mg</td>
-                                        <td>Vitamin và thực phẩm chức năng</td>
-                                        <td>150,000 VNĐ</td>
-                                        <td>20%</td>
-                                        <td>180,000 VNĐ</td>
-                                        <td>30,000 VNĐ</td>
-                                        <td>05/12/2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SP004</td>
-                                        <td>Hevel 500mg</td>
-                                        <td>Thuốc tiêu hóa</td>
-                                        <td>30,000 VNĐ</td>
-                                        <td>17%</td>
-                                        <td>35,000 VNĐ</td>
-                                        <td>5,000 VNĐ</td>
-                                        <td>03/12/2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td>SP005</td>
-                                        <td>Immucan 100ml</td>
-                                        <td>Vitamin và thực phẩm chức năng</td>
-                                        <td>100,000 VNĐ</td>
-                                        <td>20%</td>
-                                        <td>120,000 VNĐ</td>
-                                        <td>20,000 VNĐ</td>
-                                        <td>01/12/2024</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <!-- Pagination -->
-                        <div class="pagination"></div>
-                    </div>
-                </div>
+          <!-- Tab Content: By Product Type -->
+          <div id="by-type-tab" class="tab-content active">
+            <div class="search-filter-bar">
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Tìm kiếm loại sản phẩm..." />
+              </div>
+              <button class="btn btn-primary" data-modal="addProfitModal">
+                <i class="fas fa-plus"></i>
+                Thêm quy tắc lợi nhuận
+              </button>
             </div>
-        </main>
+
+            <div class="admin-card">
+              <div class="card-header">
+                <h3 class="card-title">Quy tắc lợi nhuận theo loại sản phẩm</h3>
+              </div>
+              <div class="table-container">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Loại sản phẩm</th>
+                      <th>Phần trăm lợi nhuận (%)</th>
+                      <th>Ngày cập nhật</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Thuốc cảm cúm</td>
+                      <td>25%</td>
+                      <td>10/12/2024</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProfitRule('LSP001')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          onclick="deleteProfitRule('LSP001')"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Vitamin và thực phẩm chức năng</td>
+                      <td>30%</td>
+                      <td>08/12/2024</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProfitRule('LSP002')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          onclick="deleteProfitRule('LSP002')"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Thuốc giảm đau</td>
+                      <td>20%</td>
+                      <td>05/12/2024</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProfitRule('LSP003')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          onclick="deleteProfitRule('LSP003')"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Thuốc ho</td>
+                      <td>22%</td>
+                      <td>03/12/2024</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProfitRule('LSP004')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          onclick="deleteProfitRule('LSP004')"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Thuốc tiêu hóa</td>
+                      <td>18%</td>
+                      <td>01/12/2024</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProfitRule('LSP005')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button
+                          class="btn btn-sm btn-danger"
+                          onclick="deleteProfitRule('LSP005')"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: By Product -->
+          <div id="by-product-tab" class="tab-content">
+            <div class="search-filter-bar">
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+              </div>
+              <select class="form-control filter-select">
+                <option value="all">Tất cả loại sản phẩm</option>
+                <option value="LSP001">Thuốc cảm cúm</option>
+                <option value="LSP002">Vitamin và thực phẩm chức năng</option>
+                <option value="LSP003">Thuốc giảm đau</option>
+                <option value="LSP004">Thuốc ho</option>
+                <option value="LSP005">Thuốc tiêu hóa</option>
+              </select>
+              <button class="btn btn-primary" onclick="bulkUpdatePrices()">
+                <i class="fas fa-sync"></i>
+                Cập nhật giá hàng loạt
+              </button>
+            </div>
+
+            <div class="admin-card">
+              <div class="card-header">
+                <h3 class="card-title">Quy tắc lợi nhuận theo sản phẩm</h3>
+              </div>
+              <div class="table-container">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Sản phẩm</th>
+                      <th>Loại sản phẩm</th>
+                      <th>Giá nhập</th>
+                      <th>Phần trăm lợi nhuận</th>
+                      <th>Giá bán</th>
+                      <th>Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Panadol Extra 500mg</td>
+                      <td>Thuốc giảm đau</td>
+                      <td>20,000 VNĐ</td>
+                      <td>25%</td>
+                      <td>25,000 VNĐ</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProductPrice('SP001')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Thuốc điều trị COVID-19</td>
+                      <td>Thuốc cảm cúm</td>
+                      <td>120,000 VNĐ</td>
+                      <td>25%</td>
+                      <td>150,000 VNĐ</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProductPrice('SP002')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Ginkgo Biloba 120mg</td>
+                      <td>Vitamin và thực phẩm chức năng</td>
+                      <td>150,000 VNĐ</td>
+                      <td>20%</td>
+                      <td>180,000 VNĐ</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProductPrice('SP003')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Hevel 500mg</td>
+                      <td>Thuốc tiêu hóa</td>
+                      <td>30,000 VNĐ</td>
+                      <td>17%</td>
+                      <td>35,000 VNĐ</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProductPrice('SP004')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Immucan 100ml</td>
+                      <td>Vitamin và thực phẩm chức năng</td>
+                      <td>100,000 VNĐ</td>
+                      <td>20%</td>
+                      <td>120,000 VNĐ</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-warning"
+                          onclick="editProductPrice('SP005')"
+                        >
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: Price List -->
+          <div id="price-list-tab" class="tab-content">
+            <div class="search-filter-bar">
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm theo tên sản phẩm, mã sản phẩm..."
+                />
+              </div>
+              <select class="form-control filter-select">
+                <option value="all">Tất cả loại sản phẩm</option>
+                <option value="LSP001">Thuốc cảm cúm</option>
+                <option value="LSP002">Vitamin và thực phẩm chức năng</option>
+                <option value="LSP003">Thuốc giảm đau</option>
+                <option value="LSP004">Thuốc ho</option>
+                <option value="LSP005">Thuốc tiêu hóa</option>
+              </select>
+              <button class="btn btn-success" onclick="exportPriceList()">
+                <i class="fas fa-download"></i>
+                Xuất danh sách giá
+              </button>
+            </div>
+
+            <div class="admin-card">
+              <div class="card-header">
+                <h3 class="card-title">Danh sách giá sản phẩm</h3>
+                <span class="text-muted">Tổng: 450 sản phẩm</span>
+              </div>
+              <div class="table-container">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Mã SP</th>
+                      <th>Tên sản phẩm</th>
+                      <th>Loại sản phẩm</th>
+                      <th>Giá nhập</th>
+                      <th>Phần trăm lợi nhuận</th>
+                      <th>Giá bán</th>
+                      <th>Lợi nhuận</th>
+                      <th>Cập nhật lần cuối</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>SP001</td>
+                      <td>Panadol Extra 500mg</td>
+                      <td>Thuốc giảm đau</td>
+                      <td>20,000 VNĐ</td>
+                      <td>25%</td>
+                      <td>25,000 VNĐ</td>
+                      <td>5,000 VNĐ</td>
+                      <td>10/12/2024</td>
+                    </tr>
+                    <tr>
+                      <td>SP002</td>
+                      <td>Thuốc điều trị COVID-19</td>
+                      <td>Thuốc cảm cúm</td>
+                      <td>120,000 VNĐ</td>
+                      <td>25%</td>
+                      <td>150,000 VNĐ</td>
+                      <td>30,000 VNĐ</td>
+                      <td>08/12/2024</td>
+                    </tr>
+                    <tr>
+                      <td>SP003</td>
+                      <td>Ginkgo Biloba 120mg</td>
+                      <td>Vitamin và thực phẩm chức năng</td>
+                      <td>150,000 VNĐ</td>
+                      <td>20%</td>
+                      <td>180,000 VNĐ</td>
+                      <td>30,000 VNĐ</td>
+                      <td>05/12/2024</td>
+                    </tr>
+                    <tr>
+                      <td>SP004</td>
+                      <td>Hevel 500mg</td>
+                      <td>Thuốc tiêu hóa</td>
+                      <td>30,000 VNĐ</td>
+                      <td>17%</td>
+                      <td>35,000 VNĐ</td>
+                      <td>5,000 VNĐ</td>
+                      <td>03/12/2024</td>
+                    </tr>
+                    <tr>
+                      <td>SP005</td>
+                      <td>Immucan 100ml</td>
+                      <td>Vitamin và thực phẩm chức năng</td>
+                      <td>100,000 VNĐ</td>
+                      <td>20%</td>
+                      <td>120,000 VNĐ</td>
+                      <td>20,000 VNĐ</td>
+                      <td>01/12/2024</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination -->
+              <div class="pagination"></div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- Add Profit Rule Modal -->
     <div id="addProfitModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Thêm quy tắc lợi nhuận</h3>
-                <button class="close">&times;</button>
-            </div>
-            <form id="addProfitForm">
-                <div class="form-group">
-                    <label for="productType" class="form-label">Loại sản phẩm *</label>
-                    <select id="productType" name="productType" class="form-control" required>
-                        <option value="">Chọn loại sản phẩm</option>
-                        <option value="LSP001">Thuốc cảm cúm</option>
-                        <option value="LSP002">Vitamin và thực phẩm chức năng</option>
-                        <option value="LSP003">Thuốc giảm đau</option>
-                        <option value="LSP004">Thuốc ho</option>
-                        <option value="LSP005">Thuốc tiêu hóa</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="profitPercentage" class="form-label">Phần trăm lợi nhuận (%) *</label>
-                    <input type="number" id="profitPercentage" name="profitPercentage" class="form-control" min="0" max="100" step="0.1" required>
-                    <small class="form-text text-muted">Nhập phần trăm lợi nhuận (ví dụ: 25 cho 25%)</small>
-                </div>
-                <div class="form-group">
-                    <label for="profitNote" class="form-label">Ghi chú</label>
-                    <textarea id="profitNote" name="profitNote" class="form-control" rows="3" placeholder="Nhập ghi chú cho quy tắc lợi nhuận"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('addProfitModal'))">
-                        Hủy
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        Thêm quy tắc
-                    </button>
-                </div>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Thêm quy tắc lợi nhuận</h3>
+          <button class="close">&times;</button>
         </div>
+        <form id="addProfitForm">
+          <div class="form-group">
+            <label for="productType" class="form-label">Loại sản phẩm *</label>
+            <select
+              id="productType"
+              name="productType"
+              class="form-control"
+              required
+            >
+              <option value="">Chọn loại sản phẩm</option>
+              <option value="LSP001">Thuốc cảm cúm</option>
+              <option value="LSP002">Vitamin và thực phẩm chức năng</option>
+              <option value="LSP003">Thuốc giảm đau</option>
+              <option value="LSP004">Thuốc ho</option>
+              <option value="LSP005">Thuốc tiêu hóa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="profitPercentage" class="form-label"
+              >Phần trăm lợi nhuận (%) *</label
+            >
+            <input
+              type="number"
+              id="profitPercentage"
+              name="profitPercentage"
+              class="form-control"
+              min="0"
+              max="100"
+              step="0.1"
+              required
+            />
+            <small class="form-text text-muted"
+              >Nhập phần trăm lợi nhuận (ví dụ: 25 cho 25%)</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="profitNote" class="form-label">Ghi chú</label>
+            <textarea
+              id="profitNote"
+              name="profitNote"
+              class="form-control"
+              rows="3"
+              placeholder="Nhập ghi chú cho quy tắc lợi nhuận"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal(document.getElementById('addProfitModal'))"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i>
+              Thêm quy tắc
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- Edit Product Price Modal -->
     <div id="editPriceModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Chỉnh sửa giá sản phẩm</h3>
-                <button class="close">&times;</button>
-            </div>
-            <form id="editPriceForm">
-                <input type="hidden" id="editProductId" name="productId">
-                <div class="form-group">
-                    <label for="editProductName" class="form-label">Tên sản phẩm</label>
-                    <input type="text" id="editProductName" class="form-control" readonly>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="editCostPrice" class="form-label">Giá nhập (VNĐ) *</label>
-                        <input type="number" id="editCostPrice" name="costPrice" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="editProfitPercent" class="form-label">Phần trăm lợi nhuận (%) *</label>
-                        <input type="number" id="editProfitPercent" name="profitPercent" class="form-control" min="0" max="100" step="0.1" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="editSellingPrice" class="form-label">Giá bán (VNĐ)</label>
-                    <input type="number" id="editSellingPrice" name="sellingPrice" class="form-control" readonly>
-                    <small class="form-text text-muted">Giá bán sẽ được tính tự động dựa trên giá nhập và phần trăm lợi nhuận</small>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal(document.getElementById('editPriceModal'))">
-                        Hủy
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        Cập nhật giá
-                    </button>
-                </div>
-            </form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Chỉnh sửa giá sản phẩm</h3>
+          <button class="close">&times;</button>
         </div>
+        <form id="editPriceForm">
+          <input type="hidden" id="editProductId" name="productId" />
+          <div class="form-group">
+            <label for="editProductName" class="form-label">Tên sản phẩm</label>
+            <input
+              type="text"
+              id="editProductName"
+              class="form-control"
+              readonly
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="editCostPrice" class="form-label"
+                >Giá nhập (VNĐ) *</label
+              >
+              <input
+                type="number"
+                id="editCostPrice"
+                name="costPrice"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="editProfitPercent" class="form-label"
+                >Phần trăm lợi nhuận (%) *</label
+              >
+              <input
+                type="number"
+                id="editProfitPercent"
+                name="profitPercent"
+                class="form-control"
+                min="0"
+                max="100"
+                step="0.1"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="editSellingPrice" class="form-label"
+              >Giá bán (VNĐ)</label
+            >
+            <input
+              type="number"
+              id="editSellingPrice"
+              name="sellingPrice"
+              class="form-control"
+              readonly
+            />
+            <small class="form-text text-muted"
+              >Giá bán sẽ được tính tự động dựa trên giá nhập và phần trăm lợi
+              nhuận</small
+            >
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeModal(document.getElementById('editPriceModal'))"
+            >
+              Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i>
+              Cập nhật giá
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <script src="assets/js/admin.js"></script>
+    <script src="./assets/js/admin.js"></script>
     <script>
-        // Map loại sản phẩm
-        const productTypeMap = {
-            LSP001: 'Thuốc cảm cúm',
-            LSP002: 'Vitamin và thực phẩm chức năng',
-            LSP003: 'Thuốc giảm đau',
-            LSP004: 'Thuốc ho',
-            LSP005: 'Thuốc tiêu hóa'
-        };
+      // Map loại sản phẩm
+      const productTypeMap = {
+        LSP001: "Thuốc cảm cúm",
+        LSP002: "Vitamin và thực phẩm chức năng",
+        LSP003: "Thuốc giảm đau",
+        LSP004: "Thuốc ho",
+        LSP005: "Thuốc tiêu hóa",
+      };
 
-        // Quy tắc lợi nhuận theo loại
-        const profitRules = [
-            { typeId: 'LSP001', percentage: 25, updatedAt: '10/12/2024', note: 'Quy tắc lợi nhuận cho thuốc cảm cúm' },
-            { typeId: 'LSP002', percentage: 30, updatedAt: '08/12/2024', note: '' },
-            { typeId: 'LSP003', percentage: 20, updatedAt: '05/12/2024', note: '' },
-            { typeId: 'LSP004', percentage: 22, updatedAt: '03/12/2024', note: '' },
-            { typeId: 'LSP005', percentage: 18, updatedAt: '01/12/2024', note: '' }
-        ];
+      // Quy tắc lợi nhuận theo loại
+      const profitRules = [
+        {
+          typeId: "LSP001",
+          percentage: 25,
+          updatedAt: "10/12/2024",
+          note: "Quy tắc lợi nhuận cho thuốc cảm cúm",
+        },
+        { typeId: "LSP002", percentage: 30, updatedAt: "08/12/2024", note: "" },
+        { typeId: "LSP003", percentage: 20, updatedAt: "05/12/2024", note: "" },
+        { typeId: "LSP004", percentage: 22, updatedAt: "03/12/2024", note: "" },
+        { typeId: "LSP005", percentage: 18, updatedAt: "01/12/2024", note: "" },
+      ];
 
-        // Giá theo sản phẩm
-        const productPrices = [
-            { id: 'SP001', name: 'Panadol Extra 500mg', typeId: 'LSP003', costPrice: 20000, profitPercent: 25, sellingPrice: 25000 },
-            { id: 'SP002', name: 'Thuốc điều trị COVID-19', typeId: 'LSP001', costPrice: 120000, profitPercent: 25, sellingPrice: 150000 },
-            { id: 'SP003', name: 'Ginkgo Biloba 120mg', typeId: 'LSP002', costPrice: 150000, profitPercent: 20, sellingPrice: 180000 },
-            { id: 'SP004', name: 'Hevel 500mg', typeId: 'LSP005', costPrice: 30000, profitPercent: 17, sellingPrice: 35000 },
-            { id: 'SP005', name: 'Immucan 100ml', typeId: 'LSP002', costPrice: 100000, profitPercent: 20, sellingPrice: 120000 }
-        ];
+      // Giá theo sản phẩm
+      const productPrices = [
+        {
+          id: "SP001",
+          name: "Panadol Extra 500mg",
+          typeId: "LSP003",
+          costPrice: 20000,
+          profitPercent: 25,
+          sellingPrice: 25000,
+        },
+        {
+          id: "SP002",
+          name: "Thuốc điều trị COVID-19",
+          typeId: "LSP001",
+          costPrice: 120000,
+          profitPercent: 25,
+          sellingPrice: 150000,
+        },
+        {
+          id: "SP003",
+          name: "Ginkgo Biloba 120mg",
+          typeId: "LSP002",
+          costPrice: 150000,
+          profitPercent: 20,
+          sellingPrice: 180000,
+        },
+        {
+          id: "SP004",
+          name: "Hevel 500mg",
+          typeId: "LSP005",
+          costPrice: 30000,
+          profitPercent: 17,
+          sellingPrice: 35000,
+        },
+        {
+          id: "SP005",
+          name: "Immucan 100ml",
+          typeId: "LSP002",
+          costPrice: 100000,
+          profitPercent: 20,
+          sellingPrice: 120000,
+        },
+      ];
 
-        // Render: Quy tắc theo loại
-        function renderByTypeTable() {
-            const tbody = document.querySelector('#by-type-tab .admin-table tbody');
-            if (!tbody) return;
-            tbody.innerHTML = profitRules.map(rule => `
+      // Render: Quy tắc theo loại
+      function renderByTypeTable() {
+        const tbody = document.querySelector("#by-type-tab .admin-table tbody");
+        if (!tbody) return;
+        tbody.innerHTML = profitRules
+          .map(
+            (rule) => `
                 <tr>
                     <td>${productTypeMap[rule.typeId] || rule.typeId}</td>
                     <td>${rule.percentage}%</td>
                     <td>${rule.updatedAt}</td>
                     <td>
-                        <button class="btn btn-sm btn-warning" onclick="editProfitRule('${rule.typeId}')"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger" onclick="deleteProfitRule('${rule.typeId}')"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-sm btn-warning" onclick="editProfitRule('${
+                          rule.typeId
+                        }')"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteProfitRule('${
+                          rule.typeId
+                        }')"><i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
-            `).join('');
-        }
+            `
+          )
+          .join("");
+      }
 
-        // Render: Quy tắc theo sản phẩm
-        function renderByProductTable() {
-            const tbody = document.querySelector('#by-product-tab .admin-table tbody');
-            if (!tbody) return;
-            tbody.innerHTML = productPrices.map(p => `
+      // Render: Quy tắc theo sản phẩm
+      function renderByProductTable() {
+        const tbody = document.querySelector(
+          "#by-product-tab .admin-table tbody"
+        );
+        if (!tbody) return;
+        tbody.innerHTML = productPrices
+          .map(
+            (p) => `
                 <tr data-type-id="${p.typeId}">
                     <td>${p.name}</td>
-                    <td>${productTypeMap[p.typeId] || ''}</td>
-                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.costPrice) : p.costPrice.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${productTypeMap[p.typeId] || ""}</td>
+                    <td>${
+                      AdminJS && AdminJS.formatCurrency
+                        ? AdminJS.formatCurrency(p.costPrice)
+                        : p.costPrice.toLocaleString("vi-VN") + " VNĐ"
+                    }</td>
                     <td>${p.profitPercent}%</td>
-                    <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.sellingPrice) : p.sellingPrice.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                    <td>${
+                      AdminJS && AdminJS.formatCurrency
+                        ? AdminJS.formatCurrency(p.sellingPrice)
+                        : p.sellingPrice.toLocaleString("vi-VN") + " VNĐ"
+                    }</td>
                     <td>
-                        <button class="btn btn-sm btn-warning" onclick="editProductPrice('${p.id}')"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-sm btn-warning" onclick="editProductPrice('${
+                          p.id
+                        }')"><i class="fas fa-edit"></i></button>
                     </td>
                 </tr>
-            `).join('');
-        }
+            `
+          )
+          .join("");
+      }
 
-        // Render: Danh sách giá
-        function renderPriceListTable() {
-            const tbody = document.querySelector('#price-list-tab .admin-table tbody');
-            if (!tbody) return;
-            // có thể hiển thị thêm lợi nhuận = selling - cost
-            tbody.innerHTML = productPrices.map(p => {
-                const profit = Math.max(0, p.sellingPrice - p.costPrice);
-                return `
+      // Render: Danh sách giá
+      function renderPriceListTable() {
+        const tbody = document.querySelector(
+          "#price-list-tab .admin-table tbody"
+        );
+        if (!tbody) return;
+        // có thể hiển thị thêm lợi nhuận = selling - cost
+        tbody.innerHTML = productPrices
+          .map((p) => {
+            const profit = Math.max(0, p.sellingPrice - p.costPrice);
+            return `
                     <tr data-type-id="${p.typeId}">
                         <td>${p.id}</td>
                         <td>${p.name}</td>
-                        <td>${productTypeMap[p.typeId] || ''}</td>
-                        <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.costPrice) : p.costPrice.toLocaleString('vi-VN') + ' VNĐ'}</td>
+                        <td>${productTypeMap[p.typeId] || ""}</td>
+                        <td>${
+                          AdminJS && AdminJS.formatCurrency
+                            ? AdminJS.formatCurrency(p.costPrice)
+                            : p.costPrice.toLocaleString("vi-VN") + " VNĐ"
+                        }</td>
                         <td>${p.profitPercent}%</td>
-                        <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(p.sellingPrice) : p.sellingPrice.toLocaleString('vi-VN') + ' VNĐ'}</td>
-                        <td>${(AdminJS && AdminJS.formatCurrency) ? AdminJS.formatCurrency(profit) : profit.toLocaleString('vi-VN') + ' VNĐ'}</td>
-                        <td>${new Date().toLocaleDateString('vi-VN')}</td>
+                        <td>${
+                          AdminJS && AdminJS.formatCurrency
+                            ? AdminJS.formatCurrency(p.sellingPrice)
+                            : p.sellingPrice.toLocaleString("vi-VN") + " VNĐ"
+                        }</td>
+                        <td>${
+                          AdminJS && AdminJS.formatCurrency
+                            ? AdminJS.formatCurrency(profit)
+                            : profit.toLocaleString("vi-VN") + " VNĐ"
+                        }</td>
+                        <td>${new Date().toLocaleDateString("vi-VN")}</td>
                     </tr>
                 `;
-            }).join('');
-            const totalSpan = document.querySelector('#price-list-tab .card-header .text-muted');
-            if (totalSpan) totalSpan.textContent = `Tổng: ${productPrices.length} sản phẩm`;
-        }
+          })
+          .join("");
+        const totalSpan = document.querySelector(
+          "#price-list-tab .card-header .text-muted"
+        );
+        if (totalSpan)
+          totalSpan.textContent = `Tổng: ${productPrices.length} sản phẩm`;
+      }
 
-        // Ghi đè loadCurrentPageData
-        function loadCurrentPageData() {
-            renderByTypeTable();
-            renderByProductTable();
-            renderPriceListTable();
-            setupPagination(productPrices.length, currentPage, itemsPerPage);
-        }
+      // Ghi đè loadCurrentPageData
+      function loadCurrentPageData() {
+        renderByTypeTable();
+        renderByProductTable();
+        renderPriceListTable();
+        setupPagination(productPrices.length, currentPage, itemsPerPage);
+      }
 
-        // Tab switching (giữ hành vi, không dùng event toàn cục)
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-            const content = document.getElementById(tabName + '-tab');
-            if (content) content.classList.add('active');
-            // tìm nút phù hợp theo tabName
-            const btns = document.querySelectorAll('.price-tabs .tab-button');
-            btns.forEach(btn => {
-                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${tabName}'`)) {
-                    btn.classList.add('active');
-                }
-            });
-        }
+      // Tab switching (giữ hành vi, không dùng event toàn cục)
+      function switchTab(tabName) {
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((tab) => tab.classList.remove("active"));
+        document
+          .querySelectorAll(".tab-button")
+          .forEach((b) => b.classList.remove("active"));
+        const content = document.getElementById(tabName + "-tab");
+        if (content) content.classList.add("active");
+        // tìm nút phù hợp theo tabName
+        const btns = document.querySelectorAll(".price-tabs .tab-button");
+        btns.forEach((btn) => {
+          if (
+            btn.getAttribute("onclick") &&
+            btn.getAttribute("onclick").includes(`'${tabName}'`)
+          ) {
+            btn.classList.add("active");
+          }
+        });
+      }
 
-        // Handlers
-        function editProfitRule(typeId) {
-            const rule = profitRules.find(x => x.typeId === typeId);
-            if (!rule) return;
-            document.getElementById('productType').value = rule.typeId;
-            document.getElementById('profitPercentage').value = rule.percentage;
-            document.getElementById('profitNote').value = rule.note || '';
-            openModal('addProfitModal');
-        }
+      // Handlers
+      function editProfitRule(typeId) {
+        const rule = profitRules.find((x) => x.typeId === typeId);
+        if (!rule) return;
+        document.getElementById("productType").value = rule.typeId;
+        document.getElementById("profitPercentage").value = rule.percentage;
+        document.getElementById("profitNote").value = rule.note || "";
+        openModal("addProfitModal");
+      }
 
-        function deleteProfitRule(typeId) {
-            if (!confirm('Bạn có chắc chắn muốn xóa quy tắc lợi nhuận này?')) return;
-            const idx = profitRules.findIndex(x => x.typeId === typeId);
+      function deleteProfitRule(typeId) {
+        if (!confirm("Bạn có chắc chắn muốn xóa quy tắc lợi nhuận này?"))
+          return;
+        const idx = profitRules.findIndex((x) => x.typeId === typeId);
+        if (idx !== -1) {
+          profitRules.splice(idx, 1);
+          showAlert("Xóa quy tắc lợi nhuận thành công!", "success");
+          renderByTypeTable();
+        }
+      }
+
+      function editProductPrice(productId) {
+        const p = productPrices.find((x) => x.id === productId);
+        if (!p) return;
+        document.getElementById("editProductId").value = p.id;
+        document.getElementById("editProductName").value = p.name;
+        document.getElementById("editCostPrice").value = p.costPrice;
+        document.getElementById("editProfitPercent").value = p.profitPercent;
+        document.getElementById("editSellingPrice").value = p.sellingPrice;
+        openModal("editPriceModal");
+      }
+
+      function calculateSellingPrice() {
+        const costPrice =
+          parseFloat(document.getElementById("editCostPrice").value) || 0;
+        const profitPercent =
+          parseFloat(document.getElementById("editProfitPercent").value) || 0;
+        const sellingPrice = Math.round(costPrice * (1 + profitPercent / 100));
+        document.getElementById("editSellingPrice").value = sellingPrice;
+      }
+
+      function bulkUpdatePrices() {
+        if (
+          !confirm(
+            "Bạn có chắc chắn muốn cập nhật giá cho tất cả sản phẩm theo quy tắc lợi nhuận hiện tại?"
+          )
+        )
+          return;
+        productPrices.forEach((p) => {
+          const rule = profitRules.find((r) => r.typeId === p.typeId);
+          if (rule) {
+            p.profitPercent = rule.percentage;
+            p.sellingPrice = Math.round(
+              p.costPrice * (1 + p.profitPercent / 100)
+            );
+          }
+        });
+        showAlert("Cập nhật giá hàng loạt thành công!", "success");
+        renderByProductTable();
+        renderPriceListTable();
+      }
+
+      // Lọc theo loại sản phẩm cho tab by-product và price-list
+      window.handleFilter = function (e) {
+        const select = e.target;
+        const container = select.closest(".tab-content");
+        if (!container) return;
+        const tbody = container.querySelector(".admin-table tbody");
+        if (!tbody) return;
+        const value = select.value; // LSPxxx | all
+        const rows = tbody.querySelectorAll("tr");
+        rows.forEach((row) => {
+          const typeId = row.getAttribute("data-type-id");
+          row.style.display = value === "all" || typeId === value ? "" : "none";
+        });
+      };
+
+      function exportPriceList() {
+        showAlert("Đang xuất danh sách giá...", "info");
+        setTimeout(
+          () => showAlert("Xuất danh sách giá thành công!", "success"),
+          800
+        );
+      }
+
+      // Submit: thêm/cập nhật quy tắc lợi nhuận theo loại
+      document
+        .getElementById("addProfitForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const form = e.currentTarget;
+          if (!validateForm(form)) return;
+          const typeId = document.getElementById("productType").value;
+          const percentage = parseFloat(
+            document.getElementById("profitPercentage").value
+          );
+          const note = document.getElementById("profitNote").value.trim();
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const original = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+          submitBtn.disabled = true;
+          setTimeout(() => {
+            const idx = profitRules.findIndex((r) => r.typeId === typeId);
+            const updatedAt = new Date().toLocaleDateString("vi-VN");
             if (idx !== -1) {
-                profitRules.splice(idx, 1);
-                showAlert('Xóa quy tắc lợi nhuận thành công!', 'success');
-                renderByTypeTable();
+              profitRules[idx] = {
+                ...profitRules[idx],
+                percentage,
+                note,
+                updatedAt,
+              };
+            } else {
+              profitRules.unshift({ typeId, percentage, note, updatedAt });
             }
-        }
+            showAlert("Lưu quy tắc lợi nhuận thành công!", "success");
+            closeModal(document.getElementById("addProfitModal"));
+            form.reset();
+            submitBtn.innerHTML = original;
+            submitBtn.disabled = false;
+            renderByTypeTable();
+          }, 600);
+        });
 
-        function editProductPrice(productId) {
-            const p = productPrices.find(x => x.id === productId);
-            if (!p) return;
-            document.getElementById('editProductId').value = p.id;
-            document.getElementById('editProductName').value = p.name;
-            document.getElementById('editCostPrice').value = p.costPrice;
-            document.getElementById('editProfitPercent').value = p.profitPercent;
-            document.getElementById('editSellingPrice').value = p.sellingPrice;
-            openModal('editPriceModal');
-        }
-
-        function calculateSellingPrice() {
-            const costPrice = parseFloat(document.getElementById('editCostPrice').value) || 0;
-            const profitPercent = parseFloat(document.getElementById('editProfitPercent').value) || 0;
-            const sellingPrice = Math.round(costPrice * (1 + profitPercent / 100));
-            document.getElementById('editSellingPrice').value = sellingPrice;
-        }
-
-        function bulkUpdatePrices() {
-            if (!confirm('Bạn có chắc chắn muốn cập nhật giá cho tất cả sản phẩm theo quy tắc lợi nhuận hiện tại?')) return;
-            productPrices.forEach(p => {
-                const rule = profitRules.find(r => r.typeId === p.typeId);
-                if (rule) {
-                    p.profitPercent = rule.percentage;
-                    p.sellingPrice = Math.round(p.costPrice * (1 + p.profitPercent / 100));
-                }
-            });
-            showAlert('Cập nhật giá hàng loạt thành công!', 'success');
+      // Submit: cập nhật giá sản phẩm
+      document
+        .getElementById("editPriceForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const form = e.currentTarget;
+          if (!validateForm(form)) return;
+          const id = document.getElementById("editProductId").value;
+          const costPrice = parseFloat(
+            document.getElementById("editCostPrice").value
+          );
+          const profitPercent = parseFloat(
+            document.getElementById("editProfitPercent").value
+          );
+          const sellingPrice = Math.round(
+            costPrice * (1 + profitPercent / 100)
+          );
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const original = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
+          submitBtn.disabled = true;
+          setTimeout(() => {
+            const idx = productPrices.findIndex((p) => p.id === id);
+            if (idx !== -1) {
+              productPrices[idx] = {
+                ...productPrices[idx],
+                costPrice,
+                profitPercent,
+                sellingPrice,
+              };
+            }
+            showAlert("Cập nhật giá thành công!", "success");
+            closeModal(document.getElementById("editPriceModal"));
+            submitBtn.innerHTML = original;
+            submitBtn.disabled = false;
             renderByProductTable();
             renderPriceListTable();
-        }
-
-        // Lọc theo loại sản phẩm cho tab by-product và price-list
-        window.handleFilter = function(e) {
-            const select = e.target;
-            const container = select.closest('.tab-content');
-            if (!container) return;
-            const tbody = container.querySelector('.admin-table tbody');
-            if (!tbody) return;
-            const value = select.value; // LSPxxx | all
-            const rows = tbody.querySelectorAll('tr');
-            rows.forEach(row => {
-                const typeId = row.getAttribute('data-type-id');
-                row.style.display = (value === 'all' || typeId === value) ? '' : 'none';
-            });
-        };
-
-        function exportPriceList() {
-            showAlert('Đang xuất danh sách giá...', 'info');
-            setTimeout(() => showAlert('Xuất danh sách giá thành công!', 'success'), 800);
-        }
-
-        // Submit: thêm/cập nhật quy tắc lợi nhuận theo loại
-        document.getElementById('addProfitForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.currentTarget;
-            if (!validateForm(form)) return;
-            const typeId = document.getElementById('productType').value;
-            const percentage = parseFloat(document.getElementById('profitPercentage').value);
-            const note = document.getElementById('profitNote').value.trim();
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const original = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
-            submitBtn.disabled = true;
-            setTimeout(() => {
-                const idx = profitRules.findIndex(r => r.typeId === typeId);
-                const updatedAt = new Date().toLocaleDateString('vi-VN');
-                if (idx !== -1) {
-                    profitRules[idx] = { ...profitRules[idx], percentage, note, updatedAt };
-                } else {
-                    profitRules.unshift({ typeId, percentage, note, updatedAt });
-                }
-                showAlert('Lưu quy tắc lợi nhuận thành công!', 'success');
-                closeModal(document.getElementById('addProfitModal'));
-                form.reset();
-                submitBtn.innerHTML = original;
-                submitBtn.disabled = false;
-                renderByTypeTable();
-            }, 600);
+          }, 600);
         });
 
-        // Submit: cập nhật giá sản phẩm
-        document.getElementById('editPriceForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.currentTarget;
-            if (!validateForm(form)) return;
-            const id = document.getElementById('editProductId').value;
-            const costPrice = parseFloat(document.getElementById('editCostPrice').value);
-            const profitPercent = parseFloat(document.getElementById('editProfitPercent').value);
-            const sellingPrice = Math.round(costPrice * (1 + profitPercent / 100));
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const original = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
-            submitBtn.disabled = true;
-            setTimeout(() => {
-                const idx = productPrices.findIndex(p => p.id === id);
-                if (idx !== -1) {
-                    productPrices[idx] = { ...productPrices[idx], costPrice, profitPercent, sellingPrice };
-                }
-                showAlert('Cập nhật giá thành công!', 'success');
-                closeModal(document.getElementById('editPriceModal'));
-                submitBtn.innerHTML = original;
-                submitBtn.disabled = false;
-                renderByProductTable();
-                renderPriceListTable();
-            }, 600);
-        });
+      // Tính giá khi thay đổi input
+      document
+        .getElementById("editCostPrice")
+        .addEventListener("input", calculateSellingPrice);
+      document
+        .getElementById("editProfitPercent")
+        .addEventListener("input", calculateSellingPrice);
 
-        // Tính giá khi thay đổi input
-        document.getElementById('editCostPrice').addEventListener('input', calculateSellingPrice);
-        document.getElementById('editProfitPercent').addEventListener('input', calculateSellingPrice);
-
-        // Khởi tạo
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCurrentPageData();
-        });
+      // Khởi tạo
+      document.addEventListener("DOMContentLoaded", function () {
+        loadCurrentPageData();
+      });
     </script>
-    
+
     <style>
+      .price-tabs {
+        display: flex;
+        border-bottom: 2px solid #e9ecef;
+        margin-bottom: 20px;
+      }
+
+      .tab-button {
+        padding: 12px 24px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: #666;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .tab-button:hover {
+        color: #072e75;
+        background: #f8f9fa;
+      }
+
+      .tab-button.active {
+        color: #072e75;
+        border-bottom-color: #072e75;
+        background: #f8f9fa;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .text-muted {
+        color: #6c757d;
+        font-size: 14px;
+      }
+
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #f1f3f4;
+      }
+
+      .form-text {
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 5px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      @media (max-width: 768px) {
         .price-tabs {
-            display: flex;
-            border-bottom: 2px solid #e9ecef;
-            margin-bottom: 20px;
+          flex-direction: column;
         }
-        
+
         .tab-button {
-            padding: 12px 24px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            color: #666;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+          justify-content: center;
         }
-        
-        .tab-button:hover {
-            color: #072E75;
-            background: #f8f9fa;
-        }
-        
-        .tab-button.active {
-            color: #072E75;
-            border-bottom-color: #072E75;
-            background: #f8f9fa;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .text-muted {
-            color: #6c757d;
-            font-size: 14px;
-        }
-        
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #f1f3f4;
-        }
-        
-        .form-text {
-            font-size: 12px;
-            color: #6c757d;
-            margin-top: 5px;
-        }
-        
+
         .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+          grid-template-columns: 1fr;
         }
-        
-        @media (max-width: 768px) {
-            .price-tabs {
-                flex-direction: column;
-            }
-            
-            .tab-button {
-                justify-content: center;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
-</body>
+  </body>
 </html>

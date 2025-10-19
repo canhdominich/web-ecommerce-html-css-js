@@ -1391,31 +1391,62 @@
             <div class="mpf-content-left">
               <form class="my-profile-form modal-profile-form">
                 <div class="form-group">
-                  <label for="profile-username" class="col-form-label">Tên người dùng</label>
-                  <input type="text" class="form-control" id="profile-username" placeholder="Nhập tên người dùng" />
+                  <label for="profile-username" class="col-form-label"
+                    >Tên người dùng</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="profile-username"
+                    placeholder="Nhập tên người dùng"
+                  />
                 </div>
 
                 <div class="form-group">
-                  <label for="profile-email" class="col-form-label">Email</label>
-                  <input type="email" class="form-control" id="profile-email" placeholder="Nhập email" />
+                  <label for="profile-email" class="col-form-label"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="profile-email"
+                    placeholder="Nhập email"
+                  />
                 </div>
 
                 <div class="form-group">
-                  <label for="profile-address" class="col-form-label">Địa chỉ</label>
-                  <textarea class="form-control" id="profile-address" placeholder="Nhập địa chỉ" rows="3"></textarea>
+                  <label for="profile-address" class="col-form-label"
+                    >Địa chỉ</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="profile-address"
+                    placeholder="Nhập địa chỉ"
+                    rows="3"
+                  ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label for="profile-phone" class="col-form-label">Số điện thoại</label>
-                  <input type="tel" class="form-control" id="profile-phone" placeholder="Số điện thoại" readonly style="background-color: #f8f9fa;" />
+                  <label for="profile-phone" class="col-form-label"
+                    >Số điện thoại</label
+                  >
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="profile-phone"
+                    placeholder="Số điện thoại"
+                    readonly
+                    style="background-color: #f8f9fa"
+                  />
                 </div>
 
                 <div class="btn-action-form">
-                  <button type="button" class="btn-green btn-save-info4" id="save-profile-button">
+                  <button
+                    type="button"
+                    class="btn-green btn-save-info4"
+                    id="save-profile-button"
+                  >
                     Lưu thông tin
-                  </button>
-                  <button type="button" class="btn-secondary btn-reset-form" style="margin-left: 10px;">
-                    Khôi phục
                   </button>
                 </div>
               </form>
@@ -1545,21 +1576,21 @@
     font-size: 14px;
     transition: background-color 0.3s;
   }
-  
+
   .btn-secondary:hover {
     background-color: #5a6268;
   }
-  
+
   .btn-action-form {
     display: flex;
     align-items: center;
     gap: 10px;
   }
-  
+
   .notification {
     animation: slideIn 0.3s ease-out;
   }
-  
+
   @keyframes slideIn {
     from {
       transform: translateX(100%);
@@ -1570,27 +1601,27 @@
       opacity: 1;
     }
   }
-  
+
   .form-control:focus {
     border-color: #28a745;
     box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
   }
-  
+
   .form-group {
     margin-bottom: 20px;
   }
-  
+
   .col-form-label {
     font-weight: 500;
     margin-bottom: 5px;
     color: #333;
   }
-  
+
   textarea.form-control {
     resize: vertical;
     min-height: 80px;
   }
-  
+
   .form-text {
     font-size: 12px;
     margin-top: 5px;
@@ -1598,27 +1629,71 @@
 </style>
 
 <script>
-// Hệ thống quản lý profile cá nhân
-class ProfileManager {
-  constructor() {
-    this.currentUser = null;
-    this.originalData = null;
-    this.init();
-  }
+  // Hệ thống quản lý profile cá nhân
+  class ProfileManager {
+    constructor() {
+      this.currentUser = null;
+      this.originalData = null;
+      this.init();
+    }
 
-  init() {
-    // Kiểm tra user đã đăng nhập chưa
-    this.checkAuthStatus();
-    this.bindEvents();
-    this.loadUserData();
-  }
+    init() {
+      // Kiểm tra user đã đăng nhập chưa
+      this.checkAuthStatus();
+      this.bindEvents();
+      this.loadUserData();
+    }
 
-  // Kiểm tra trạng thái đăng nhập
-  checkAuthStatus() {
-    const userData = localStorage.getItem("currentUser");
-    if (userData) {
-      this.currentUser = JSON.parse(userData);
-      
+    // Kiểm tra trạng thái đăng nhập
+    checkAuthStatus() {
+      const userData = localStorage.getItem("currentUser");
+      if (userData) {
+        this.currentUser = JSON.parse(userData);
+
+        // Đảm bảo user có đầy đủ các trường cần thiết
+        if (!this.currentUser.email) {
+          this.currentUser.email = "";
+        }
+        if (!this.currentUser.address) {
+          this.currentUser.address = "";
+        }
+
+        // Cập nhật lại localStorage với cấu trúc đầy đủ
+        localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+      } else {
+        // Redirect về trang chủ nếu chưa đăng nhập
+        window.location.href = "../index.html";
+      }
+    }
+
+    // Bind các sự kiện
+    bindEvents() {
+      // Nút lưu thông tin
+      const saveBtn = document.querySelector(".btn-save-info4");
+      if (saveBtn) {
+        saveBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.saveProfile();
+        });
+      }
+
+      // Nút khôi phục
+      const resetBtn = document.querySelector(".btn-reset-form");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.resetForm();
+        });
+      }
+
+      // Cập nhật tên hiển thị trên sidebar
+      this.updateSidebarUserInfo();
+    }
+
+    // Load dữ liệu user vào form
+    loadUserData() {
+      if (!this.currentUser) return;
+
       // Đảm bảo user có đầy đủ các trường cần thiết
       if (!this.currentUser.email) {
         this.currentUser.email = "";
@@ -1626,214 +1701,171 @@ class ProfileManager {
       if (!this.currentUser.address) {
         this.currentUser.address = "";
       }
-      
-      // Cập nhật lại localStorage với cấu trúc đầy đủ
+
+      // Lưu dữ liệu gốc để có thể khôi phục
+      this.originalData = { ...this.currentUser };
+
+      // Điền dữ liệu vào các trường form
+      const usernameField = document.getElementById("profile-username");
+      const emailField = document.getElementById("profile-email");
+      const addressField = document.getElementById("profile-address");
+      const phoneField = document.getElementById("profile-phone");
+
+      if (usernameField) {
+        usernameField.value = this.currentUser.userName || "";
+      }
+
+      if (emailField) {
+        emailField.value = this.currentUser.email || "";
+      }
+
+      if (addressField) {
+        addressField.value = this.currentUser.address || "";
+      }
+
+      if (phoneField) {
+        phoneField.value = this.currentUser.phoneNumber || "";
+      }
+    }
+
+    // Cập nhật thông tin user trên sidebar
+    updateSidebarUserInfo() {
+      if (!this.currentUser) return;
+
+      const userNameElement = document.querySelector(".sbl-user-name h5");
+      if (userNameElement) {
+        userNameElement.textContent = this.currentUser.userName || "Người dùng";
+      }
+
+      const dropdownToggle = document.querySelector(".dropdown-toggle");
+      if (dropdownToggle) {
+        dropdownToggle.textContent = this.currentUser.userName || "Người dùng";
+      }
+    }
+
+    // Lưu thông tin profile
+    saveProfile() {
+      if (!this.currentUser) return;
+
+      // Lấy dữ liệu từ form
+      const usernameField = document.getElementById("profile-username");
+      const emailField = document.getElementById("profile-email");
+      const addressField = document.getElementById("profile-address");
+
+      const newData = {
+        userName: usernameField ? usernameField.value.trim() : "",
+        email: emailField ? emailField.value.trim() : "",
+        address: addressField ? addressField.value.trim() : "",
+      };
+
+      // Validation
+      if (!newData.userName) {
+        this.showMessage("Vui lòng nhập tên người dùng", "error");
+        return;
+      }
+
+      if (newData.email && !this.isValidEmail(newData.email)) {
+        this.showMessage("Email không hợp lệ", "error");
+        return;
+      }
+
+      // Cập nhật dữ liệu user - đảm bảo tất cả các trường được cập nhật
+      this.currentUser.userName = newData.userName;
+      this.currentUser.email = newData.email;
+      this.currentUser.address = newData.address;
+
+      // Debug log để kiểm tra
+      console.log("Dữ liệu mới:", newData);
+      console.log("User sau khi cập nhật:", this.currentUser);
+
+      // Cập nhật localStorage
       localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
-    } else {
-      // Redirect về trang chủ nếu chưa đăng nhập
-      window.location.href = "../index.html";
+
+      // Cập nhật danh sách users trong localStorage
+      this.updateUsersList();
+
+      // Cập nhật UI
+      this.updateSidebarUserInfo();
+
+      // Hiển thị thông báo thành công
+      this.showMessage("Cập nhật thông tin thành công!", "success");
+
+      // Refresh trang sau 1 giây để cập nhật hoàn toàn
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
-  }
-
-  // Bind các sự kiện
-  bindEvents() {
-    // Nút lưu thông tin
-    const saveBtn = document.querySelector(".btn-save-info4");
-    if (saveBtn) {
-      saveBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.saveProfile();
-      });
-    }
-
-    // Nút khôi phục
-    const resetBtn = document.querySelector(".btn-reset-form");
-    if (resetBtn) {
-      resetBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.resetForm();
-      });
-    }
-
-    // Cập nhật tên hiển thị trên sidebar
-    this.updateSidebarUserInfo();
-  }
-
-
-  // Load dữ liệu user vào form
-  loadUserData() {
-    if (!this.currentUser) return;
-
-    // Đảm bảo user có đầy đủ các trường cần thiết
-    if (!this.currentUser.email) {
-      this.currentUser.email = "";
-    }
-    if (!this.currentUser.address) {
-      this.currentUser.address = "";
-    }
-
-    // Lưu dữ liệu gốc để có thể khôi phục
-    this.originalData = { ...this.currentUser };
-
-    // Điền dữ liệu vào các trường form
-    const usernameField = document.getElementById("profile-username");
-    const emailField = document.getElementById("profile-email");
-    const addressField = document.getElementById("profile-address");
-    const phoneField = document.getElementById("profile-phone");
-
-    if (usernameField) {
-      usernameField.value = this.currentUser.userName || "";
-    }
-
-    if (emailField) {
-      emailField.value = this.currentUser.email || "";
-    }
-
-    if (addressField) {
-      addressField.value = this.currentUser.address || "";
-    }
-
-    if (phoneField) {
-      phoneField.value = this.currentUser.phoneNumber || "";
-    }
-  }
-
-  // Cập nhật thông tin user trên sidebar
-  updateSidebarUserInfo() {
-    if (!this.currentUser) return;
-
-    const userNameElement = document.querySelector(".sbl-user-name h5");
-    if (userNameElement) {
-      userNameElement.textContent = this.currentUser.userName || "Người dùng";
-    }
-
-    const dropdownToggle = document.querySelector(".dropdown-toggle");
-    if (dropdownToggle) {
-      dropdownToggle.textContent = this.currentUser.userName || "Người dùng";
-    }
-  }
-
-  // Lưu thông tin profile
-  saveProfile() {
-    if (!this.currentUser) return;
-
-    // Lấy dữ liệu từ form
-    const usernameField = document.getElementById("profile-username");
-    const emailField = document.getElementById("profile-email");
-    const addressField = document.getElementById("profile-address");
-
-    const newData = {
-      userName: usernameField ? usernameField.value.trim() : "",
-      email: emailField ? emailField.value.trim() : "",
-      address: addressField ? addressField.value.trim() : "",
-    };
-
-    // Validation
-    if (!newData.userName) {
-      this.showMessage("Vui lòng nhập tên người dùng", "error");
-      return;
-    }
-
-    if (newData.email && !this.isValidEmail(newData.email)) {
-      this.showMessage("Email không hợp lệ", "error");
-      return;
-    }
-
-    // Cập nhật dữ liệu user - đảm bảo tất cả các trường được cập nhật
-    this.currentUser.userName = newData.userName;
-    this.currentUser.email = newData.email;
-    this.currentUser.address = newData.address;
-
-    // Debug log để kiểm tra
-    console.log("Dữ liệu mới:", newData);
-    console.log("User sau khi cập nhật:", this.currentUser);
-
-    // Cập nhật localStorage
-    localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
 
     // Cập nhật danh sách users trong localStorage
-    this.updateUsersList();
+    updateUsersList() {
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const userIndex = users.findIndex(
+        (u) => u.phoneNumber === this.currentUser.phoneNumber
+      );
 
-    // Cập nhật UI
-    this.updateSidebarUserInfo();
+      if (userIndex !== -1) {
+        // Cập nhật user hiện tại với tất cả thông tin mới
+        users[userIndex] = {
+          ...users[userIndex], // Giữ nguyên các trường khác
+          userName: this.currentUser.userName,
+          email: this.currentUser.email,
+          address: this.currentUser.address,
+        };
+        console.log("Cập nhật user tại index:", userIndex, users[userIndex]);
+      } else {
+        // Nếu chưa có thì thêm mới
+        users.push(this.currentUser);
+        console.log("Thêm user mới:", this.currentUser);
+      }
 
-    // Hiển thị thông báo thành công
-    this.showMessage("Cập nhật thông tin thành công!", "success");
-
-    // Refresh trang sau 1 giây để cập nhật hoàn toàn
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-  }
-
-  // Cập nhật danh sách users trong localStorage
-  updateUsersList() {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const userIndex = users.findIndex(u => u.phoneNumber === this.currentUser.phoneNumber);
-      
-    if (userIndex !== -1) {
-      // Cập nhật user hiện tại với tất cả thông tin mới
-      users[userIndex] = { 
-        ...users[userIndex], // Giữ nguyên các trường khác
-        userName: this.currentUser.userName,
-        email: this.currentUser.email,
-        address: this.currentUser.address
-      };
-      console.log("Cập nhật user tại index:", userIndex, users[userIndex]);
-    } else {
-      // Nếu chưa có thì thêm mới
-      users.push(this.currentUser);
-      console.log("Thêm user mới:", this.currentUser);
+      localStorage.setItem("users", JSON.stringify(users));
+      console.log("Danh sách users sau khi cập nhật:", users);
     }
 
-    localStorage.setItem("users", JSON.stringify(users));
-    console.log("Danh sách users sau khi cập nhật:", users);
-  }
+    // Khôi phục form về trạng thái ban đầu
+    resetForm() {
+      if (!this.originalData) return;
 
-  // Khôi phục form về trạng thái ban đầu
-  resetForm() {
-    if (!this.originalData) return;
+      const usernameField = document.getElementById("profile-username");
+      const emailField = document.getElementById("profile-email");
+      const addressField = document.getElementById("profile-address");
 
-    const usernameField = document.getElementById("profile-username");
-    const emailField = document.getElementById("profile-email");
-    const addressField = document.getElementById("profile-address");
+      if (usernameField) {
+        usernameField.value = this.originalData.userName || "";
+      }
 
-    if (usernameField) {
-      usernameField.value = this.originalData.userName || "";
+      if (emailField) {
+        emailField.value = this.originalData.email || "";
+      }
+
+      if (addressField) {
+        addressField.value = this.originalData.address || "";
+      }
+
+      this.showMessage("Đã khôi phục thông tin ban đầu", "info");
     }
 
-    if (emailField) {
-      emailField.value = this.originalData.email || "";
+    // Kiểm tra email hợp lệ
+    isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
     }
 
-    if (addressField) {
-      addressField.value = this.originalData.address || "";
-    }
+    // Hiển thị thông báo
+    showMessage(message, type = "info") {
+      // Tạo element thông báo
+      const alertDiv = document.createElement("div");
+      alertDiv.className = `alert alert-${
+        type === "error" ? "danger" : type
+      } alert-dismissible fade show notification`;
+      alertDiv.style.position = "fixed";
+      alertDiv.style.top = "20px";
+      alertDiv.style.right = "20px";
+      alertDiv.style.zIndex = "9999";
+      alertDiv.style.minWidth = "300px";
+      alertDiv.style.maxWidth = "400px";
 
-    this.showMessage("Đã khôi phục thông tin ban đầu", "info");
-  }
-
-  // Kiểm tra email hợp lệ
-  isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  // Hiển thị thông báo
-  showMessage(message, type = "info") {
-    // Tạo element thông báo
-    const alertDiv = document.createElement("div");
-    alertDiv.className = `alert alert-${
-      type === "error" ? "danger" : type
-    } alert-dismissible fade show notification`;
-    alertDiv.style.position = "fixed";
-    alertDiv.style.top = "20px";
-    alertDiv.style.right = "20px";
-    alertDiv.style.zIndex = "9999";
-    alertDiv.style.minWidth = "300px";
-    alertDiv.style.maxWidth = "400px";
-
-    alertDiv.innerHTML = `
+      alertDiv.innerHTML = `
       <div style="display: flex; align-items: center; gap: 10px;">
         <span style="font-size: 16px;">
           ${type === "success" ? "✅" : type === "error" ? "❌" : "ℹ️"}
@@ -1845,33 +1877,32 @@ class ProfileManager {
       </button>
     `;
 
-    document.body.appendChild(alertDiv);
+      document.body.appendChild(alertDiv);
 
-    // Tự động ẩn sau 3 giây
-    setTimeout(() => {
-      if (alertDiv.parentNode) {
-        alertDiv.parentNode.removeChild(alertDiv);
-      }
-    }, 3000);
+      // Tự động ẩn sau 3 giây
+      setTimeout(() => {
+        if (alertDiv.parentNode) {
+          alertDiv.parentNode.removeChild(alertDiv);
+        }
+      }, 3000);
+    }
+
+    // Lấy thông tin user hiện tại
+    getCurrentUser() {
+      return this.currentUser;
+    }
   }
 
-  // Lấy thông tin user hiện tại
-  getCurrentUser() {
-    return this.currentUser;
-  }
-}
+  // Khởi tạo ProfileManager khi trang load
+  document.addEventListener("DOMContentLoaded", () => {
+    // Chỉ khởi tạo ProfileManager nếu đang ở trang profile
+    if (window.location.pathname.includes("trangCaNhan.html")) {
+      window.profileManager = new ProfileManager();
+    }
+  });
 
-// Khởi tạo ProfileManager khi trang load
-document.addEventListener("DOMContentLoaded", () => {
-  // Chỉ khởi tạo ProfileManager nếu đang ở trang profile
-  if (window.location.pathname.includes("trangCaNhan.html")) {
-    window.profileManager = new ProfileManager();
-  }
-});
-
-// Export để sử dụng ở các file khác
-window.ProfileManager = ProfileManager;
-
+  // Export để sử dụng ở các file khác
+  window.ProfileManager = ProfileManager;
 </script>
 
 <script>

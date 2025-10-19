@@ -131,8 +131,16 @@ class AuthSystem {
     const phoneNumber = document.getElementById("phone-number-register").value;
     const password = document.getElementById("password-register").value;
     const confirmPassword = document.getElementById("confirm-password").value;
-    const email = document.getElementById("email-register") ? document.getElementById("email-register").value : '';
-    const address = document.getElementById("address-register") ? document.getElementById("address-register").value : '';
+    // Hỗ trợ cả id "email-register"/"address-register" và "email"/"address" trên HTML
+    const emailInputEl =
+      document.getElementById("email-register") ||
+      document.getElementById("email");
+    const addressInputEl =
+      document.getElementById("address-register") ||
+      document.getElementById("address");
+
+    const email = emailInputEl ? emailInputEl.value : "";
+    const address = addressInputEl ? addressInputEl.value : "";
 
     if (!userName || !phoneNumber || !password || !confirmPassword) {
       this.showMessage("Vui lòng nhập đầy đủ thông tin", "error");
@@ -175,8 +183,8 @@ class AuthSystem {
     localStorage.setItem("users", JSON.stringify(users));
 
     // Đăng nhập luôn sau khi đăng ký
-    this.currentUser = newUser;
     localStorage.setItem("currentUser", JSON.stringify(newUser));
+    this.currentUser = newUser;
 
     this.showMessage("Đăng ký thành công!", "success");
     this.closeModals();

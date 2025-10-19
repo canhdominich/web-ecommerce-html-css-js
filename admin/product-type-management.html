@@ -341,19 +341,6 @@
             ></textarea>
           </div>
           <div class="form-group">
-            <label for="typeIcon" class="form-label">Icon (Font Awesome)</label>
-            <input
-              type="text"
-              id="typeIcon"
-              name="typeIcon"
-              class="form-control"
-              placeholder="fas fa-pills"
-            />
-            <small class="form-text text-muted"
-              >Nhập tên class icon Font Awesome (ví dụ: fas fa-pills)</small
-            >
-          </div>
-          <div class="form-group">
             <label class="checkbox-label">
               <input
                 type="checkbox"
@@ -411,20 +398,6 @@
               class="form-control"
               rows="4"
             ></textarea>
-          </div>
-          <div class="form-group">
-            <label for="editTypeIcon" class="form-label"
-              >Icon (Font Awesome)</label
-            >
-            <input
-              type="text"
-              id="editTypeIcon"
-              name="typeIcon"
-              class="form-control"
-            />
-            <small class="form-text text-muted"
-              >Nhập tên class icon Font Awesome (ví dụ: fas fa-pills)</small
-            >
           </div>
           <div class="form-group">
             <label for="editTypeStatus" class="form-label">Trạng thái</label>
@@ -568,7 +541,6 @@
         document.getElementById("editTypeId").value = data.id;
         document.getElementById("editTypeName").value = data.name;
         document.getElementById("editTypeDescription").value = data.description;
-        document.getElementById("editTypeIcon").value = data.icon || "";
         document.getElementById("editTypeStatus").value = data.status;
         openModal("editProductTypeModal");
       };
@@ -616,7 +588,6 @@
           const description = document
             .getElementById("typeDescription")
             .value.trim();
-          const icon = document.getElementById("typeIcon").value.trim();
           const status = document.getElementById("typeStatus").checked
             ? "active"
             : "inactive";
@@ -625,7 +596,6 @@
             id: generateNewId(),
             name,
             description,
-            icon,
             productCount: 0,
             createdAt: new Date().toLocaleDateString("vi-VN"),
             status,
@@ -660,7 +630,6 @@
           const description = document
             .getElementById("editTypeDescription")
             .value.trim();
-          const icon = document.getElementById("editTypeIcon").value.trim();
           const status = document.getElementById("editTypeStatus").value;
 
           const submitBtn = form.querySelector('button[type="submit"]');
@@ -675,7 +644,6 @@
                 ...productTypes[idx],
                 name,
                 description,
-                icon,
                 status,
               };
             }

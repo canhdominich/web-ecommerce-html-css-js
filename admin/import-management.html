@@ -220,7 +220,8 @@
                       </button>
                       <button
                         class="btn btn-sm btn-warning"
-                        onclick="editImport('PN002')"
+                        disabled
+                        title="Không thể chỉnh sửa phiếu nháp"
                       >
                         <i class="fas fa-edit"></i>
                       </button>
@@ -282,7 +283,8 @@
                       </button>
                       <button
                         class="btn btn-sm btn-warning"
-                        onclick="editImport('PN004')"
+                        disabled
+                        title="Không thể chỉnh sửa phiếu nháp"
                       >
                         <i class="fas fa-edit"></i>
                       </button>
@@ -569,9 +571,11 @@
                         <button class="btn btn-sm btn-info" onclick="viewImport('${
                           r.id
                         }')"><i class="fas fa-eye"></i></button>
-                        <button class="btn btn-sm btn-warning" onclick="editImport('${
-                          r.id
-                        }')"><i class="fas fa-edit"></i></button>
+                        ${
+                          r.status === "completed"
+                            ? `<button class="btn btn-sm btn-warning" onclick="editImport('${r.id}')"><i class="fas fa-edit"></i></button>`
+                            : `<button class="btn btn-sm btn-warning" disabled title="Không thể chỉnh sửa phiếu nháp"><i class="fas fa-edit"></i></button>`
+                        }
                         <button class="btn btn-sm btn-success" onclick="completeImport('${
                           r.id
                         }')"><i class="fas fa-check"></i></button>
@@ -859,6 +863,19 @@
       .import-note p {
         color: #666;
         font-style: italic;
+      }
+
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background-color: #6c757d;
+        border-color: #6c757d;
+      }
+
+      .btn:disabled:hover {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        transform: none;
       }
 
       @media (max-width: 768px) {

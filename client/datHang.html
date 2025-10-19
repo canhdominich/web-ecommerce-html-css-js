@@ -2065,6 +2065,40 @@
 <script src="./assets/js/auth.js"></script>
 <script src="./assets/js/auth-check.js"></script>
 <script>
+  // Hàm tự động điền thông tin người dùng vào form đặt hàng
+  function autoFillUserData() {
+    // Kiểm tra xem có user đã đăng nhập không
+    if (typeof authSystem !== 'undefined' && authSystem.isLoggedIn()) {
+      const currentUser = authSystem.getCurrentUser();
+      
+      // Điền thông tin vào các trường form
+      const nameInput = document.getElementById('name');
+      const phoneInput = document.getElementById('phoneNumber');
+      const addressInput = document.getElementById('addressSpecial');
+      
+      if (nameInput && currentUser.userName) {
+        nameInput.value = currentUser.userName;
+      }
+      
+      if (phoneInput && currentUser.phoneNumber) {
+        phoneInput.value = currentUser.phoneNumber;
+      }
+      
+      if (addressInput && currentUser.address) {
+        addressInput.value = currentUser.address;
+      }
+      
+      console.log('Đã tự động điền thông tin người dùng vào form đặt hàng');
+    }
+  }
+  
+  // Chạy auto-fill khi trang load xong
+  document.addEventListener('DOMContentLoaded', function() {
+    // Delay một chút để đảm bảo authSystem đã khởi tạo xong
+    setTimeout(autoFillUserData, 100);
+  });
+</script>
+<script>
   function openForgotPassword() {
     $("#loginModal").modal("hide");
     // $('#forgotPasswordModal').modal('show')

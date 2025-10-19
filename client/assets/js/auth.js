@@ -131,6 +131,8 @@ class AuthSystem {
     const phoneNumber = document.getElementById("phone-number-register").value;
     const password = document.getElementById("password-register").value;
     const confirmPassword = document.getElementById("confirm-password").value;
+    const email = document.getElementById("email-register") ? document.getElementById("email-register").value : '';
+    const address = document.getElementById("address-register") ? document.getElementById("address-register").value : '';
 
     if (!userName || !phoneNumber || !password || !confirmPassword) {
       this.showMessage("Vui lòng nhập đầy đủ thông tin", "error");
@@ -162,6 +164,8 @@ class AuthSystem {
       userName: userName,
       phoneNumber: phoneNumber,
       password: password,
+      email: email,
+      address: address,
       createdAt: new Date().toISOString(),
       type: "customer", // mặc định là khách hàng
     };

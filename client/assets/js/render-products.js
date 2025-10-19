@@ -22,6 +22,19 @@
     img.style.height = "auto";
     img.style.objectFit = "contain";
     img.style.cursor = "pointer";
+    
+    // Force reload ảnh để tránh cache
+    img.onload = function() {
+      console.log("✅ Image loaded:", product.name, product.image);
+    };
+    img.onerror = function() {
+      console.error("❌ Image failed to load:", product.name, product.image);
+    };
+    
+    // Thêm timestamp để tránh cache
+    const timestamp = new Date().getTime();
+    img.src = product.image + "?t=" + timestamp;
+    
     img.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -122,20 +135,79 @@
     return number.toLocaleString("vi-VN");
   }
 
-  function renderProducts() {
+  function renderProducts(page = 1, itemsPerPage = 8) {
     const container = document.querySelector(
       ".--header-second.product-category-wrapper-right-content"
     );
-    if (!container) return;
+    if (!container) {
+      console.error("❌ Container not found!");
+      return;
+    }
 
+    // Clear container trước khi render
     container.innerHTML = "";
+    
     const data = Array.isArray(window.productsData) ? window.productsData : [];
-    data.forEach((p) => container.appendChild(createProductItem(p)));
+    
+    // Tính toán sản phẩm cho trang hiện tại
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const productsForPage = data.slice(startIndex, endIndex);
+    
+    productsForPage.forEach((p) => container.appendChild(createProductItem(p)));
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", renderProducts);
-  } else {
-    renderProducts();
+  // Tính toán số trang dựa trên dữ liệu
+  function calculateTotalPages(itemsPerPage = 8) {
+    const data = Array.isArray(window.productsData) ? window.productsData : [];
+    return Math.ceil(data.length / itemsPerPage);
   }
+
+  // Cập nhật phân trang dựa trên dữ liệu
+  function updatePaginationBasedOnData(currentPage = 1, itemsPerPage = 8) {
+    const totalPages = calculateTotalPages(itemsPerPage);
+    
+    // Cập nhật HTML phân trang
+    document.querySelectorAll('.pagination').forEach(function(paginationContainer) {
+      const prevBtn = paginationContainer.querySelector('.pagination-prev');
+      const nextBtn = paginationContainer.querySelector('.pagination-next');
+      const numbersContainer = paginationContainer.querySelectorAll('.pagination-number');
+      
+      // Xóa các số trang cũ (giữ lại prev/next buttons)
+      numbersContainer.forEach(function(element) {
+        if (!element.classList.contains('pagination-prev') && !element.classList.contains('pagination-next')) {
+          element.remove();
+        }
+      });
+      
+      // Thêm số trang mới
+      for (let i = 1; i <= totalPages; i++) {
+        const pageNumber = document.createElement('div');
+        pageNumber.className = 'pagination-number';
+        if (i === currentPage) {
+          pageNumber.classList.add('active');
+        }
+        pageNumber.textContent = i;
+        
+        // Chèn số trang vào vị trí đúng
+        if (i === 1) {
+          paginationContainer.insertBefore(pageNumber, nextBtn);
+        } else {
+          const lastNumber = paginationContainer.querySelector('.pagination-number:not(.pagination-prev):not(.pagination-next)');
+          if (lastNumber) {
+            paginationContainer.insertBefore(pageNumber, lastNumber.nextSibling);
+          } else {
+            paginationContainer.insertBefore(pageNumber, nextBtn);
+          }
+        }
+      }
+    });
+  }
+
+  // Export functions để sử dụng ở nơi khác
+  window.renderProducts = renderProducts;
+  window.calculateTotalPages = calculateTotalPages;
+  window.updatePaginationBasedOnData = updatePaginationBasedOnData;
+
+  // Không tự động khởi tạo ở đây, để index.html xử lý
 })();

@@ -18,6 +18,8 @@
     categories: [],
     brands: [],
     sortBy: "newest",
+    minPrice: null,
+    maxPrice: null,
   };
 
   // Danh sách sản phẩm gốc (sẽ được cập nhật từ products-data.js)
@@ -207,6 +209,19 @@
           productBrands.includes(brand)
         );
         if (!brandMatch) return false;
+      }
+
+      // Filter theo giá
+      if (currentFilters.minPrice !== null || currentFilters.maxPrice !== null) {
+        const productPrice = product.price;
+        
+        if (currentFilters.minPrice !== null && productPrice < currentFilters.minPrice) {
+          return false;
+        }
+        
+        if (currentFilters.maxPrice !== null && productPrice > currentFilters.maxPrice) {
+          return false;
+        }
       }
 
       return true;
@@ -408,6 +423,8 @@
       categories: [],
       brands: [],
       sortBy: "newest",
+      minPrice: null,
+      maxPrice: null,
     };
 
     // Reset UI
@@ -418,6 +435,12 @@
       CONFIG.filterContainerSelector + ' input[type="checkbox"]'
     );
     checkboxes.forEach((cb) => (cb.checked = false));
+
+    // Reset price inputs
+    const minPriceInput = document.getElementById('minPrice');
+    const maxPriceInput = document.getElementById('maxPrice');
+    if (minPriceInput) minPriceInput.value = "";
+    if (maxPriceInput) maxPriceInput.value = "";
 
     const dropdown = document.querySelector(CONFIG.sortDropdownSelector);
     if (dropdown) dropdown.textContent = "Sắp xếp theo";
@@ -431,6 +454,25 @@
     applyFilters,
     getCurrentFilters: () => ({ ...currentFilters }),
     getFilteredProducts: () => [...filteredProducts],
+  };
+
+  // Function để lọc theo giá
+  window.applyPriceFilter = function() {
+    const minPrice = document.getElementById('minPrice').value;
+    const maxPrice = document.getElementById('maxPrice').value;
+    
+    // Validate input
+    if (minPrice && maxPrice && parseFloat(minPrice) > parseFloat(maxPrice)) {
+      alert('Giá tối thiểu không thể lớn hơn giá tối đa!');
+      return;
+    }
+    
+    // Cập nhật filter
+    currentFilters.minPrice = minPrice ? parseFloat(minPrice) : null;
+    currentFilters.maxPrice = maxPrice ? parseFloat(maxPrice) : null;
+    
+    // Áp dụng filter
+    applyFilters();
   };
 
   // Khởi tạo khi DOM ready

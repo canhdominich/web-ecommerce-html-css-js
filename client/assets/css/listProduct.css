@@ -112,7 +112,6 @@ div.category-wrapper-left-sub-item {
   box-shadow: 0px 5.98055px 17.9416px rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   width: 202px;
-  height: 315px;
 }
 div.product-category-wrapper-right-content-item:nth-child(4),
 div.product-category-wrapper-right-content-item:nth-child(8),
@@ -325,4 +324,67 @@ input[type="checkbox"] {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/* Price Filter Styles */
+.price-filter-container {
+  padding: 10px 0;
+}
+
+.price-input-group {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.price-input {
+  width: 100%;
+  padding: 8px 30px 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.price-input:focus {
+  outline: none;
+  border-color: #21c58e;
+  box-shadow: 0 0 0 2px rgba(33, 197, 142, 0.1);
+}
+
+.price-input::placeholder {
+  color: #999;
+  font-size: 13px;
+}
+
+.currency-symbol {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.price-apply-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background-color: #21c58e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.price-apply-btn:hover {
+  background-color: #1ba374;
+}
+
+.price-apply-btn:active {
+  background-color: #169a6b;
 }
